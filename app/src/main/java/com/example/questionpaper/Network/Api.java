@@ -1,8 +1,5 @@
 package com.example.questionpaper.Network;
 
-import android.content.SharedPreferences;
-import android.util.Log;
-
 import com.example.questionpaper.Model.AnswerSubmitModel;
 import com.example.questionpaper.Model.BeanOrderIdInput;
 import com.example.questionpaper.Model.Course;
@@ -12,27 +9,22 @@ import com.example.questionpaper.Model.Leaderboardmodel;
 import com.example.questionpaper.Model.Loginmodel;
 import com.example.questionpaper.Model.OrderIdModel;
 import com.example.questionpaper.Model.PrizeResponseModel;
-import com.example.questionpaper.Model.Questionesmodel;
 import com.example.questionpaper.Model.ScoreModel;
 import com.example.questionpaper.Model.TestDetailRequestmodel;
 import com.example.questionpaper.Model.UserCourses;
 import com.example.questionpaper.Model.signinmodel;
 import com.example.questionpaper.Model.user_response;
 import com.example.questionpaper.Response.mytests.LiveTestResponse;
-import com.example.questionpaper.Response.mytests.UpcomingTestsResponse;
+import com.example.questionpaper.Response.mytests.UpComing.UpcomingTestsResponse;
 import com.example.questionpaper.Screens.mytest.UserTestRequest;
 
 import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
-import retrofit2.http.Field;
-import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.Headers;
 import retrofit2.http.POST;
-
-import static android.content.Context.MODE_PRIVATE;
 
 public interface Api {
     //List<UserCourses> user_courses_final = null;

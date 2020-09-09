@@ -9,10 +9,16 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.questionpaper.R;
+import com.example.questionpaper.Response.mytests.UpComing.Tests;
+
+import java.util.List;
 
 public class UpComingTestAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
-    public UpComingTestAdapter(){
-
+    UpComingTestFragment upComingTestFragment;
+    List<Tests> tests;
+    public UpComingTestAdapter(UpComingTestFragment upComingTestFragment, List<Tests> tests){
+        this.upComingTestFragment=upComingTestFragment;
+        this.tests=tests;
     }
     @NonNull
     @Override
@@ -23,17 +29,16 @@ public class UpComingTestAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-
         AdapterViewHolder vh=(AdapterViewHolder)holder;
-        vh.tvTestName.setText("Test Name "+ position);
-        vh.tvDate.setText("Date "+ position);
-        vh.tvTime.setText("Time "+ position);
-        vh.tvDuration.setText("Duration "+ position);
+        vh.tvTestName.setText(tests.get(position).getName());
+        vh.tvDate.setText(tests.get(position).getDate());
+        vh.tvTime.setText(tests.get(position).getTestTime());
+        vh.tvDuration.setText(tests.get(position).getDuration());
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        return tests.size();
     }
 
 

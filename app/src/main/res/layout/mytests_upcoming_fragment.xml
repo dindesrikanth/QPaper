@@ -7,4 +7,8 @@ android:layout_height="match_parent"
 android:background="@color/white">
 
 <include layout="@layout/recyclerview_common_layout" />
+    <TextView android:id="@+id/tvErrorMessage"
+        style="@style/subHeaderTitle15dpNormal"
+        android:text="@string/no_record_message"
+        android:visibility="gone"/>
 </LinearLayout>

@@ -73,4 +73,8 @@
     <string name="add_cash_message">Add cash to your account</string>
     <string name="add_cash_text">Amount to add</string>
     <string name="add_cash_alert">Please enter or select amount to continue</string>
+
+
+    <string name="no_record_message">No Records Available</string>
+
 </resources>
