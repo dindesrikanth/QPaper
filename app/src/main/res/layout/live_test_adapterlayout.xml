@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardElevation="5dp"
+    app:cardCornerRadius="5dp"
+    style="@style/adapterRootProperty">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_marginTop="@dimen/padding_10dp"
+        android:weightSum="1.0">
+        <TextView
+            style="@style/subHeaderTitle15dpNormal"
+            android:id="@+id/tv_test_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.35"
+            tools:text="Test" >
+        </TextView>
+        <TextView
+            style="@style/subHeaderTitle15dpNormal"
+            android:id="@+id/tv_cource_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.3"
+            android:textAlignment="center"
+            tools:text="Course name">
+        </TextView>
+        <Button
+            android:id="@+id/take_test"
+            style="@style/subHeaderTitle15dpNormal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.35"
+            android:textAlignment="center"
+            android:background="@color/grey"
+            android:textAllCaps="false"
+            android:layout_marginBottom="@dimen/padding_10dp"
+            android:layout_marginRight="@dimen/padding_10dp"
+            android:text="Take Test"></Button>
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>
+
