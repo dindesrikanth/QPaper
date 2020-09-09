@@ -9,9 +9,9 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.questionpaper.Model.Dashboardmodel;
 import com.example.questionpaper.Network.RetrofitClient;
 import com.example.questionpaper.R;
+import com.example.questionpaper.Response.mytests.UpcomingTestsResponse;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -33,13 +33,13 @@ public class UpComingTestFragment extends Fragment {
     }
 
     private void getUpComingTestData(){
-        Call<Dashboardmodel> call = RetrofitClient.getInstance().getApi().getDashboardDetails();
-        call.enqueue(new Callback<Dashboardmodel>() {
+        Call<UpcomingTestsResponse> call = RetrofitClient.getInstance().getApi().upcomingTestsData("E","1");
+        call.enqueue(new Callback<UpcomingTestsResponse>() {
             @Override
-            public void onResponse(Call<Dashboardmodel> call, Response<Dashboardmodel> response) {
+            public void onResponse(Call<UpcomingTestsResponse> call, Response<UpcomingTestsResponse> response) {
                 try {
                     if (response.isSuccessful()) {
-
+                        
                     }else{
                        // showMessageAndCloseScreen();
                     }
@@ -50,7 +50,7 @@ public class UpComingTestFragment extends Fragment {
             }
 
             @Override
-            public void onFailure(Call<Dashboardmodel> call, Throwable t) {
+            public void onFailure(Call<UpcomingTestsResponse> call, Throwable t) {
                 //showMessageAndCloseScreen();
                 return;
             }

@@ -18,6 +18,7 @@ import com.example.questionpaper.Model.TestDetailRequestmodel;
 import com.example.questionpaper.Model.UserCourses;
 import com.example.questionpaper.Model.signinmodel;
 import com.example.questionpaper.Model.user_response;
+import com.example.questionpaper.Response.mytests.UpcomingTestsResponse;
 
 import java.util.List;
 
@@ -78,14 +79,12 @@ public interface Api {
     Call<OrderIdModel> getOrderId(
             @Body BeanOrderIdInput input);
 
+    @POST("ems_device_login.php")
+    Call<UpcomingTestsResponse> upcomingTestsData(
+            @Field("typeOfTests") String typeOfTests,
+            @Field("userId") String userId);
 
-
-
-/*    @POST("ems_device_login.php")
-    Call<OrganizationDetailsLoginResponse> upcomingTestsData(
-            @Field("token") String token,
-            @Field("scan_type") String scan_type);
-
+/*
 
     @POST("ems_device_settings.php")
     Call<WaitingScreenDeviceSettingsResponse> qrScanEntryAPI(
