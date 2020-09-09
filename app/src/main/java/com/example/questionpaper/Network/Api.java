@@ -18,14 +18,18 @@ import com.example.questionpaper.Model.TestDetailRequestmodel;
 import com.example.questionpaper.Model.UserCourses;
 import com.example.questionpaper.Model.signinmodel;
 import com.example.questionpaper.Model.user_response;
+import com.example.questionpaper.Response.mytests.LiveTestResponse;
 import com.example.questionpaper.Response.mytests.UpcomingTestsResponse;
+import com.example.questionpaper.Screens.mytest.UserTestRequest;
 
 import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.Field;
+import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.Headers;
 import retrofit2.http.POST;
 
 import static android.content.Context.MODE_PRIVATE;
@@ -79,10 +83,23 @@ public interface Api {
     Call<OrderIdModel> getOrderId(
             @Body BeanOrderIdInput input);
 
-    @POST("ems_device_login.php")
+    @Headers({
+            "Accept: application/json",
+            "Content-Type: application/json"
+    })
+    @POST("current-feature-tests")
     Call<UpcomingTestsResponse> upcomingTestsData(
-            @Field("typeOfTests") String typeOfTests,
-            @Field("userId") String userId);
+            @Body UserTestRequest userTestRequest);
+
+    @Headers({
+            "Accept: application/json",
+            "Content-Type: application/json"
+    })
+    @POST("current-feature-tests")
+    Call<LiveTestResponse> liveTestData(
+            @Body UserTestRequest userTestRequest);
+
+
 
 /*
 

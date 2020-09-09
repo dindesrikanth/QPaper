@@ -33,7 +33,11 @@ public class UpComingTestFragment extends Fragment {
     }
 
     private void getUpComingTestData(){
-        Call<UpcomingTestsResponse> call = RetrofitClient.getInstance().getApi().upcomingTestsData("E","1");
+
+        String typeOfTests = "l";
+        String userId = "1";
+        final UserTestRequest userTestRequest = new UserTestRequest(typeOfTests, userId);
+        Call<UpcomingTestsResponse> call = RetrofitClient.getInstance().getApi().upcomingTestsData(userTestRequest);
         call.enqueue(new Callback<UpcomingTestsResponse>() {
             @Override
             public void onResponse(Call<UpcomingTestsResponse> call, Response<UpcomingTestsResponse> response) {
