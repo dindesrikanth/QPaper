@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".Activity.Register">
+
+    <TextView
+        android:id="@+id/welcome"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:text="WELCOME to online examination"
+        android:textColor="#663399"
+        android:textAllCaps="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="100dp"
+        android:textAlignment="center"
+        android:textSize="15dp">
+
+    </TextView>
+    <TextView
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:text="sign in to continue"
+        android:textAllCaps="true"
+        android:layout_below="@id/welcome"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:textAlignment="center"
+        android:textSize="15dp">
+
+    </TextView>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/sucess"
+        android:layout_centerInParent="true">
+
+    </TextView>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/welcome"
+        android:layout_alignParentBottom="true"
+
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Name"
+            android:textAllCaps="true"
+            android:textSize="15dp"
+            android:layout_marginStart="30dp">
+
+        </TextView>
+        <EditText
+            android:id="@+id/name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:textColor="#663399">
+
+        </EditText>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Username"
+            android:textAllCaps="true"
+            android:textSize="15dp"
+            android:layout_marginStart="30dp">
+
+        </TextView>
+        <EditText
+            android:id="@+id/username"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:textColor="#663399">
+
+        </EditText>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:text="password"
+            android:textAllCaps="true"
+            android:textSize="15dp"
+            android:layout_marginTop="10dp">
+
+        </TextView>
+        <EditText
+            android:id="@+id/password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:textColor="#663399">
+
+        </EditText>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Re-enter Password"
+            android:textAllCaps="true"
+
+            android:textSize="15dp"
+            android:layout_marginStart="30dp">
+
+        </TextView>
+        <EditText
+            android:id="@+id/re_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:textColor="#663399">
+
+        </EditText>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/whichjob"
+            android:text="Which Jobs Your Preparing For?"
+            android:layout_marginStart="30dp"
+            android:textColor="#663399">
+
+        </TextView>
+        <LinearLayout
+            android:id="@+id/linear"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="20dp"
+            >
+            <RadioGroup
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/prf"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Prof Jobs"
+                    android:padding="18dp"
+                    android:onClick="Radiobuttonclick">
+                </RadioButton>
+                <RadioButton
+                    android:id="@+id/govt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="GOvt Jobs"
+                    android:padding="18dp"
+                    android:onClick="Radiobuttonclick"
+                    >
+
+                </RadioButton>
+                <RadioButton
+                    android:id="@+id/both"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="BOTH"
+                    android:padding="18dp"
+                    android:onClick="Radiobuttonclick"
+                    >
+
+                </RadioButton>
+            </RadioGroup>
+        </LinearLayout>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="30dp"
+            android:text="sign in"
+            android:id="@+id/signin"
+            android:textAllCaps="true"
+            android:textColor="#FFFFFF"
+            android:background="#663399"
+            >
+
+        </Button>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="forgot password?"
+            android:textAllCaps="true"
+            android:textAlignment="center">
+
+        </TextView>
+
+    </LinearLayout>
+
+</RelativeLayout>

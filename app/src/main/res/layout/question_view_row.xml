@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <Button
+                android:id="@+id/clear"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="clear">
+
+            </Button>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone"
+            android:id="@+id/linearLayout">
+
+            <TextView
+                android:id="@+id/quest"
+                android:layout_width="match_parent"
+                android:layout_height="123dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:layout_marginStart="0dp"
+                android:layout_marginLeft="0dp"
+                android:background="#FFFFFF"
+                android:text="Quention"
+                android:textColor="@android:color/black"
+                android:textSize="22dp"
+                android:padding="10dp">
+
+            </TextView>
+            <TextView
+                android:id="@+id/responcetxt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+            </TextView>
+            <TextView
+                android:id="@+id/responcetxt2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below ="@id/responcetxt"
+                android:layout_marginStart="10dp">
+
+            </TextView>
+
+
+
+            <RadioGroup
+                android:id="@+id/radio_group"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/quest"
+                android:layout_marginLeft="0dp"
+                android:layout_marginTop="0dp"
+                android:background="#FFFFFF"
+                android:textAlignment="center"
+                android:padding="30dp">
+
+                <RadioButton
+                    android:id="@+id/A"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:hint="A"
+                    android:text="Option1"
+                    android:textSize="20dp" />
+
+                <RadioButton
+                    android:id="@+id/B"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:hint="B"
+                    android:gravity="center"
+                    android:text="Option2"
+                    android:textSize="20dp" />
+
+
+                <RadioButton
+                    android:id="@+id/C"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:hint="C"
+                    android:text="Option3"
+                    android:textSize="20dp" />
+
+                <RadioButton
+                    android:id="@+id/D"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:hint="D"
+                    android:text="Option4"
+                    android:textSize="20dp" />
+
+
+            </RadioGroup>
+
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="8dp"
+                android:background="@color/colorPrimary" />
+
+        </LinearLayout>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+</RelativeLayout>

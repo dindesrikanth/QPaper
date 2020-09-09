@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/parent_view"
+    android:layout_width="wrap_content"
+    android:layout_height="50dp"
+    android:background="@color/white"
+    android:screenOrientation="portrait">
+
+
+        <TextView
+            android:id="@+id/course_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="Course Title"
+            android:textStyle="bold"
+            android:padding="5dp"
+            android:textColor="@color/black"
+            android:typeface="serif"
+            />
+       <View
+           android:layout_width="0dp"
+           android:layout_height="5dp"
+           android:background="@color/white"
+           android:id="@+id/selected_highlight_view"
+           android:layout_alignParentBottom="true"
+           android:layout_alignLeft="@+id/course_title"
+           android:layout_alignRight="@+id/course_title"
+
+           />
+</RelativeLayout>

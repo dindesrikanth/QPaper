@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#a8d5ed</color>
+    <color name="colorPrimaryDark">#a8d5ed</color>
+    <color name="colorAccent">#a8d5ed</color>
+
+
+    <color name="red">#FF1100</color>
+    <color name="light_grey">#F4F6F3</color>
+    <color name="green">#88FB02</color>
+    <color name="bg_grey">#f0f3f6</color>
+    <color name="grey">#D8D9DA</color>
+    <color name="grey_selected">#b2b2b2</color>
+    <color name="textcolour">#663399</color>
+    <color name="duskYellow">#FFC922</color>
+    <color name="lightGrey">#d3d3d3</color>
+    <color name="skyblue">#227AFF</color>
+    <color name="white">#FFFFFF</color>
+    <color name="white_overlay">#80FFFFFF</color>
+    <color name="light_yellow">#80FFC922</color>
+    <color name="ciel">#4667EC</color>
+    <color name="transparent">#00000000</color>
+    <color name="black">#000000</color>
+    <color name="test_button_blue">#4667EC</color>
+
+    <color name="green_rupees_bg">#90EE90</color>
+    <color name="dashboard_red">#c20404</color>
+    <color name="dashboard_grey">#A9A9A9</color>
+
+
+    <color name="tab_indicator_color">#D52B1E</color>
+
+
+</resources>

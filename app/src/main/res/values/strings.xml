@@ -1,0 +1,76 @@
+<resources>
+    <string name="app_name">Question Paper</string>
+    <string name="button">Button</string>
+
+    <string name="dashboard_footer_home">Home</string>
+    <string name="dashboard_footer_test">My Tests</string>
+    <string name="dashboard_footer_notification">Notifications</string>
+    <string name="dashboard_footer_more">More</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="appbar_scrolling_view_behavior">scrolling</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="action_test_id">Text ID</string>
+    <string name="action_user_id">User ID</string>
+    <string name="action_time_spent">Time Spent</string>
+    <string name="action_achieved_marks">Achieved Marks</string>
+    <string name="action_ques_right">Correct</string>
+    <string name="action_ques_wrong">Incorrect</string>
+    <string name="action_ques_unattempted">Unattempted</string>
+    <string name="your_string"><u>Sign in</u></string>
+
+    <string name="test_mark_next">Mark &amp; Next</string>
+    <string name="test_clear_response">Clear Response</string>
+    <string name="test_title">Test Title</string>
+    <string name="test_option">Option</string>
+    <string name="test_alert_title">Alert</string>
+    <string name="test_alert_time_up">Time Up</string>
+    <string name="test_alert_submit">Submitted</string>
+    <string name="test_save_next">Save &amp; Next</string>
+    <string name="test_grid_view">Grid View</string>
+    <string name="test_list_view">List View</string>
+    <string name="test_marked">Marked For Review</string>
+    <string name="test_attempted">Attempted</string>
+    <string name="test_unattempted">Unattempted</string>
+    <string name="test_unseen">Unseen</string>
+    <string name="test_submit">Submit</string>
+    <string name="test_back">Back</string>
+    <string name="test_confirmation_title">Test Submission</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="test_marked_sub">Marked</string>
+    <string name="test_time_left">Time Left</string>
+    <string name="empty_time">--:--:--</string>
+    <string name="empty_text">--</string>
+    <string name="results_label">Results will be out on</string>
+    <string name="show_result">Show Result</string>
+    <string name="test_mark">Mark</string>
+    <string name="test_save">Save</string>
+    <string name="test_evaluation_title">Analyzing your performance</string>
+    <string name="test_evaluation_message">We are calculating your score and other detailed performance data</string>
+    <string name="test_confirmation_message">Are you sure you want to submit the text?</string>
+    <string name="test_force_close_alert">Kindly Submit the exam before closing the application</string>
+    <string name="dummy_text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s</string>
+
+    <string name="pay">Pay Rs.500</string>
+    <string name="unknown_error">Some Unknown error occured. Please try again later</string>
+
+    <string name="contest_details">Contest Details</string>
+    <string name="leaderboard">Leaderboard</string>
+    <string name="prize_pool">Prize Pool</string>
+    <string name="entry">Entry</string>
+    <string name="spots_left">Spots Left</string>
+    <string name="spots">spots</string>
+    <string name="rank">Rank</string>
+    <string name="prize">Prize</string>
+    <string name="all_members">All Members</string>
+    <string name="first_network">Be the first in your network to join this contest</string>
+
+    <string name="add_cash">Add Cash</string>
+    <string name="add_cash_range">(10 to 10,000)</string>
+    <string name="current_balance">Current Balance</string>
+    <string name="add_cash_message">Add cash to your account</string>
+    <string name="add_cash_text">Amount to add</string>
+    <string name="add_cash_alert">Please enter or select amount to continue</string>
+</resources>

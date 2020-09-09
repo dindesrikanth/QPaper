@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".Activity.Login_Activity">
+
+
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="30dp"
+            android:text="@string/pay"
+            android:id="@+id/pay_button"
+            android:layout_centerInParent="true"
+            android:textAllCaps="true"
+            android:textColor="#FFFFFF"
+            android:onClick="signin"
+            android:background="#663399">
+
+        </Button>
+
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:id="@+id/progress_bar"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:visibility="gone"/>
+
+
+</RelativeLayout>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/grid_item_parent"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/box_border_transpartent_bg"
+    android:orientation="horizontal"
+    android:screenOrientation="portrait"
+    android:padding="5dp"
+    android:layout_margin="5dp">
+<RelativeLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:gravity="center_vertical"
+    >
+    <ImageView
+        android:id="@+id/grid_item_background"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_centerInParent="true"
+        android:background="@drawable/round_button_grey_transparent"
+        />
+        <TextView
+            android:id="@+id/grid_item_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:padding="10dp"
+            android:text="00"
+            android:textColor="@color/black" />
+    <ImageView
+        android:id="@+id/grid_item_marked"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:background="@drawable/icon_start_selected_resize"
+        />
+</RelativeLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/question_text"
+        android:gravity="top"
+        android:layout_gravity="top"
+        android:layout_marginLeft="10dp"
+        android:lines="2"
+        android:maxLines="5"
+        android:text="@string/dummy_text"
+        />
+</LinearLayout>

@@ -1,0 +1,13 @@
+{
+    "distributions": [
+        {
+            "range": "1",
+            "percentage": 70000
+        },
+        {
+            "range": "2-5",
+            "percentage": 56000
+        }
+    ],
+    "registeredUserCount": 1
+}

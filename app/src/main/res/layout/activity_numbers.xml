@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".numbers"
+    >
+
+    <Button
+        android:id="@+id/attemptcolour"
+        android:layout_width="30dp"
+        android:layout_height="22dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="50dp"
+        android:background="@drawable/round_button">
+
+    </Button>
+
+    <Button
+        android:id="@+id/attemptcolour3"
+        android:layout_width="30dp"
+        android:layout_height="22dp"
+        android:layout_below="@id/attemptcolour"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="50dp"
+        android:background="@drawable/round_button">
+
+    </Button>
+
+    <Button
+        android:id="@+id/attemptcolour2"
+        android:layout_width="30dp"
+        android:layout_height="22dp"
+        android:layout_toRightOf="@id/attemptcolourtext"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="50dp"
+        android:background="@drawable/round_button">
+
+    </Button>
+
+    <Button
+        android:id="@+id/attemptcolour4"
+        android:layout_width="30dp"
+        android:layout_height="22dp"
+        android:layout_below="@id/attemptcolour2"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="50dp"
+        android:layout_toRightOf="@id/attemptcolourtext"
+        android:background="@drawable/round_button">
+
+    </Button>
+
+    <TextView
+        android:id="@+id/attemptcolourtext"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:layout_marginStart="15dp"
+        android:layout_toRightOf="@id/attemptcolour"
+        android:textSize="12dp"
+        android:text="Attempted">
+
+    </TextView>
+
+    <TextView
+        android:id="@+id/attemptcolourtext3"
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:layout_below="@id/attemptcolourtext"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="55dp"
+        android:layout_toRightOf="@id/attemptcolour"
+        android:text="Marked For Review"
+        android:textSize="12dp">
+
+    </TextView>
+
+    <TextView
+        android:id="@+id/attemptcolourtext2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="50dp"
+        android:layout_toRightOf="@id/attemptcolour2"
+        android:text="Unattempted"
+        android:textSize="12dp">
+
+    </TextView>
+
+    <TextView
+        android:id="@+id/attemptcolourtext4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/attemptcolourtext2"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="55dp"
+        android:layout_toRightOf="@id/attemptcolour2"
+        android:text="Unseen"
+        android:textSize="12dp">
+
+    </TextView>
+
+</RelativeLayout>

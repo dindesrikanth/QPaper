@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto">
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardview"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        card_view:contentPaddingLeft="18dp"
+        card_view:contentPaddingRight="18dp"
+        card_view:cardCornerRadius="15dp"
+        card_view:cardElevation="7dp"
+        card_view:cardBackgroundColor="@color/colorPrimary"
+        android:layout_marginLeft="8dp">
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+    <ImageView
+        android:id="@+id/card_view_image"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scaleType="centerCrop"
+        android:padding="30dp"
+        android:src="@drawable/images"/>
+
+
+    <TextView
+        android:id="@+id/coursename"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:textStyle="bold"
+        android:textSize="20dp"
+        android:gravity="center">
+
+    </TextView>
+    <View
+        android:id="@+id/clicker"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:visibility="gone">
+
+    </View>
+</LinearLayout>
+    </androidx.cardview.widget.CardView>
+</RelativeLayout>

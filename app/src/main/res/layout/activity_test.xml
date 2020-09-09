@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_grey"
+    android:screenOrientation="portrait"
+    tools:context=".Activity.TestActivity">
+    <RelativeLayout
+        android:id="@+id/test_main_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        android:background="@color/bg_grey">
+        >
+    <RelativeLayout
+        android:id="@+id/test_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/bg_grey">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="75dp"
+        android:layout_alignParentTop="true"
+        android:id="@+id/header"
+        android:background="@color/cardview_dark_background"
+        android:orientation="horizontal">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/slide_selection_view"
+            android:layout_alignParentLeft="true"
+            android:layout_margin="10dp"
+            android:src="@drawable/icon_list"
+            android:onClick="openStatusView"
+            android:layout_centerVertical="true" />
+<!--        <ProgressBar-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:id="@+id/progress"-->
+<!--            android:text="@string/test_mark_next"-->
+<!--            android:layout_alignParentLeft="true"-->
+<!--            android:layout_centerVertical="true"-->
+<!--            android:visibility="gone"-->
+<!--            android:layout_margin="10dp"/>-->
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_marginLeft="5dp"
+            android:layout_toRightOf="@+id/slide_selection_view">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/test_duration_counter"
+                android:text="00:00:00"
+                android:layout_centerVertical="true"
+                android:textColor="@color/white"
+                android:textAllCaps="false"
+                android:layout_margin="5dp"
+                android:textSize="25sp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/test_title"
+            android:text="@string/test_title"
+            android:layout_centerVertical="true"
+            android:textColor="@color/white"
+            android:textAllCaps="false"
+            android:layout_margin="5dp"/>
+
+
+        </LinearLayout>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/submit"
+            android:layout_alignParentRight="true"
+            android:layout_margin="10dp"
+            android:padding="10dp"
+            android:text="@string/test_submit"
+            android:layout_centerVertical="true"
+            android:textColor="@color/white"
+            android:textAllCaps="false"
+            android:background="@drawable/box_border_blue_bg" />
+    </RelativeLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/grid_recyclerView"
+        android:layout_above="@+id/footer"
+        android:layout_below="@+id/header"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"/>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="75dp"
+        android:id="@+id/footer"
+        android:layout_alignParentBottom="true"
+        android:background="@color/white"
+        android:orientation="horizontal">
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/mark_next"
+                android:text="@string/test_mark_next"
+                android:layout_alignParentLeft="true"
+                android:layout_margin="10dp"
+                android:layout_centerVertical="true"
+                android:textColor="@color/black"
+                android:textAllCaps="false"
+                android:padding="10dp"
+                android:background="@drawable/box_border_transpartent_bg" />
+
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/clear_response"
+                android:text="@string/test_clear_response"
+                android:layout_toRightOf="@+id/mark_next"
+                android:layout_centerVertical="true"
+                android:textColor="@color/black"
+                android:textAllCaps="false"
+                android:padding="10dp"
+                android:background="@drawable/box_border_transpartent_bg" />
+
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/save_next"
+                android:layout_alignParentRight="true"
+                android:layout_margin="10dp"
+                android:padding="10dp"
+                android:text="@string/test_save_next"
+                android:layout_centerVertical="true"
+                android:textColor="@color/white"
+                android:textAllCaps="false"
+                android:background="@drawable/box_border_blue_bg" />
+
+    </RelativeLayout>
+    </RelativeLayout>
+    <FrameLayout
+        android:id="@+id/fragment_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+    </FrameLayout>
+    </RelativeLayout>
+
+    <ProgressBar
+        android:id="@+id/test_loader"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="visible"
+        android:layout_centerInParent="true"
+        />
+</RelativeLayout>

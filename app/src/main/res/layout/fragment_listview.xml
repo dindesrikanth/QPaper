@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="300dp"
+    android:layout_height="700dp"
+    android:background="#000000"
+    tools:context=".Fragments.listview">
+
+    <!-- TODO: Update blank fragment layout -->
+    <RelativeLayout
+
+        android:layout_width="282dp"
+        android:layout_height="657dp"
+        android:layout_marginStart="2dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginBottom="2dp"
+        android:layout_marginEnd="2dp"
+        android:background="#FFFFFF"
+        >
+
+<RelativeLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:id="@+id/r1">
+        <TextView
+            android:id="@+id/attemptcolour"
+            android:layout_width="30dp"
+            android:layout_height="22dp"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="50dp"
+            android:background="@drawable/round_button">
+
+        </TextView>
+
+        <Button
+            android:id="@+id/attemptcolour3"
+            android:layout_width="30dp"
+            android:layout_height="22dp"
+            android:layout_below="@id/attemptcolour"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="50dp"
+            android:background="@drawable/round_button">
+
+        </Button>
+
+        <Button
+            android:id="@+id/attemptcolour2"
+            android:layout_width="30dp"
+            android:layout_height="22dp"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="50dp"
+            android:layout_toRightOf="@id/attemptcolourtext"
+            android:background="@drawable/round_button">
+
+        </Button>
+
+        <Button
+            android:id="@+id/attemptcolour4"
+            android:layout_width="30dp"
+            android:layout_height="22dp"
+            android:layout_below="@id/attemptcolour2"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="50dp"
+            android:layout_toRightOf="@id/attemptcolourtext"
+            android:background="@drawable/round_button">
+
+        </Button>
+
+        <TextView
+            android:id="@+id/attemptcolourtext"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="50dp"
+            android:layout_toRightOf="@id/attemptcolour"
+            android:text="Attempted"
+            android:textSize="12dp">
+
+        </TextView>
+
+        <TextView
+            android:id="@+id/attemptcolourtext3"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/attemptcolourtext"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="55dp"
+            android:layout_toRightOf="@id/attemptcolour"
+            android:text="Marked For Review"
+            android:textAlignment="center"
+            android:textSize="12dp">
+
+        </TextView>
+
+        <TextView
+            android:id="@+id/attemptcolourtext2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="50dp"
+            android:layout_toRightOf="@id/attemptcolour2"
+            android:text="Unattempted"
+            android:textSize="12dp">
+
+        </TextView>
+
+        <TextView
+            android:id="@+id/attemptcolourtext4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/attemptcolourtext2"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="55dp"
+            android:layout_toRightOf="@id/attemptcolour2"
+            android:text="Unseen"
+            android:textSize="12dp">
+
+        </TextView>
+
+        <TextView
+            android:id="@+id/testname"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_below="@id/attemptcolourtext3"
+            android:layout_marginTop="19dp">
+
+        </TextView>
+
+</RelativeLayout>
+       <androidx.recyclerview.widget.RecyclerView
+           android:id="@+id/grid_recyclerView"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+               android:layout_below="@+id/r1"/>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/backad"
+            android:text="BACK"
+            android:layout_alignParentBottom="true">
+
+        </Button>
+    </RelativeLayout>
+</FrameLayout>

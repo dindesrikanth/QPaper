@@ -1,0 +1,102 @@
+{
+    "data": [
+        {
+            "courseName": "APPSC Group 1",
+            "tests": [
+                {
+                    "id": 2,
+                    "name": "Group1_Hist_1",
+                    "description": "Group2_Hist",
+                    "typeCode": "",
+                    "totalQuestions": 75,
+                    "totalMarks": 75,
+                    "negativeMarks": 1,
+                    "date": "2020-08-03",
+                    "duration": 75,
+                    "fee": null,
+                    "numberOfParticipants": 10000,
+                    "subjectName": "His_AP",
+                    "courseName": "APPSC Group 2",
+                    "testTime": "09:00:00",
+                    "testMedium": "Eng",
+                    "winPercentage": 50,
+                    "firstPrize": 3000,
+                    "totalPrize": 300000,
+                    "prizeAmount": 0,
+                    "prizeDistributionId": 1
+                },
+                {
+                    "id": 3,
+                    "name": "Group1_Hist_2",
+                    "description": "Group2_Hist",
+                    "typeCode": "",
+                    "totalQuestions": 75,
+                    "totalMarks": 75,
+                    "negativeMarks": 1,
+                    "date": "2020-08-03",
+                    "duration": 75,
+                    "fee": null,
+                    "numberOfParticipants": 10000,
+                    "subjectName": "His_AP",
+                    "courseName": "APPSC Group 2",
+                    "testTime": "09:00:00",
+                    "testMedium": "Eng",
+                    "winPercentage": 50,
+                    "firstPrize": 5000,
+                    "totalPrize": 500000,
+                    "prizeAmount": 0,
+                    "prizeDistributionId": 2
+                }
+            ]
+        },
+        {
+                    "courseName": "APPSC Group 2",
+                    "tests": [
+                        {
+                            "id": 2,
+                            "name": "Group2_Hist_1",
+                            "description": "Group2_Hist",
+                            "typeCode": "",
+                            "totalQuestions": 75,
+                            "totalMarks": 75,
+                            "negativeMarks": 1,
+                            "date": "2020-08-03",
+                            "duration": 75,
+                            "fee": null,
+                            "numberOfParticipants": 10000,
+                            "subjectName": "His_AP",
+                            "courseName": "APPSC Group 2",
+                            "testTime": "09:00:00",
+                            "testMedium": "Eng",
+                            "winPercentage": 50,
+                            "firstPrize": 3000,
+                            "totalPrize": 300000,
+                            "prizeAmount": 0,
+                            "prizeDistributionId": 1
+                        },
+                        {
+                            "id": 3,
+                            "name": "Group2_Hist_2",
+                            "description": "Group2_Hist",
+                            "typeCode": "",
+                            "totalQuestions": 75,
+                            "totalMarks": 75,
+                            "negativeMarks": 1,
+                            "date": "2020-08-03",
+                            "duration": 75,
+                            "fee": null,
+                            "numberOfParticipants": 10000,
+                            "subjectName": "His_AP",
+                            "courseName": "APPSC Group 2",
+                            "testTime": "09:00:00",
+                            "testMedium": "Eng",
+                            "winPercentage": 50,
+                            "firstPrize": 5000,
+                            "totalPrize": 500000,
+                            "prizeAmount": 0,
+                            "prizeDistributionId": 2
+                        }
+                    ]
+                }
+    ]
+}
