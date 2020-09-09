@@ -14,6 +14,7 @@ import com.example.questionpaper.Model.TestDetailRequestmodel;
 import com.example.questionpaper.Model.UserCourses;
 import com.example.questionpaper.Model.signinmodel;
 import com.example.questionpaper.Model.user_response;
+import com.example.questionpaper.Response.mytests.CompletedTestsResponse;
 import com.example.questionpaper.Response.mytests.LiveTestResponse;
 import com.example.questionpaper.Response.mytests.UpComing.UpcomingTestsResponse;
 import com.example.questionpaper.Screens.mytest.UserTestRequest;
@@ -91,6 +92,13 @@ public interface Api {
     Call<LiveTestResponse> liveTestData(
             @Body UserTestRequest userTestRequest);
 
+    @Headers({
+            "Accept: application/json",
+            "Content-Type: application/json"
+    })
+    @POST("current-feature-tests")
+    Call<CompletedTestsResponse> completedTestData(
+            @Body UserTestRequest userTestRequest);
 
 
 /*

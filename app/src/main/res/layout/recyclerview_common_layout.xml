@@ -11,4 +11,8 @@
         android:id="@+id/rViewCommon"
         tools:listitem="@layout/mytests_upcoming_adapter"/>
 
+    <TextView android:id="@+id/tvErrorMessage"
+        style="@style/subHeaderTitle15dpNormal"
+        android:text="@string/no_record_message"
+        android:visibility="gone"/>
 </LinearLayout>
