@@ -25,6 +25,7 @@ public class CompletedTestsFragment  extends Fragment {
     RecyclerView rViewCommon;
     TextView tvErrorMessage;
     ProgressDialog pDialog;
+    UpComingTestAdapter adapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -85,7 +86,7 @@ public class CompletedTestsFragment  extends Fragment {
     }
     private void showData(CompletedTestsResponse response) {
         // Toast.makeText(getContext(),response+"",Toast.LENGTH_LONG).show();
-      /*  if(response !=null && response.getData()!=null && response.getData().size()>0){
+        /*if(response !=null && response.getData()!=null && response.getData().size()>0){
             tvErrorMessage.setVisibility(View.GONE);
             rViewCommon.setVisibility(View.VISIBLE);
             adapter= new UpComingTestAdapter(this,response.getData().get(0).getTests());

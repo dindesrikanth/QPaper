@@ -1,10 +1,12 @@
 package com.example.questionpaper.Screens.mytest;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -13,6 +15,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import com.example.questionpaper.Common.Utility;
 import com.example.questionpaper.Network.RetrofitClient;
 import com.example.questionpaper.R;
 import com.example.questionpaper.Response.mytests.LiveTestResponse;
@@ -30,6 +33,9 @@ public class LiveTestFragment extends Fragment {
     RecyclerView rViewCommon;
     LiveTestResponse liveTestResponse;
     List<TestData> dataList;
+    TextView tvErrorMessage;
+    ProgressDialog pDialog;
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -43,6 +49,7 @@ public class LiveTestFragment extends Fragment {
         View view = inflater.inflate(R.layout.mytests_upcoming_fragment, container, false);
         intializeviews(view);
         getLiveTestsData();
+        pDialog= Utility.getProgressDialog(getActivity());
         return view;
     }
 
@@ -57,36 +64,48 @@ public class LiveTestFragment extends Fragment {
                 try {
                     if (response.isSuccessful()) {
                         String responseJson = new Gson().toJson(response.body());
-                        liveTestResponse = new Gson().fromJson(responseJson,LiveTestResponse.class);
-                        dataList = new ArrayList<TestData>();
-                        if(liveTestResponse!=null){
-                            for(int i= 0; i<liveTestResponse.getData().size();i++){
-                                dataList.add(liveTestResponse.getData().get(i));
-                            }
-                        }
-                        LiveTestAdapter liveTestAdapter =  new LiveTestAdapter(getContext(),dataList);
-                        rViewCommon.setAdapter(liveTestAdapter);
-
+                        showdata(responseJson);
                     } else {
+                        tvErrorMessage.setVisibility(View.VISIBLE);
+                        rViewCommon.setVisibility(View.GONE);
                         // showMessageAndCloseScreen();
                     }
                 } catch (Exception ex) {
                     ex.printStackTrace();
                     // showMessageAndCloseScreen();
                 }
+                pDialog.dismiss();
             }
 
             @Override
             public void onFailure(Call<LiveTestResponse> call, Throwable t) {
                 //showMessageAndCloseScreen();
+                tvErrorMessage.setVisibility(View.VISIBLE);
+                rViewCommon.setVisibility(View.GONE);
+                pDialog.dismiss();
                 return;
             }
         });
     }
 
-    private void intializeviews(View view) {
-        rViewCommon = (RecyclerView)view.findViewById(R.id.rViewCommon);
+    private void showdata(String responseJson) {
 
+        liveTestResponse = new Gson().fromJson(responseJson,LiveTestResponse.class);
+        dataList = new ArrayList<TestData>();
+        if(liveTestResponse!=null){
+            for(int i= 0; i<liveTestResponse.getData().size();i++){
+                dataList.add(liveTestResponse.getData().get(i));
+            }
+        }
+        LiveTestAdapter liveTestAdapter =  new LiveTestAdapter(getContext(),dataList);
+        rViewCommon.setAdapter(liveTestAdapter);
+
+    }
+
+    private void intializeviews(View view) {
+
+        tvErrorMessage=view.findViewById(R.id.tvErrorMessage);
+        rViewCommon = (RecyclerView)view.findViewById(R.id.rViewCommon);
         rViewCommon.setLayoutManager(new LinearLayoutManager(getContext()));
 
     }
