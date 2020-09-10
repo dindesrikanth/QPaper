@@ -4,7 +4,7 @@
     <RelativeLayout
         android:id="@+id/activityActionBar"
         android:layout_width="match_parent"
-        android:layout_height="75dp"
+        android:layout_height="65dp"
         android:layout_alignParentTop="true"
         android:background="@color/test_button_blue"
         android:orientation="horizontal">
@@ -16,7 +16,7 @@
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
             android:layout_margin="10dp"
-            android:onClick="openStatusView"
+            android:onClick="profileIconClick"
             android:src="@drawable/icon_user_white" />
 
 

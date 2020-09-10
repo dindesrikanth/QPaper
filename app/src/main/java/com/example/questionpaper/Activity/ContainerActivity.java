@@ -1,6 +1,8 @@
 package com.example.questionpaper.Activity;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -23,7 +25,6 @@ public class ContainerActivity extends AppCompatActivity {
     public void displayFragment(int position){
         switch (position){
             case 0:
-
                 tr=fManager.beginTransaction();
                 tr.replace(R.id.containerLayout,new MyTestsLandingFragment());
                 tr.commit();
@@ -44,6 +45,9 @@ public class ContainerActivity extends AppCompatActivity {
         }
     }
 
+    public void profileIconClick(View v){
+        Toast.makeText(getApplicationContext(),"Icon clicked...",Toast.LENGTH_LONG).show();
+    }
 
 
 }

@@ -3,13 +3,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:background="@color/bg_grey">
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scrollbars="none"
         android:id="@+id/rViewCommon"
-        tools:listitem="@layout/mytests_upcoming_adapter"/>
+        tools:listitem="@layout/mytests_upcoming_adapter"
+        android:background="@color/bg_grey"/>
 
     <TextView android:id="@+id/tvErrorMessage"
         style="@style/subHeaderTitle15dpNormal"
