@@ -14,6 +14,7 @@ import com.example.questionpaper.Model.TestDetailRequestmodel;
 import com.example.questionpaper.Model.UserCourses;
 import com.example.questionpaper.Model.signinmodel;
 import com.example.questionpaper.Model.user_response;
+import com.example.questionpaper.Response.mytests.Requests.CompletedTestsRequest;
 import com.example.questionpaper.Response.mytests.completed.CompletedTestsResponse;
 import com.example.questionpaper.Response.mytests.LiveTest.LiveTestResponse;
 import com.example.questionpaper.Response.mytests.UpComing.UpcomingTestsResponse;
@@ -96,9 +97,9 @@ public interface Api {
             "Accept: application/json",
             "Content-Type: application/json"
     })
-    @POST("current-feature-tests")
+    @POST("tests-history")
     Call<CompletedTestsResponse> completedTestData(
-            @Body UserTestRequest userTestRequest);
+            @Body CompletedTestsRequest userTestRequest);
 
 
 /*

@@ -3,7 +3,7 @@ package com.example.questionpaper.Response.mytests.LiveTest;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class TestData {
     @SerializedName("courseName")
@@ -11,9 +11,9 @@ public class TestData {
     private String courseName ;
     @SerializedName("tests")
     @Expose
-    private  ArrayList<Tests> tests ;
+    private List<Tests> tests ;
 
-    public ArrayList<Tests> getTests() {
+    public List<Tests> getTests() {
         return tests;
     }
     public String getCourseName() {

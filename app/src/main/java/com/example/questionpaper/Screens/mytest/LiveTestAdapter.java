@@ -14,7 +14,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.questionpaper.R;
 import com.example.questionpaper.Response.mytests.LiveTest.Tests;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class LiveTestAdapter extends RecyclerView.Adapter<LiveTestAdapter.ViewHolder> {
@@ -22,7 +21,7 @@ public class LiveTestAdapter extends RecyclerView.Adapter<LiveTestAdapter.ViewHo
     private  List<Tests> dataList;
     private Context context;
 
-    public LiveTestAdapter(Context context, ArrayList<Tests> dataList) {
+    public LiveTestAdapter(Context context, List<Tests> dataList) {
         this.dataList = dataList;
         this.context = context;
     }
@@ -30,7 +29,7 @@ public class LiveTestAdapter extends RecyclerView.Adapter<LiveTestAdapter.ViewHo
     @NonNull
     @Override
     public LiveTestAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View listItem= LayoutInflater.from(parent.getContext()).inflate(R.layout.live_test_adapterlayout, parent, false);
+        View listItem= LayoutInflater.from(parent.getContext()).inflate(R.layout.live_tests_adapter, parent, false);
         ViewHolder viewHolder = new ViewHolder(listItem);
         return viewHolder;
     }

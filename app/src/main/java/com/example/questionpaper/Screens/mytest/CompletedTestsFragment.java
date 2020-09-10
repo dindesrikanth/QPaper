@@ -6,7 +6,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -15,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.questionpaper.Common.Utility;
 import com.example.questionpaper.Network.RetrofitClient;
 import com.example.questionpaper.R;
+import com.example.questionpaper.Response.mytests.Requests.CompletedTestsRequest;
 import com.example.questionpaper.Response.mytests.completed.CompletedTestsResponse;
 
 import retrofit2.Call;
@@ -23,11 +23,10 @@ import retrofit2.Response;
 
 public class CompletedTestsFragment  extends Fragment {
     private static final String TAG = CompletedTestsFragment.class.getName();
-    RecyclerView rViewCommon;
-    TextView tvErrorMessage;
-    ProgressDialog pDialog;
-    UpComingTestAdapter adapter;
-
+    private RecyclerView rViewCommon;
+    private TextView tvErrorMessage;
+    private ProgressDialog pDialog;
+    private CompletedTestsAdapter adapter;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -63,22 +62,22 @@ public class CompletedTestsFragment  extends Fragment {
     }
     private void getUpComingTestData(){
         pDialog.show();
-        String typeOfTests = "C";
+        String numberOfMonths = "1";
         String userId = "1";
-        final UserTestRequest userTestRequest = new UserTestRequest(typeOfTests, userId);
+        final CompletedTestsRequest userTestRequest = new CompletedTestsRequest(numberOfMonths, userId);
         Call<CompletedTestsResponse> call = RetrofitClient.getInstance().getApi().completedTestData(userTestRequest);
         call.enqueue(new Callback<CompletedTestsResponse>() {
             @Override
             public void onResponse(Call<CompletedTestsResponse> call, Response<CompletedTestsResponse> response) {
                 try {
                     if (response.isSuccessful()) {
-                         Toast.makeText(getContext(),response+": if",Toast.LENGTH_LONG).show();
+                        // Toast.makeText(getContext(),response+": if",Toast.LENGTH_LONG).show();
                         //  Log.i(TAG, "==== Response ===" + response.body());
                         // Log.w("==== Response === ",new Gson().toJson(response));
                         showData(response.body());
                     }else{
                         // showMessageAndCloseScreen();
-                         Toast.makeText(getContext(),response+": else",Toast.LENGTH_LONG).show();
+                        // Toast.makeText(getContext(),response+": else",Toast.LENGTH_LONG).show();
                         tvErrorMessage.setVisibility(View.VISIBLE);
                         rViewCommon.setVisibility(View.GONE);
                     }
@@ -92,7 +91,7 @@ public class CompletedTestsFragment  extends Fragment {
             @Override
             public void onFailure(Call<CompletedTestsResponse> call, Throwable t) {
                 //showMessageAndCloseScreen();
-                Toast.makeText(getContext(),"failure",Toast.LENGTH_LONG).show();
+               // Toast.makeText(getContext(),"failure",Toast.LENGTH_LONG).show();
                 tvErrorMessage.setVisibility(View.VISIBLE);
                 rViewCommon.setVisibility(View.GONE);
                 pDialog.dismiss();
@@ -101,16 +100,15 @@ public class CompletedTestsFragment  extends Fragment {
         });
     }
     private void showData(CompletedTestsResponse response) {
-        // Toast.makeText(getContext(),response+"",Toast.LENGTH_LONG).show();
-        /*if(response !=null && response.getData()!=null && response.getData().size()>0){
+        if(response !=null && response.getData()!=null && response.getData().size()>0){
             tvErrorMessage.setVisibility(View.GONE);
             rViewCommon.setVisibility(View.VISIBLE);
-            adapter= new UpComingTestAdapter(this,response.getData().get(0).getTests());
+            adapter= new CompletedTestsAdapter(this,response.getData().get(0).getTests());
             rViewCommon.setAdapter(adapter);
         }else{
             tvErrorMessage.setVisibility(View.VISIBLE);
             rViewCommon.setVisibility(View.GONE);
-        }*/
+        }
     }
 
 }
