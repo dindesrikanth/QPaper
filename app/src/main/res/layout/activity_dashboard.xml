@@ -111,14 +111,15 @@
             android:layout_above="@+id/footer"
             android:layout_below="@+id/header"
             android:visibility="gone">
+
             <TextView
                 android:id="@+id/tv_test"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
                 android:layout_weight="1"
                 android:drawableTop="@drawable/icon_degree_unselected"
                 android:text="@string/dashboard_footer_test"
-                android:layout_centerInParent="true"
                 android:textColor="@color/dashboard_grey" />
         </RelativeLayout>
 

@@ -5,7 +5,6 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -51,7 +50,7 @@ public class LiveTestAdapter extends RecyclerView.Adapter<LiveTestAdapter.ViewHo
             holder.tvCourseName.setText("-");
         }
 
-        holder.btnTakeTest.setOnClickListener(new View.OnClickListener() {
+        holder.tvTakeTest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Toast.makeText(context, "Test is Ready To Start", Toast.LENGTH_SHORT).show();
@@ -66,12 +65,12 @@ public class LiveTestAdapter extends RecyclerView.Adapter<LiveTestAdapter.ViewHo
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         private TextView tvTestName,tvCourseName;
-        private Button btnTakeTest;
+        private TextView tvTakeTest;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             tvTestName =(TextView)itemView.findViewById(R.id.tvTestName);
             tvCourseName  = (TextView)itemView.findViewById(R.id.tvCourseName);
-            btnTakeTest = (Button)itemView.findViewById(R.id.btnTakeTest);
+            tvTakeTest = (TextView)itemView.findViewById(R.id.tvTakeTest);
         }
     }
 }

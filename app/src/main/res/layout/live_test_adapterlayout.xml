@@ -12,29 +12,24 @@
         <TextView
             style="@style/subHeaderTitle15dpNormal"
             android:id="@+id/tvTestName"
-            android:layout_width="match_parent"
-            android:layout_weight="0.35"
+            android:layout_width="0dp"
+            android:layout_weight="0.4"
             tools:text="Test" >
         </TextView>
         <TextView
             style="@style/subHeaderTitle15dpNormal"
             android:id="@+id/tvCourseName"
-            android:layout_width="match_parent"
-            android:layout_weight="0.3"
-            android:textAlignment="center"
+            android:layout_width="0dp"
+            android:layout_weight="0.4"
             tools:text="Course name">
         </TextView>
-        <Button
-            android:id="@+id/btnTakeTest"
-            style="@style/subHeaderTitle15dpNormal"
-            android:layout_width="match_parent"
-            android:layout_weight="0.35"
-            android:textAlignment="center"
-            android:background="@color/grey"
-            android:textAllCaps="false"
-            android:layout_marginBottom="@dimen/padding_10dp"
-            android:layout_marginRight="@dimen/padding_10dp"
-            android:text="@string/take_test"></Button>
+        <TextView
+            android:id="@+id/tvTakeTest"
+            style="@style/customButtonStyle"
+            android:background="@drawable/box_border_blue_bg"
+            android:layout_width="0dp"
+            android:layout_weight="0.2"
+            android:text="@string/take_test" />
     </LinearLayout>
 
 </androidx.cardview.widget.CardView>

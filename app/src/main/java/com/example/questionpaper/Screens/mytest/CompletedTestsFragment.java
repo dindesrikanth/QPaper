@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -71,13 +72,13 @@ public class CompletedTestsFragment  extends Fragment {
             public void onResponse(Call<CompletedTestsResponse> call, Response<CompletedTestsResponse> response) {
                 try {
                     if (response.isSuccessful()) {
-                        // Toast.makeText(getContext(),response+": if",Toast.LENGTH_LONG).show();
+                         Toast.makeText(getContext(),response+": if",Toast.LENGTH_LONG).show();
                         //  Log.i(TAG, "==== Response ===" + response.body());
                         // Log.w("==== Response === ",new Gson().toJson(response));
                         showData(response.body());
                     }else{
                         // showMessageAndCloseScreen();
-                        // Toast.makeText(getContext(),response+": else",Toast.LENGTH_LONG).show();
+                         Toast.makeText(getContext(),response+": else",Toast.LENGTH_LONG).show();
                         tvErrorMessage.setVisibility(View.VISIBLE);
                         rViewCommon.setVisibility(View.GONE);
                     }
@@ -91,7 +92,7 @@ public class CompletedTestsFragment  extends Fragment {
             @Override
             public void onFailure(Call<CompletedTestsResponse> call, Throwable t) {
                 //showMessageAndCloseScreen();
-                //Toast.makeText(getContext(),"failure",Toast.LENGTH_LONG).show();
+                Toast.makeText(getContext(),"failure",Toast.LENGTH_LONG).show();
                 tvErrorMessage.setVisibility(View.VISIBLE);
                 rViewCommon.setVisibility(View.GONE);
                 pDialog.dismiss();
