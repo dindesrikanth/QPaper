@@ -36,16 +36,21 @@
                 android:layout_height="wrap_content"
                 tools:text="Time"
                 />
-
         </LinearLayout>
-        <TextView
-            android:id="@+id/tvDuration"
-            android:layout_marginTop="@dimen/padding_10dp"
-            style="@style/subHeaderTitle15dpNormal"
+
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            tools:text="Duration"
-            android:layout_marginBottom="@dimen/padding_10dp"
-            />
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/padding_10dp">
+            <TextView
+                android:id="@+id/tvMarksAndDuration"
+                style="@style/subHeaderTitle15dpNormal"
+                android:layout_height="wrap_content"
+                tools:text="Marks And Duration"
+                android:layout_marginBottom="@dimen/padding_10dp"
+                />
+        </LinearLayout>
 
     </LinearLayout>
 

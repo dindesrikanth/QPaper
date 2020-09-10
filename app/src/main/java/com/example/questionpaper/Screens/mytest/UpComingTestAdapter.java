@@ -1,5 +1,6 @@
 package com.example.questionpaper.Screens.mytest;
 
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,7 +34,14 @@ public class UpComingTestAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         vh.tvTestName.setText(tests.get(position).getName());
         vh.tvDate.setText(tests.get(position).getDate());
         vh.tvTime.setText(tests.get(position).getTestTime());
-        vh.tvDuration.setText(tests.get(position).getDuration());
+        String marksAndDuration="";
+        if(!TextUtils.isEmpty(tests.get(position).getTotalMarks())){
+            marksAndDuration = marksAndDuration+tests.get(position).getTotalMarks()+" Marks ";
+        }
+        if(!TextUtils.isEmpty(tests.get(position).getDuration())){
+            marksAndDuration = marksAndDuration+tests.get(position).getDuration()+" Minutes";
+        }
+        vh.tvMarksAndDuration.setText(marksAndDuration);
     }
 
     @Override
@@ -43,13 +51,13 @@ public class UpComingTestAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 
 
     private class AdapterViewHolder extends RecyclerView.ViewHolder {
-        TextView tvTestName,tvDate,tvTime,tvDuration;
+        TextView tvTestName,tvDate,tvTime,tvMarksAndDuration;
         public AdapterViewHolder(View v) {
             super(v);
             tvTestName=v.findViewById(R.id.tvTestName);
             tvDate=v.findViewById(R.id.tvDate);
             tvTime=v.findViewById(R.id.tvTime);
-            tvDuration=v.findViewById(R.id.tvDuration);
+            tvMarksAndDuration=v.findViewById(R.id.tvMarksAndDuration);
         }
     }
 }
