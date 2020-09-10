@@ -8,39 +8,33 @@
 
     <LinearLayout
         android:orientation="horizontal"
-        android:layout_height="wrap_content"
-        android:layout_width="match_parent"
-        android:layout_marginTop="@dimen/padding_10dp"
-        android:weightSum="1.0">
+        style="@style/adapterChildProperty" >
         <TextView
             style="@style/subHeaderTitle15dpNormal"
-            android:id="@+id/tv_test_name"
+            android:id="@+id/tvTestName"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:layout_weight="0.35"
             tools:text="Test" >
         </TextView>
         <TextView
             style="@style/subHeaderTitle15dpNormal"
-            android:id="@+id/tv_cource_name"
+            android:id="@+id/tvCourseName"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:layout_weight="0.3"
             android:textAlignment="center"
             tools:text="Course name">
         </TextView>
         <Button
-            android:id="@+id/take_test"
+            android:id="@+id/btnTakeTest"
             style="@style/subHeaderTitle15dpNormal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:layout_weight="0.35"
             android:textAlignment="center"
             android:background="@color/grey"
             android:textAllCaps="false"
             android:layout_marginBottom="@dimen/padding_10dp"
             android:layout_marginRight="@dimen/padding_10dp"
-            android:text="Take Test"></Button>
+            android:text="@string/take_test"></Button>
     </LinearLayout>
 
 </androidx.cardview.widget.CardView>

@@ -43,6 +43,17 @@
         <item name="android:layout_marginBottom">@dimen/padding_10dp</item>
     </style>
 
+    <style name="adapterChildProperty">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:background">#FFFFFF</item>
+        <item name="android:layout_marginTop">@dimen/padding_10dp</item>
+        <item name="android:layout_marginBottom">@dimen/padding_10dp</item>
+        <item name="android:paddingStart">@dimen/padding_10dp</item>
+        <item name="android:paddingEnd">@dimen/padding_10dp</item>
+    </style>
+
+
 
     <style name="tabTextStyle" parent="@android:style/TextAppearance.Widget.TabWidget">
         <item name="android:textSize">@dimen/textSize_15dp</item>

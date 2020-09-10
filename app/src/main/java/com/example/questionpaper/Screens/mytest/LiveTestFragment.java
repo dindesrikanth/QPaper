@@ -15,11 +15,7 @@ import com.example.questionpaper.Common.Utility;
 import com.example.questionpaper.Network.RetrofitClient;
 import com.example.questionpaper.R;
 import com.example.questionpaper.Response.mytests.LiveTest.LiveTestResponse;
-import com.example.questionpaper.Response.mytests.LiveTest.TestData;
 import com.google.gson.Gson;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -29,7 +25,6 @@ public class LiveTestFragment extends Fragment {
 
     RecyclerView rViewCommon;
     LiveTestResponse liveTestResponse;
-    List<TestData> dataList;
     TextView tvErrorMessage;
     ProgressDialog pDialog;
 
@@ -44,7 +39,7 @@ public class LiveTestFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.mytests_upcoming_fragment, container, false);
-        intializeviews(view);
+        initializeViews(view);
         pDialog= Utility.getProgressDialog(getActivity());
         return view;
     }
@@ -103,14 +98,8 @@ public class LiveTestFragment extends Fragment {
 
     private void showData(String responseJson) {
         liveTestResponse = new Gson().fromJson(responseJson,LiveTestResponse.class);
-        dataList = new ArrayList<>();
-        if(liveTestResponse!=null){
-            for(int i= 0; i<liveTestResponse.getData().size();i++){
-                dataList.add(liveTestResponse.getData().get(i));
-            }
-        }
-        if(dataList!=null && dataList.size()>0){
-            LiveTestAdapter liveTestAdapter =  new LiveTestAdapter(getContext(),dataList);
+        if(liveTestResponse !=null && liveTestResponse.getData()!=null && liveTestResponse.getData().size()>0){
+            LiveTestAdapter liveTestAdapter =  new LiveTestAdapter(getContext(),liveTestResponse.getData().get(0).getTests());
             rViewCommon.setAdapter(liveTestAdapter);
         }else{
             tvErrorMessage.setVisibility(View.VISIBLE);
@@ -118,7 +107,7 @@ public class LiveTestFragment extends Fragment {
         }
     }
 
-    private void intializeviews(View view) {
+    private void initializeViews(View view) {
         tvErrorMessage=view.findViewById(R.id.tvErrorMessage);
         rViewCommon = (RecyclerView)view.findViewById(R.id.rViewCommon);
         rViewCommon.setLayoutManager(new LinearLayoutManager(getContext()));

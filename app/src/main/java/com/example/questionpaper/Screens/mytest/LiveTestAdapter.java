@@ -1,6 +1,7 @@
 package com.example.questionpaper.Screens.mytest;
 
 import android.content.Context;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,20 +9,21 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.questionpaper.R;
-import com.example.questionpaper.Response.mytests.LiveTest.TestData;
-
-import java.util.List;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.questionpaper.R;
+import com.example.questionpaper.Response.mytests.LiveTest.Tests;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class LiveTestAdapter extends RecyclerView.Adapter<LiveTestAdapter.ViewHolder> {
 
-    List<TestData> dataList;
-    Context context;
+    private  List<Tests> dataList;
+    private Context context;
 
-    public LiveTestAdapter(Context context, List<TestData> dataList) {
+    public LiveTestAdapter(Context context, ArrayList<Tests> dataList) {
         this.dataList = dataList;
         this.context = context;
     }
@@ -29,29 +31,32 @@ public class LiveTestAdapter extends RecyclerView.Adapter<LiveTestAdapter.ViewHo
     @NonNull
     @Override
     public LiveTestAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-
-        LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
-        View listItem= layoutInflater.inflate(R.layout.live_test_adapterlayout, parent, false);
+        View listItem= LayoutInflater.from(parent.getContext()).inflate(R.layout.live_test_adapterlayout, parent, false);
         ViewHolder viewHolder = new ViewHolder(listItem);
         return viewHolder;
     }
 
     @Override
     public void onBindViewHolder(@NonNull LiveTestAdapter.ViewHolder holder, int position) {
-        if(dataList!=null){
-            for(int i =0;i<dataList.get(position).getTests().size();i++){
-                holder.tv_tesname.setText(dataList.get(position).getTests().get(i).getName());
-            }
-            holder.tv_courseName.setText(dataList.get(position).getCourseName());
+
+        if(!TextUtils.isEmpty(dataList.get(position).getName())){
+            holder.tvTestName.setText(dataList.get(position).getName());
+        }else{
+            holder.tvTestName.setText("-");
         }
-        holder.btn_takeTest.setOnClickListener(new View.OnClickListener() {
+
+        if(!TextUtils.isEmpty(dataList.get(position).getCourseName())){
+            holder.tvCourseName.setText(dataList.get(position).getCourseName());
+        }else{
+            holder.tvCourseName.setText("-");
+        }
+
+        holder.btnTakeTest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Toast.makeText(context, "Test is Ready To Start", Toast.LENGTH_SHORT).show();
             }
         });
-
-
     }
 
     @Override
@@ -60,13 +65,13 @@ public class LiveTestAdapter extends RecyclerView.Adapter<LiveTestAdapter.ViewHo
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        TextView tv_tesname,tv_courseName;
-        Button btn_takeTest;
+        private TextView tvTestName,tvCourseName;
+        private Button btnTakeTest;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            tv_tesname =(TextView)itemView.findViewById(R.id.tv_test_name);
-            tv_courseName  = (TextView)itemView.findViewById(R.id.tv_cource_name);
-            btn_takeTest = (Button)itemView.findViewById(R.id.take_test);
+            tvTestName =(TextView)itemView.findViewById(R.id.tvTestName);
+            tvCourseName  = (TextView)itemView.findViewById(R.id.tvCourseName);
+            btnTakeTest = (Button)itemView.findViewById(R.id.btnTakeTest);
         }
     }
 }

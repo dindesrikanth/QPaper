@@ -76,5 +76,6 @@
 
 
     <string name="no_record_message">No Records Available</string>
+    <string name="take_test">Take Test</string>
 
 </resources>

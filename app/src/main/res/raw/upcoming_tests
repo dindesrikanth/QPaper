@@ -1,0 +1,31 @@
+{
+  "data": [
+    {
+      "courseName": "Group 1",
+      "tests": [
+        {
+          "id": 1,
+          "name": "Group1_Hist_1",
+          "description": "Group1_Hist",
+          "typeCode": "",
+          "totalQuestions": 75,
+          "totalMarks": 75,
+          "negativeMarks": 1,
+          "date": "2020-10-10",
+          "duration": 75,
+          "fee": null,
+          "numberOfParticipants": 10000,
+          "subjectName": "His_AP_IND",
+          "courseName": "Group 1",
+          "testTime": "23:00:00",
+          "testMedium": "Eng",
+          "winPercentage": 50,
+          "firstPrize": 3000,
+          "totalPrize": 300000,
+          "prizeAmount": 0,
+          "prizeDistributionId": 3
+        }
+      ]
+    }
+  ]
+}

@@ -8,9 +8,7 @@
 
     <LinearLayout
         android:orientation="vertical"
-        android:layout_height="wrap_content"
-        android:layout_width="match_parent"
-        android:layout_marginTop="@dimen/padding_10dp">
+        style="@style/adapterChildProperty">
 
         <LinearLayout
             android:layout_width="match_parent"
