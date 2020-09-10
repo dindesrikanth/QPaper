@@ -34,7 +34,6 @@ public class CompletedTestsFragment  extends Fragment {
         View v=inflater.inflate(R.layout.mytests_completed_fragment, container, false);
         inItView(v);
         pDialog= Utility.getProgressDialog(getActivity());
-
         return v;
     }
     private void inItView(View v) {
@@ -50,7 +49,7 @@ public class CompletedTestsFragment  extends Fragment {
         if(!getUserVisibleHint()){
             return;
         }
-        getUpComingTestData();
+        getCompletedTestData();
     }
 
     @Override
@@ -60,7 +59,7 @@ public class CompletedTestsFragment  extends Fragment {
             onResume();
         }
     }
-    private void getUpComingTestData(){
+    private void getCompletedTestData(){
         pDialog.show();
         String numberOfMonths = "1";
         String userId = "1";
