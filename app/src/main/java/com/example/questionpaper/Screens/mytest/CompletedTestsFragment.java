@@ -34,7 +34,7 @@ public class CompletedTestsFragment  extends Fragment {
         View v=inflater.inflate(R.layout.mytests_completed_fragment, container, false);
         inItView(v);
         pDialog= Utility.getProgressDialog(getActivity());
-        getUpComingTestData();
+
         return v;
     }
     private void inItView(View v) {
@@ -44,7 +44,22 @@ public class CompletedTestsFragment  extends Fragment {
         RecyclerView.LayoutManager layoutManager=new LinearLayoutManager(getActivity(),RecyclerView.VERTICAL,false);
         rViewCommon.setLayoutManager(layoutManager);
     }
+    @Override
+    public void onResume() {
+        super.onResume();
+        if(!getUserVisibleHint()){
+            return;
+        }
+        getUpComingTestData();
+    }
 
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        if(isVisibleToUser && isResumed()){
+            onResume();
+        }
+    }
     private void getUpComingTestData(){
         pDialog.show();
         String typeOfTests = "C";

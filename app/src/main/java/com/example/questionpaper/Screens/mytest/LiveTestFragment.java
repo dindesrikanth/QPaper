@@ -45,9 +45,25 @@ public class LiveTestFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.mytests_upcoming_fragment, container, false);
         intializeviews(view);
-        getLiveTestsData();
         pDialog= Utility.getProgressDialog(getActivity());
         return view;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if(!getUserVisibleHint()){
+            return;
+        }
+        getLiveTestsData();
+    }
+
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        if(isVisibleToUser && isResumed()){
+            onResume();
+        }
     }
 
     private void getLiveTestsData() {
