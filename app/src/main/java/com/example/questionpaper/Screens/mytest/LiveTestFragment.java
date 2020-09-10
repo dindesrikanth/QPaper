@@ -61,7 +61,7 @@ public class LiveTestFragment extends Fragment {
                 try {
                     if (response.isSuccessful()) {
                         String responseJson = new Gson().toJson(response.body());
-                        showdata(responseJson);
+                        showData(responseJson);
                     } else {
                         tvErrorMessage.setVisibility(View.VISIBLE);
                         rViewCommon.setVisibility(View.GONE);
@@ -85,8 +85,7 @@ public class LiveTestFragment extends Fragment {
         });
     }
 
-    private void showdata(String responseJson) {
-
+    private void showData(String responseJson) {
         liveTestResponse = new Gson().fromJson(responseJson,LiveTestResponse.class);
         dataList = new ArrayList<>();
         if(liveTestResponse!=null){
@@ -104,11 +103,9 @@ public class LiveTestFragment extends Fragment {
     }
 
     private void intializeviews(View view) {
-
         tvErrorMessage=view.findViewById(R.id.tvErrorMessage);
         rViewCommon = (RecyclerView)view.findViewById(R.id.rViewCommon);
         rViewCommon.setLayoutManager(new LinearLayoutManager(getContext()));
-
     }
 
 }
