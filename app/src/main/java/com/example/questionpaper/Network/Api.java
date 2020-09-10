@@ -14,8 +14,8 @@ import com.example.questionpaper.Model.TestDetailRequestmodel;
 import com.example.questionpaper.Model.UserCourses;
 import com.example.questionpaper.Model.signinmodel;
 import com.example.questionpaper.Model.user_response;
-import com.example.questionpaper.Response.mytests.CompletedTestsResponse;
-import com.example.questionpaper.Response.mytests.LiveTestResponse;
+import com.example.questionpaper.Response.mytests.completed.CompletedTestsResponse;
+import com.example.questionpaper.Response.mytests.LiveTest.LiveTestResponse;
 import com.example.questionpaper.Response.mytests.UpComing.UpcomingTestsResponse;
 import com.example.questionpaper.Screens.mytest.UserTestRequest;
 

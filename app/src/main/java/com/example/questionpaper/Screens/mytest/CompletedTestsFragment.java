@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.questionpaper.Common.Utility;
 import com.example.questionpaper.Network.RetrofitClient;
 import com.example.questionpaper.R;
-import com.example.questionpaper.Response.mytests.CompletedTestsResponse;
+import com.example.questionpaper.Response.mytests.completed.CompletedTestsResponse;
 
 import retrofit2.Call;
 import retrofit2.Callback;
