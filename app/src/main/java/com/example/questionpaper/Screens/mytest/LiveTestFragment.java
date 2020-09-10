@@ -2,7 +2,6 @@ package com.example.questionpaper.Screens.mytest;
 
 import android.app.ProgressDialog;
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,22 +10,20 @@ import android.widget.TextView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 import com.example.questionpaper.Common.Utility;
 import com.example.questionpaper.Network.RetrofitClient;
 import com.example.questionpaper.R;
-import com.example.questionpaper.Response.mytests.LiveTestResponse;
-import com.example.questionpaper.Response.mytests.TestData;
+import com.example.questionpaper.Response.mytests.LiveTest.LiveTestResponse;
+import com.example.questionpaper.Response.mytests.LiveTest.TestData;
 import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-
-import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class LiveTestFragment extends Fragment {
 
@@ -91,15 +88,19 @@ public class LiveTestFragment extends Fragment {
     private void showdata(String responseJson) {
 
         liveTestResponse = new Gson().fromJson(responseJson,LiveTestResponse.class);
-        dataList = new ArrayList<TestData>();
+        dataList = new ArrayList<>();
         if(liveTestResponse!=null){
             for(int i= 0; i<liveTestResponse.getData().size();i++){
                 dataList.add(liveTestResponse.getData().get(i));
             }
         }
-        LiveTestAdapter liveTestAdapter =  new LiveTestAdapter(getContext(),dataList);
-        rViewCommon.setAdapter(liveTestAdapter);
-
+        if(dataList!=null && dataList.size()>0){
+            LiveTestAdapter liveTestAdapter =  new LiveTestAdapter(getContext(),dataList);
+            rViewCommon.setAdapter(liveTestAdapter);
+        }else{
+            tvErrorMessage.setVisibility(View.VISIBLE);
+            rViewCommon.setVisibility(View.GONE);
+        }
     }
 
     private void intializeviews(View view) {

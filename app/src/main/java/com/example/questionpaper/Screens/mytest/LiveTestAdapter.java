@@ -9,12 +9,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.questionpaper.R;
-import com.example.questionpaper.Response.mytests.TestData;
+import com.example.questionpaper.Response.mytests.LiveTest.TestData;
 
 import java.util.List;
 
 import androidx.annotation.NonNull;
-import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class LiveTestAdapter extends RecyclerView.Adapter<LiveTestAdapter.ViewHolder> {
