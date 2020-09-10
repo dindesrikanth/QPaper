@@ -1,0 +1,53 @@
+{
+  "data": [
+    {
+      "courseName": "Group 1",
+      "tests": [
+        {
+          "id": 7,
+          "name": "Grp1 hist",
+          "description": null,
+          "typeCode": null,
+          "totalQuestions": 100,
+          "totalMarks": 100,
+          "negativeMarks": 1,
+          "date": "2020-08-10",
+          "duration": 60,
+          "fee": null,
+          "numberOfParticipants": 100000,
+          "subjectName": "His_AP_IND",
+          "courseName": "Group 1",
+          "testTime": "23:00:00",
+          "testMedium": "Eng",
+          "winPercentage": 50,
+          "firstPrize": null,
+          "totalPrize": null,
+          "prizeAmount": 0,
+          "prizeDistributionId": 2
+        },
+        {
+          "id": 6,
+          "name": "Grp1 hist",
+          "description": null,
+          "typeCode": null,
+          "totalQuestions": 100,
+          "totalMarks": 100,
+          "negativeMarks": 1,
+          "date": "2020-09-01",
+          "duration": 60,
+          "fee": null,
+          "numberOfParticipants": 100000,
+          "subjectName": "His_AP_IND",
+          "courseName": "Group 1",
+          "testTime": "23:00:00",
+          "testMedium": "Eng",
+          "winPercentage": 50,
+          "firstPrize": null,
+          "totalPrize": null,
+          "prizeAmount": 0,
+          "prizeDistributionId": 2
+        }
+      ]
+    }
+  ]
+}
