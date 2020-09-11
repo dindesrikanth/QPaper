@@ -1,236 +1,130 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    style="@style/fragmentRootProperty"
+    android:scrollbars="none"
     tools:context=".Screens.mytest.DetailsAnalysisFragment">
     <LinearLayout
-        style="@style/adapterChildProperty"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
         android:orientation="vertical">
         <LinearLayout
-            style="@style/adapterChildProperty"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
             android:orientation="horizontal">
             <TextView
-                android:id="@+id/testName"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Test Nanme"
+                android:id="@+id/tvTestName"
+                style="@style/subHeaderTitle15dpNormal"
+                android:layout_width="0dp"
                 android:layout_weight="0.5"
-                style="@style/subHeaderTitle15dpNormal">
+                android:text="Test Nanme"
+                android:background="@color/bg_grey">
             </TextView>
 
             <TextView
-                android:id="@+id/testNameValue"
+                android:id="@+id/tvTestNameValue"
+                style="@style/subHeaderTitle15dpNormal"
                 android:layout_weight="0.5"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="0dp" 
                 tools:text="Physics Q1"
-                style="@style/subHeaderTitle15dpNormal">
-
-            </TextView>
+                android:background="@color/bg_grey"
+                android:gravity="end"/>
         </LinearLayout>
-        <LinearLayout
-            style="@style/adapterChildProperty"
+        <LinearLayout android:layout_marginTop="@dimen/padding_15dp"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
             android:orientation="horizontal">
-        <TextView
-                android:id="@+id/rank"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Rank"
-                android:layout_weight="0.5"
-                style="@style/subHeaderTitle15dpNormal">
-            </TextView>
+             <TextView
+                android:id="@+id/tvRank"
+                 style="@style/subHeaderTitle15dpNormal"
+                 android:layout_weight="0.5"
+                 android:layout_width="0dp"
+                 android:text="Rank"
+                 android:background="@color/bg_grey"/> 
 
             <TextView
-                android:id="@+id/rankValue"
+                android:id="@+id/tvRankValue"
+                style="@style/subHeaderTitle15dpNormal"
                 android:layout_weight="0.5"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="0dp"
                 tools:text="12451"
-                style="@style/subHeaderTitle15dpNormal">
-
-            </TextView>
+                android:background="@color/bg_grey"
+                android:gravity="end"/>
+ 
         </LinearLayout>
-        <LinearLayout
-            style="@style/adapterChildProperty"
+        <LinearLayout  android:layout_marginTop="@dimen/padding_15dp"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
             android:orientation="horizontal">
             <TextView
-                android:id="@+id/score"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Test Nanme"
+                android:id="@+id/tvScore"
+                style="@style/subHeaderTitle15dpNormal"
                 android:layout_weight="0.5"
-                style="@style/subHeaderTitle15dpNormal">
-            </TextView>
+                android:layout_width="0dp"
+                android:text="Test Name"
+                android:background="@color/bg_grey"/>
+            
 
             <TextView
-                android:id="@+id/scoreValue"
+                android:id="@+id/tvScoreValue"
+                style="@style/subHeaderTitle15dpNormal"
                 android:layout_weight="0.5"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="0dp"
                 tools:text="458"
-                style="@style/subHeaderTitle15dpNormal">
+                android:background="@color/bg_grey"
+                android:gravity="end"/>
 
-            </TextView>
         </LinearLayout>
-        <LinearLayout
-            style="@style/adapterChildProperty"
+        <LinearLayout  android:layout_marginTop="@dimen/padding_15dp"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
             android:orientation="horizontal">
             <TextView
-                android:id="@+id/explnVideo"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:id="@+id/tvExplnVideo"
+                style="@style/subHeaderTitle15dpNormal"
+                android:layout_weight="0.6"
+                android:layout_width="0dp"
                 android:text="Solution/Expln video"
-                android:layout_weight="0.3"
-                style="@style/subHeaderTitle15dpNormal">
-            </TextView>
+                android:background="@color/bg_grey"/>
 
-            <Button
-                android:id="@+id/btnExplnVideo"
-                android:layout_weight="0.7"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textAllCaps="false"
-                android:text="Purchase"
+            <TextView
+                android:id="@+id/tvPurchase"
+                style="@style/customButtonStyle"
                 android:background="@drawable/box_border_blue_bg"
-                android:textColor="@color/white"
-                android:gravity="center"
-                style="@style/subHeaderTitle15dpNormal">
+                android:layout_weight="0.4"
+                android:layout_width="0dp" 
+                android:text="Purchase"
+                android:gravity="center" />
 
-            </Button>
         </LinearLayout>
-        <LinearLayout
-            style="@style/adapterChildProperty"
+        <LinearLayout  android:layout_marginTop="@dimen/padding_15dp"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
             android:orientation="horizontal">
+
             <TextView
-                android:id="@+id/amtWon"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Amt Won"
-                android:layout_weight="0.5"
-                style="@style/subHeaderTitle15dpNormal">
-            </TextView>
+                android:id="@+id/tvAmountWon"
+                style="@style/subHeaderTitle15dpNormal"
+                android:layout_weight="0.6"
+                android:layout_width="0dp"
+                android:text="Amount Won"
+                android:background="@color/bg_grey"/>
 
-            <LinearLayout
-                android:id="@+id/amtWonValue"
-                android:layout_weight="0.5"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                tools:text="70"
-                android:orientation="vertical"
-                style="@style/subHeaderTitle15dpNormal">
-                <include layout="@layout/recyclerview_common_layout"></include>
+            <TextView
+                android:id="@+id/tvDetailedAnalysis"
+                style="@style/customButtonStyle"
+                android:background="@drawable/box_border_blue_bg"
+                android:layout_weight="0.4"
+                android:layout_width="0dp"
+                android:text="Detailed Analysis"
+                android:gravity="center" />
 
-            </LinearLayout>
         </LinearLayout>
-        <LinearLayout
-            style="@style/adapterChildProperty"
-            android:orientation="horizontal">
-            <TextView
-                android:id="@+id/attempted"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Attempted"
-                android:layout_weight="0.5"
-                style="@style/subHeaderTitle15dpNormal">
-            </TextView>
 
-            <TextView
-                android:id="@+id/attemptedValue"
-                android:layout_weight="0.5"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                tools:text="70"
-                style="@style/subHeaderTitle15dpNormal">
+        <include layout="@layout/recyclerview_common_layout"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent" 
+            android:layout_marginTop="@dimen/padding_15dp"/>
 
-            </TextView>
-        </LinearLayout>
-        <LinearLayout
-            style="@style/adapterChildProperty"
-            android:orientation="horizontal">
-            <TextView
-                android:id="@+id/unAttempted"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Unattampted"
-                android:layout_weight="0.5"
-                style="@style/subHeaderTitle15dpNormal">
-            </TextView>
-
-            <TextView
-                android:id="@+id/unAttemptedValue"
-                android:layout_weight="0.5"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                tools:text="10"
-                style="@style/subHeaderTitle15dpNormal">
-
-            </TextView>
-        </LinearLayout>
-        <LinearLayout
-            style="@style/adapterChildProperty"
-            android:orientation="horizontal">
-            <TextView
-                android:id="@+id/correct"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Correct"
-                android:layout_weight="0.5"
-                style="@style/subHeaderTitle15dpNormal">
-            </TextView>
-
-            <TextView
-                android:id="@+id/correctValue"
-                android:layout_weight="0.5"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                tools:text="40"
-                style="@style/subHeaderTitle15dpNormal">
-
-            </TextView>
-        </LinearLayout>
-        <LinearLayout
-            style="@style/adapterChildProperty"
-            android:orientation="horizontal">
-            <TextView
-                android:id="@+id/incorrect"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Incorrect"
-                android:layout_weight="0.5"
-                style="@style/subHeaderTitle15dpNormal">
-            </TextView>
-
-            <TextView
-                android:id="@+id/incorrectValue"
-                android:layout_weight="0.5"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                tools:text="5"
-                style="@style/subHeaderTitle15dpNormal">
-
-            </TextView>
-        </LinearLayout> <LinearLayout
-        style="@style/adapterChildProperty"
-            android:orientation="horizontal">
-            <TextView
-                android:id="@+id/accuracy"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Accuraccy"
-                android:layout_weight="0.5"
-                style="@style/subHeaderTitle15dpNormal">
-            </TextView>
-
-            <TextView
-                android:id="@+id/accuracyValue"
-                android:layout_weight="0.5"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                tools:text="10"
-                style="@style/subHeaderTitle15dpNormal">
-
-            </TextView>
-        </LinearLayout>
     </LinearLayout>
-</androidx.cardview.widget.CardView>
+</ScrollView>
