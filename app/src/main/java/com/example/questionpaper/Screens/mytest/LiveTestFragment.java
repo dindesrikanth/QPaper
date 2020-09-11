@@ -38,7 +38,7 @@ public class LiveTestFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.mytests_upcoming_fragment, container, false);
+        View view = inflater.inflate(R.layout.mytesta_live_fragment, container, false);
         initializeViews(view);
         pDialog= Utility.getProgressDialog(getActivity());
         return view;
@@ -99,7 +99,7 @@ public class LiveTestFragment extends Fragment {
     private void showData(String responseJson) {
         liveTestResponse = new Gson().fromJson(responseJson,LiveTestResponse.class);
         if(liveTestResponse !=null && liveTestResponse.getData()!=null && liveTestResponse.getData().size()>0){
-            LiveTestAdapter liveTestAdapter =  new LiveTestAdapter(getContext(),liveTestResponse.getData().get(0).getTests());
+            LiveTestAdapter liveTestAdapter =  new LiveTestAdapter(getActivity(),liveTestResponse.getData().get(0).getTests());
             rViewCommon.setAdapter(liveTestAdapter);
         }else{
             tvErrorMessage.setVisibility(View.VISIBLE);
