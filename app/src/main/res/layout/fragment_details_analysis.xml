@@ -17,7 +17,7 @@
                 style="@style/subHeaderTitle15dpNormal"
                 android:layout_width="0dp"
                 android:layout_weight="0.5"
-                android:text="Test Nanme"
+                android:text="Test Name"
                 android:background="@color/bg_grey">
             </TextView>
 
@@ -61,7 +61,7 @@
                 style="@style/subHeaderTitle15dpNormal"
                 android:layout_weight="0.5"
                 android:layout_width="0dp"
-                android:text="Test Name"
+                android:text="Score"
                 android:background="@color/bg_grey"/>
             
 
@@ -82,7 +82,7 @@
             <TextView
                 android:id="@+id/tvExplnVideo"
                 style="@style/subHeaderTitle15dpNormal"
-                android:layout_weight="0.6"
+                android:layout_weight="0.7"
                 android:layout_width="0dp"
                 android:text="Solution/Expln video"
                 android:background="@color/bg_grey"/>
@@ -91,7 +91,7 @@
                 android:id="@+id/tvPurchase"
                 style="@style/customButtonStyle"
                 android:background="@drawable/box_border_blue_bg"
-                android:layout_weight="0.4"
+                android:layout_weight="0.3"
                 android:layout_width="0dp" 
                 android:text="Purchase"
                 android:gravity="center" />
@@ -105,21 +105,36 @@
             <TextView
                 android:id="@+id/tvAmountWon"
                 style="@style/subHeaderTitle15dpNormal"
-                android:layout_weight="0.6"
+                android:layout_weight="0.5"
                 android:layout_width="0dp"
                 android:text="Amount Won"
                 android:background="@color/bg_grey"/>
 
             <TextView
+                android:id="@+id/tvAmountValue"
+                style="@style/subHeaderTitle15dpNormal"
+                android:layout_weight="0.5"
+                android:layout_width="0dp"
+                tools:text="123456"
+                android:background="@color/bg_grey"
+                android:gravity="end"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:layout_marginTop="@dimen/padding_20dp">
+
+            <TextView
                 android:id="@+id/tvDetailedAnalysis"
                 style="@style/customButtonStyle"
                 android:background="@drawable/box_border_blue_bg"
-                android:layout_weight="0.4"
-                android:layout_width="0dp"
                 android:text="Detailed Analysis"
-                android:gravity="center" />
+                android:gravity="center"/>
 
         </LinearLayout>
+
 
         <include layout="@layout/recyclerview_common_layout"
             android:layout_height="wrap_content"
