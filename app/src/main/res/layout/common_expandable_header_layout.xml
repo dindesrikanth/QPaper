@@ -22,8 +22,8 @@
             tools:text="UPSC" />
 
         <ImageView android:id="@+id/imgArrow"
-            android:layout_width="@dimen/padding_35dp"
-            android:layout_height="@dimen/padding_35dp"
+            android:layout_width="@dimen/padding_40dp"
+            android:layout_height="@dimen/padding_40dp"
             android:src="@drawable/ic_arrow_drop_down"
             />
     </LinearLayout>
