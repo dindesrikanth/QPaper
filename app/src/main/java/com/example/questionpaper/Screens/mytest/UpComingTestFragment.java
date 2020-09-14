@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ExpandableListView;
 import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
@@ -14,7 +15,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.questionpaper.Common.Utility;
 import com.example.questionpaper.Network.RetrofitClient;
 import com.example.questionpaper.R;
+import com.example.questionpaper.Response.mytests.UpComing.Tests;
 import com.example.questionpaper.Response.mytests.UpComing.UpcomingTestsResponse;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -24,6 +30,7 @@ public class UpComingTestFragment extends Fragment {
 
     private static final String TAG=UpComingTestFragment.class.getName();
     RecyclerView rViewCommon;
+    ExpandableListView expListView;
     TextView tvErrorMessage;
     ProgressDialog pDialog;
     UpComingTestAdapter adapter;
@@ -61,7 +68,7 @@ public class UpComingTestFragment extends Fragment {
                        // showMessageAndCloseScreen();
                         // Toast.makeText(getContext(),response+": else",Toast.LENGTH_LONG).show();
                         tvErrorMessage.setVisibility(View.VISIBLE);
-                        rViewCommon.setVisibility(View.GONE);
+                        expListView.setVisibility(View.GONE);
                     }
                 }catch (Exception ex){
                     ex.printStackTrace();
@@ -75,7 +82,7 @@ public class UpComingTestFragment extends Fragment {
                 //showMessageAndCloseScreen();
                 //Toast.makeText(getContext(),"failure",Toast.LENGTH_LONG).show();
                 tvErrorMessage.setVisibility(View.VISIBLE);
-                rViewCommon.setVisibility(View.GONE);
+                expListView.setVisibility(View.GONE);
                 pDialog.dismiss();
                 return;
             }
@@ -87,20 +94,30 @@ public class UpComingTestFragment extends Fragment {
 
         if(response !=null && response.getData()!=null && response.getData().size()>0){
             tvErrorMessage.setVisibility(View.GONE);
-            rViewCommon.setVisibility(View.VISIBLE);
-            adapter= new UpComingTestAdapter(this,response.getData().get(0).getTests());
-            rViewCommon.setAdapter(adapter);
+            expListView.setVisibility(View.VISIBLE);
+            HashMap<String , List<Tests>> courseItems = new HashMap<>();
+            ArrayList courseName = new ArrayList();
+            for(int i=0; i<response.getData().size();i++){
+                courseName.add(response.getData().get(i).getCourseName());
+                courseItems.put(response.getData().get(i).getCourseName(),response.getData().get(i).getTests());
+            }
+
+            adapter= new UpComingTestAdapter(this,courseName,courseItems);
+            expListView.setAdapter(adapter);
         }else{
             tvErrorMessage.setVisibility(View.VISIBLE);
-            rViewCommon.setVisibility(View.GONE);
+            expListView.setVisibility(View.GONE);
         }
     }
 
     private void inItView(View v) {
         tvErrorMessage=v.findViewById(R.id.tvErrorMessage);
 
-        rViewCommon= v.findViewById(R.id.rViewCommon);
+        /*rViewCommon= v.findViewById(R.id.rViewCommon);
         RecyclerView.LayoutManager layoutManager=new LinearLayoutManager(getActivity(),RecyclerView.VERTICAL,false);
-        rViewCommon.setLayoutManager(layoutManager);
+        rViewCommon.setLayoutManager(layoutManager);*/
+        expListView = (ExpandableListView)v.findViewById(R.id.expListView);
+        expListView.setIndicatorBounds(0,2000);
+
     }
 }

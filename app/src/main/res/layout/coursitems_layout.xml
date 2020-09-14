@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        style="@style/adapterRootProperty"
+        android:layout_marginTop="@dimen/padding_0dp"
+        android:layout_marginBottom="@dimen/padding_0dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tvTestName"
+            style="@style/adapterChildProperty"
+            android:layout_width="0dp"
+            android:layout_weight="0.6"
+            tools:text="Test name" />
+        <TextView
+            android:id="@+id/tvDate"
+            style="@style/adapterChildProperty"
+            android:layout_width="0dp"
+            android:layout_weight="0.5"
+            tools:ignore="Suspicious0dp"
+            tools:text="Date" />
+        <TextView
+            android:id="@+id/tvTime"
+            style="@style/adapterChildProperty"
+            android:layout_width="0dp"
+            android:layout_weight="0.5"
+            tools:ignore="Suspicious0dp"
+            tools:text="Time" />
+
+        <TextView
+            android:id="@+id/tvDurution"
+            style="@style/adapterChildProperty"
+            android:layout_width="0dp"
+            android:layout_weight="0.4"
+            tools:text="Duration" />
+
+
+    </LinearLayout>
+</LinearLayout>

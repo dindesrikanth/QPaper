@@ -1,8 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-xmlns:tools="http://schemas.android.com/tools"
-android:orientation="vertical"
-android:layout_width="match_parent"
-android:layout_height="match_parent">
-    <include layout="@layout/recyclerview_common_layout" />
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <ExpandableListView
+        android:id="@+id/expListView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/bg_grey"
+        android:divider="@android:color/darker_gray"
+        android:dividerHeight="1dp"
+        android:indicatorStart="?android:attr/expandableListPreferredChildIndicatorRight"
+        tools:listitem="@layout/mytests_upcoming_adapter"></ExpandableListView>
+
+    <TextView
+        android:id="@+id/tvErrorMessage"
+        style="@style/subHeaderTitle15dpNormal"
+        android:text="@string/no_record_message"
+        android:visibility="gone" />
 </LinearLayout>
