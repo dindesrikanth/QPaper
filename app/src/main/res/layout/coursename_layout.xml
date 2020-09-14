@@ -10,6 +10,7 @@
     <TextView
         android:id="@+id/tvCourseName"
         style="@style/adapterRootProperty"
+        android:textColor="@color/black"
         android:layout_width="0dp"
         android:layout_weight="0.5"
         tools:text="Test name" />
