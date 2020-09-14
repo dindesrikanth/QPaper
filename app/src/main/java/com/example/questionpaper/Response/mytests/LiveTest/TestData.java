@@ -13,10 +13,20 @@ public class TestData {
     @Expose
     private List<Tests> tests ;
 
+    private boolean showDownArrow=false;
+
+
     public List<Tests> getTests() {
         return tests;
     }
     public String getCourseName() {
         return courseName;
+    }
+
+    public boolean getDownArrow() {
+        return showDownArrow;
+    }
+    public void setDownArrow(boolean showDownArrow) {
+        this.showDownArrow = showDownArrow;
     }
 }

@@ -10,6 +10,7 @@
     <dimen name="padding_20dp">20dp</dimen>
     <dimen name="padding_28dp">28dp</dimen>
     <dimen name="padding_30dp">30dp</dimen>
+    <dimen name="padding_35dp">35dp</dimen>
 
     <dimen name="tab_layout_height">40dp</dimen>
 

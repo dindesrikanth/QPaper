@@ -14,31 +14,36 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.questionpaper.Common.Utility;
 import com.example.questionpaper.Network.RetrofitClient;
 import com.example.questionpaper.R;
+import com.example.questionpaper.Response.mytests.LiveTest.TestData;
 import com.example.questionpaper.Response.mytests.Requests.CompletedTestsRequest;
 import com.example.questionpaper.Response.mytests.completed.CompletedTestsResponse;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class CompletedTestsFragment  extends Fragment {
+public class CompletedTestsFragment  extends Fragment implements CompletedTestsAdapter.RootViewClickInterface{
     private static final String TAG = CompletedTestsFragment.class.getName();
     private RecyclerView rViewCommon;
     private TextView tvErrorMessage;
     private ProgressDialog pDialog;
     private CompletedTestsAdapter adapter;
+    List<Object> recyclerViewData = null;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v=inflater.inflate(R.layout.mytests_completed_fragment, container, false);
+        recyclerViewData = new ArrayList<>();
         inItView(v);
         pDialog= Utility.getProgressDialog(getActivity());
         return v;
     }
     private void inItView(View v) {
         tvErrorMessage=v.findViewById(R.id.tvErrorMessage);
-
         rViewCommon= v.findViewById(R.id.rViewCommon);
         RecyclerView.LayoutManager layoutManager=new LinearLayoutManager(getActivity(),RecyclerView.VERTICAL,false);
         rViewCommon.setLayoutManager(layoutManager);
@@ -100,9 +105,11 @@ public class CompletedTestsFragment  extends Fragment {
     }
     private void showData(CompletedTestsResponse response) {
         if(response !=null && response.getData()!=null && response.getData().size()>0){
+            //getRecyclerViewData(response.getData());
+            recyclerViewData.addAll(response.getData());
             tvErrorMessage.setVisibility(View.GONE);
             rViewCommon.setVisibility(View.VISIBLE);
-            adapter= new CompletedTestsAdapter(this,response.getData().get(0).getTests());
+            adapter= new CompletedTestsAdapter(this,recyclerViewData,response.getData());
             rViewCommon.setAdapter(adapter);
         }else{
             tvErrorMessage.setVisibility(View.VISIBLE);
@@ -110,4 +117,27 @@ public class CompletedTestsFragment  extends Fragment {
         }
     }
 
+    private void getRecyclerViewData(List<TestData> fullData){
+        recyclerViewData.clear();
+        for (TestData testData:fullData){
+            recyclerViewData.add(testData);
+            if(testData.getDownArrow()){
+                testData.setDownArrow(false);
+            }else{
+                testData.setDownArrow(true);
+                if(testData.getTests().size()>0){
+                    recyclerViewData.addAll(testData.getTests());
+                }
+            }
+
+        }
+        adapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void onRootViewClicked(int position, List<TestData> responseActualData) {
+        if(responseActualData != null && responseActualData.size()>0){
+            getRecyclerViewData(responseActualData);
+        }
+    }
 }
