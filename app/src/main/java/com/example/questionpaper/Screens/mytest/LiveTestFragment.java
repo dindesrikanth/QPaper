@@ -15,19 +15,24 @@ import com.example.questionpaper.Common.Utility;
 import com.example.questionpaper.Network.RetrofitClient;
 import com.example.questionpaper.R;
 import com.example.questionpaper.Response.mytests.LiveTest.LiveTestResponse;
+import com.example.questionpaper.Response.mytests.LiveTest.TestData;
 import com.google.gson.Gson;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class LiveTestFragment extends Fragment {
+public class LiveTestFragment extends Fragment implements RootViewClickInterface{
 
     RecyclerView rViewCommon;
+    RecyclerView.Adapter liveTestAdapter;
     LiveTestResponse liveTestResponse;
     TextView tvErrorMessage;
     ProgressDialog pDialog;
-
+    List<Object> recyclerViewData = null;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -39,6 +44,7 @@ public class LiveTestFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.mytesta_live_fragment, container, false);
+        recyclerViewData = new ArrayList<>();
         initializeViews(view);
         pDialog= Utility.getProgressDialog(getActivity());
         return view;
@@ -99,7 +105,9 @@ public class LiveTestFragment extends Fragment {
     private void showData(String responseJson) {
         liveTestResponse = new Gson().fromJson(responseJson,LiveTestResponse.class);
         if(liveTestResponse !=null && liveTestResponse.getData()!=null && liveTestResponse.getData().size()>0){
-            LiveTestAdapter liveTestAdapter =  new LiveTestAdapter(getActivity(),liveTestResponse.getData().get(0).getTests());
+            recyclerViewData.clear();
+            recyclerViewData.addAll(liveTestResponse.getData());
+            liveTestAdapter =  new LiveTestAdapter(this,recyclerViewData,liveTestResponse.getData());
             rViewCommon.setAdapter(liveTestAdapter);
         }else{
             tvErrorMessage.setVisibility(View.VISIBLE);
@@ -107,12 +115,35 @@ public class LiveTestFragment extends Fragment {
         }
     }
 
+    private void getRecyclerViewData(List<TestData> fullData){
+        recyclerViewData.clear();
+        for (TestData testData:fullData){
+            recyclerViewData.add(testData);
+            if(testData.getDownArrow()){
+                testData.setDownArrow(false);
+            }else{
+                testData.setDownArrow(true);
+                if(testData.getTests().size()>0){
+                    recyclerViewData.addAll(testData.getTests());
+                }
+            }
+
+        }
+        liveTestAdapter.notifyDataSetChanged();
+    }
+
+
     private void initializeViews(View view) {
         tvErrorMessage=view.findViewById(R.id.tvErrorMessage);
         rViewCommon = (RecyclerView)view.findViewById(R.id.rViewCommon);
         rViewCommon.setLayoutManager(new LinearLayoutManager(getContext()));
     }
-
+    @Override
+    public void onRootViewClicked(int position, List<TestData> responseActualData) {
+        if(responseActualData != null && responseActualData.size()>0){
+            getRecyclerViewData(responseActualData);
+        }
+    }
 }
 
 

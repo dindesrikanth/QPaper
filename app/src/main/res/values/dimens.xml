@@ -2,6 +2,8 @@
 <resources>
     <dimen name="activity_vertical_margin" />
     <dimen name="activity_horizontal_margin" />
+    <dimen name="minimum_edittext_height">40dp</dimen>
+    <dimen name="minimum_spinner_width">50dp</dimen>
 
     <dimen name="padding_0dp">0dp</dimen>
     <dimen name="padding_5dp">5dp</dimen>

@@ -19,7 +19,8 @@
             android:layout_width="@dimen/padding_0dp"
             android:layout_weight="1"
             android:layout_height="match_parent"
-            tools:text="UPSC" />
+            tools:text="UPSC"
+            android:paddingStart="@dimen/padding_10dp"/>
 
         <ImageView android:id="@+id/imgArrow"
             android:layout_width="@dimen/padding_40dp"

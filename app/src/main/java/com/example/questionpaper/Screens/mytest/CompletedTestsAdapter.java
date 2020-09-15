@@ -93,9 +93,9 @@ public class CompletedTestsAdapter extends RecyclerView.Adapter<RecyclerView.Vie
         }
     }
 
-    public interface RootViewClickInterface{
+  /*  public interface RootViewClickInterface{
         void onRootViewClicked(int position, List<TestData> responseActualData);
-    }
+    }*/
 
     private class AdapterViewHolder extends RecyclerView.ViewHolder {
         TextView tvTestName,tvDate,tvTime,tvDetailedAnalysis;
