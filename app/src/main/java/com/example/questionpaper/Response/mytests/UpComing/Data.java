@@ -12,6 +12,14 @@ public class Data {
     @SerializedName("tests")
     @Expose
     private List<Tests> tests;
+    private boolean showDownArrow=false;
+
+    public boolean getDownArrow() {
+        return showDownArrow;
+    }
+    public void setDownArrow(boolean showDownArrow) {
+        this.showDownArrow = showDownArrow;
+    }
 
     public String getCourseName() {
         return courseName;
