@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -152,6 +153,13 @@ public class ContainerActivity extends AppCompatActivity {
         mDrawer.closeDrawers();
     }
 
+    @Override
+    public void onBackPressed() {
+        if(fManager.getBackStackEntryCount()>1){
+            super.onBackPressed();
+        }else{
+            Toast.makeText(getApplicationContext(),"no fragment in stack",Toast.LENGTH_LONG).show();
+        }
 
-
+    }
 }

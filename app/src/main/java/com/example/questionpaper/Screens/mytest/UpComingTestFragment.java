@@ -41,9 +41,15 @@ public class UpComingTestFragment extends Fragment implements UpComingTestAdapte
         recyclerViewData = new ArrayList<>();
         inItView(v);
         pDialog=Utility.getProgressDialog(getActivity());
-        getUpComingTestData();
+
 
         return v;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        getUpComingTestData();
     }
 
     private void getUpComingTestData(){

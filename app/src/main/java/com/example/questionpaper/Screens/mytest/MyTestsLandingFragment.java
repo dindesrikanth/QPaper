@@ -1,7 +1,6 @@
 package com.example.questionpaper.Screens.mytest;
 
 import android.app.Dialog;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -69,17 +68,11 @@ public class MyTestsLandingFragment extends Fragment implements View.OnClickList
 
         viewPager.setOffscreenPageLimit(tabsList.size());
         if(adapter == null){
-            adapter=new MyTestsLandingAdapter(getActivity().getSupportFragmentManager(),tabsList);
+            adapter=new MyTestsLandingAdapter(getChildFragmentManager(),tabsList);
         }
         viewPager.setAdapter(adapter);
         tabLayout.setupWithViewPager(viewPager);
         viewPager.setCurrentItem(0);
-    }
-
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        Toast.makeText(getContext(),"onActivity...",Toast.LENGTH_LONG).show();
     }
 
     @Override

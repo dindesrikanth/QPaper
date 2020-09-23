@@ -71,6 +71,7 @@ public class SelectNoOfMonthsFragment extends Fragment implements SelectNoOfMont
         listDataToRecyclerView= new ArrayList<>();
         listDataToRecyclerView.clear();
         listDataToRecyclerView.addAll(getDataToRecyclerView());
+
         adapter= new SelectNoOfMonthsAdapter(this,listDataToRecyclerView);
         rViewCommon.setAdapter(adapter);
     }
@@ -95,7 +96,7 @@ public class SelectNoOfMonthsFragment extends Fragment implements SelectNoOfMont
         listData.clear();
         NoOfMonthsModel monthsModel1=new NoOfMonthsModel();
         monthsModel1.setTitle("1");
-        monthsModel1.setSelected(false);
+        monthsModel1.setSelected(true);
         listData.add(monthsModel1);
 
         NoOfMonthsModel monthsModel2=new NoOfMonthsModel();

@@ -9,6 +9,7 @@ import android.widget.RadioButton;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.questionpaper.Common.Utility;
 import com.example.questionpaper.R;
 
 import java.util.List;
@@ -36,6 +37,12 @@ public class SelectNoOfMonthsAdapter extends RecyclerView.Adapter<RecyclerView.V
         HeaderViewHolder holder1=(HeaderViewHolder)holder;
         holder1.rdButton.setText(listData.get(position).getTitle());
         holder1.rdButton.setChecked(listData.get(position).getIsSelected());
+        if(listData.get(position).getIsSelected()){
+            Utility.my_test_months_data= Integer.parseInt(listData.get(position).getTitle());
+        }
+
+
+
     }
 
     @Override
