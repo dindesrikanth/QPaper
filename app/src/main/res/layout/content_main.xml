@@ -5,6 +5,7 @@
     android:layout_height="match_parent"
     android:gravity="center">
 
+    <include layout="@layout/activity_header_action_bar"/>
 
     <FrameLayout
         android:layout_width="match_parent"

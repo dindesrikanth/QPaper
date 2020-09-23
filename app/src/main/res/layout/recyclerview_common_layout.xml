@@ -14,7 +14,10 @@
         android:background="@color/bg_grey"/>
 
     <TextView android:id="@+id/tvErrorMessage"
-        style="@style/subHeaderTitle15dpNormal"
+        style="@style/subHeaderTitle15dpBold"
         android:text="@string/no_record_message"
-        android:visibility="gone"/>
+        android:visibility="gone"
+        android:background="@color/bg_grey"
+        android:layout_marginTop="@dimen/padding_30dp"
+        android:paddingStart="@dimen/padding_15dp"/>
 </LinearLayout>

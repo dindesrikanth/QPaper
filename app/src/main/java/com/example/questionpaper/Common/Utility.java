@@ -12,6 +12,8 @@ import androidx.fragment.app.Fragment;
 
 public class Utility {
     public static Utility instance = null;
+    public static int my_test_months_data=1;
+    public static String[] listOfMonths={"1","3","6","12"};
 
     private Utility(){
 

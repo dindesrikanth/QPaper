@@ -6,6 +6,8 @@
     android:paddingStart="@dimen/padding_0dp"
     android:paddingEnd="@dimen/padding_0dp">
 
+    <include layout="@layout/action_bar_header_fragment_level" />
+
     <include layout="@layout/tab_layout_common" />
 
     <androidx.viewpager.widget.ViewPager

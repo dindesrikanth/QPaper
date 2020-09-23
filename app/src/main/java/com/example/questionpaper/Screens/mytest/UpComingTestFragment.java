@@ -14,7 +14,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.questionpaper.Common.Utility;
 import com.example.questionpaper.Network.RetrofitClient;
 import com.example.questionpaper.R;
-import com.example.questionpaper.Response.mytests.LiveTest.TestData;
 import com.example.questionpaper.Response.mytests.UpComing.Data;
 import com.example.questionpaper.Response.mytests.UpComing.UpcomingTestsResponse;
 
@@ -72,15 +71,12 @@ public class UpComingTestFragment extends Fragment implements UpComingTestAdapte
                     }
                 }catch (Exception ex){
                     ex.printStackTrace();
-                   // showMessageAndCloseScreen();
                 }
                 pDialog.dismiss();
             }
 
             @Override
             public void onFailure(Call<UpcomingTestsResponse> call, Throwable t) {
-                //showMessageAndCloseScreen();
-                //Toast.makeText(getContext(),"failure",Toast.LENGTH_LONG).show();
                 tvErrorMessage.setVisibility(View.VISIBLE);
                 rViewCommon.setVisibility(View.GONE);
                 pDialog.dismiss();
@@ -90,8 +86,6 @@ public class UpComingTestFragment extends Fragment implements UpComingTestAdapte
     }
 
     private void showData(UpcomingTestsResponse response) {
-       // Toast.makeText(getContext(),response+"",Toast.LENGTH_LONG).show();
-
         if(response !=null && response.getData()!=null && response.getData().size()>0){
             tvErrorMessage.setVisibility(View.GONE);
             rViewCommon.setVisibility(View.VISIBLE);
@@ -127,7 +121,6 @@ public class UpComingTestFragment extends Fragment implements UpComingTestAdapte
         }
         adapter.notifyDataSetChanged();
     }
-
 
     @Override
     public void onRootViewClicked(int position, List<Data> responseActualData) {

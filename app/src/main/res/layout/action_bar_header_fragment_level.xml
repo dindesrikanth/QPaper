@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="65dp"
+    android:gravity="center_vertical"
+    android:background="@color/test_button_blue"
+    android:id="@+id/lnrBackArrowActionBar">
+
+    <ImageView
+        android:id="@+id/imgBackArrow"
+        android:layout_marginStart="@dimen/padding_15dp"
+        android:layout_width="@dimen/min_arrow_icon_width"
+        android:layout_height="@dimen/min_arrow_icon_height"
+        android:src="@drawable/ic_arrow_back"
+        />
+    <TextView
+        android:id="@+id/tvHeaderTitle"
+        android:layout_marginStart="@dimen/padding_15dp"
+        style="@style/headerTitle20dpBold"
+        android:layout_width="@dimen/padding_0dp"
+        android:layout_weight="0.7"
+        tools:text="Recent Tests"
+        android:background="@color/test_button_blue"
+        android:textColor="@color/white"/>
+
+    <ImageView
+        android:id="@+id/imgNotes"
+        android:layout_marginEnd="@dimen/padding_15dp"
+        android:layout_width="@dimen/notes_icon_width"
+        android:layout_height="@dimen/notes_icon_height"
+        android:src="@drawable/ic_notes"
+        />
+
+</LinearLayout>
