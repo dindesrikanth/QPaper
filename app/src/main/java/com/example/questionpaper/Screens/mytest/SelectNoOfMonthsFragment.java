@@ -45,7 +45,7 @@ public class SelectNoOfMonthsFragment extends Fragment implements SelectNoOfMont
         tvNext.setOnClickListener(this);
 
         imgNotes.setVisibility(View.GONE);
-        tvHeaderTitle.setText("My Tests Statement");
+        tvHeaderTitle.setText("My Tests Period");
 
 
         RecyclerView.LayoutManager layoutManager=new LinearLayoutManager(getActivity(),RecyclerView.VERTICAL,false);
