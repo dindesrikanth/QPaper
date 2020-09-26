@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_grey">
+
+    <include layout="@layout/action_bar_header_fragment_level" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_marginTop="@dimen/padding_15dp"
+        android:paddingStart="@dimen/padding_15dp"
+        android:paddingEnd="@dimen/padding_15dp">
+
+        <include layout="@layout/recyclerview_common_layout"/>
+
+    </LinearLayout>
+
+</LinearLayout>

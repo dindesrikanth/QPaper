@@ -1,4 +1,4 @@
-package com.example.questionpaper.Screens.mytest;
+package com.example.questionpaper.Screens.mytest.Live;
 
 import android.app.ProgressDialog;
 import android.os.Bundle;
@@ -17,6 +17,7 @@ import com.example.questionpaper.R;
 import com.example.questionpaper.Response.mytests.LiveTest.LiveTestResponse;
 import com.example.questionpaper.Response.mytests.LiveTest.TestData;
 import com.example.questionpaper.Response.mytests.Requests.MyTests.UserTestRequest;
+import com.example.questionpaper.Screens.mytest.RootViewClickInterface;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
@@ -26,7 +27,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class LiveTestFragment extends Fragment implements RootViewClickInterface{
+public class LiveTestFragment extends Fragment implements RootViewClickInterface {
 
     RecyclerView rViewCommon;
     RecyclerView.Adapter liveTestAdapter;

@@ -1,5 +1,6 @@
-package com.example.questionpaper.Screens.mytest;
+package com.example.questionpaper.Screens.mytest.Live;
 
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,67 +14,87 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.questionpaper.R;
 import com.example.questionpaper.Response.mytests.LiveTest.TestData;
 import com.example.questionpaper.Response.mytests.LiveTest.Tests;
+import com.example.questionpaper.Screens.mytest.RootViewClickInterface;
 
 import java.util.List;
 
-public class CompletedTestsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class LiveTestAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+
     RootViewClickInterface rootViewClickInterface;
     List<Object> listData;
     List<TestData> responseActualData;
-    public CompletedTestsAdapter(RootViewClickInterface rootViewClickInterface, List<Object> listData,
-                                 List<TestData> responseActualData){
+
+    public LiveTestAdapter(RootViewClickInterface rootViewClickInterface, List<Object> listData,
+                           List<TestData> responseActualData) {
         this.rootViewClickInterface = rootViewClickInterface;
         this.listData = listData;
         this.responseActualData = responseActualData;
     }
+
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-       switch (viewType){
-           case 0:
-               View v1= LayoutInflater.from(parent.getContext()).inflate(R.layout.common_expandable_header_layout,parent,false);
-               return new HeaderViewHolder(v1);
-           case 1:
-               View v2 = LayoutInflater.from(parent.getContext()).inflate(R.layout.mytests_completed_test_adapter,parent,false);
-               return new AdapterViewHolder(v2);
-
-           case -1:
-               return null;
-       }
+        switch (viewType){
+            case 0:
+                View v1= LayoutInflater.from(parent.getContext()).inflate(R.layout.common_expandable_header_layout,parent,false);
+                return new HeaderViewHolder(v1);
+            case 1:
+                View listItem= LayoutInflater.from(parent.getContext()).inflate(R.layout.live_tests_adapter, parent, false);
+                ViewHolder viewHolder = new ViewHolder(listItem);
+                return viewHolder;
+            case -1:
+                return null;
+        }
         return null;
     }
 
+
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-        switch (getItemViewType(position)){
+        switch (getItemViewType(position)) {
             case 0:
-                HeaderViewHolder headerViewHolder=(HeaderViewHolder)holder;
-                TestData testData=(TestData)listData.get(position);
+                HeaderViewHolder headerViewHolder = (HeaderViewHolder) holder;
+                TestData testData = (TestData) listData.get(position);
                 headerViewHolder.tvHeaderTitle.setText(testData.getCourseName());
-                if(!testData.getDownArrow()){
+                if (!testData.getDownArrow()) {
                     headerViewHolder.imgArrow.setImageResource(R.drawable.ic_arrow_drop_down);
-                }else{
+                } else {
                     headerViewHolder.imgArrow.setImageResource(R.drawable.ic_arrow_drop_up);
                 }
                 break;
             case 1:
-                AdapterViewHolder vh=(AdapterViewHolder)holder;
+                ViewHolder vh=(ViewHolder)holder;
                 Tests tests=(Tests)listData.get(position);
-                vh.tvTestName.setText(tests.getName());
-                vh.tvDate.setText(tests.getDate());
-                vh.tvTime.setText(tests.getTestTime());
+
+                if (!TextUtils.isEmpty(tests.getName())) {
+                    vh.tvTestName.setText(tests.getName());
+                } else {
+                    vh.tvTestName.setText("-");
+                }
+
+                if (!TextUtils.isEmpty(tests.getCourseName())) {
+                    vh.tvCourseName.setText(tests.getCourseName());
+                } else {
+                    vh.tvCourseName.setText("-");
+                }
+
+                vh.tvTakeTest.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                      //  Toast.makeText(vh.tvTakeTest.getContext(), "Test is Ready To Start", Toast.LENGTH_SHORT).show();
+                    }
+                });
+
                 break;
             case -1:
                 break;
         }
-
     }
 
     @Override
     public int getItemCount() {
         return listData.size();
     }
-
     private class HeaderViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         private LinearLayout lnrRootLayout;
         TextView tvHeaderTitle;
@@ -93,20 +114,17 @@ public class CompletedTestsAdapter extends RecyclerView.Adapter<RecyclerView.Vie
         }
     }
 
-  /*  public interface RootViewClickInterface{
-        void onRootViewClicked(int position, List<TestData> responseActualData);
-    }*/
-
-    private class AdapterViewHolder extends RecyclerView.ViewHolder {
-        TextView tvTestName,tvDate,tvTime,tvDetailedAnalysis;
-        public AdapterViewHolder(View v) {
-            super(v);
-            tvTestName=v.findViewById(R.id.tvTestName);
-            tvDate=v.findViewById(R.id.tvDate);
-            tvTime=v.findViewById(R.id.tvTime);
-            tvDetailedAnalysis=v.findViewById(R.id.tvDetailedAnalysis);
+    public static class ViewHolder extends RecyclerView.ViewHolder {
+        private TextView tvTestName,tvCourseName;
+        private TextView tvTakeTest;
+        public ViewHolder(@NonNull View itemView) {
+            super(itemView);
+            tvTestName =(TextView)itemView.findViewById(R.id.tvTestName);
+            tvCourseName  = (TextView)itemView.findViewById(R.id.tvCourseName);
+            tvTakeTest = (TextView)itemView.findViewById(R.id.tvTakeTest);
         }
     }
+
 
     @Override
     public int getItemViewType(int position) {
@@ -118,5 +136,3 @@ public class CompletedTestsAdapter extends RecyclerView.Adapter<RecyclerView.Vie
         return -1;
     }
 }
-
-

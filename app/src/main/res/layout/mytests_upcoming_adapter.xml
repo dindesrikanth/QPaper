@@ -16,7 +16,7 @@
             android:orientation="horizontal">
 
             <TextView android:id="@+id/tvTestName"
-                style="@style/subHeaderTitle15dpNormal"
+                style="@style/subHeaderTitle15dpBold"
                 android:layout_width="0dp"
                 android:layout_weight="0.5"
                 tools:text="Test name"

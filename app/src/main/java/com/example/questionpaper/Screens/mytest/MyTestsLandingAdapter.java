@@ -1,14 +1,14 @@
 package com.example.questionpaper.Screens.mytest;
 
-import android.content.Context;
-import android.os.Bundle;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
-import androidx.fragment.app.FragmentStatePagerAdapter;
+
+import com.example.questionpaper.Screens.mytest.Completed.CompletedTestsFragment;
+import com.example.questionpaper.Screens.mytest.Live.LiveTestFragment;
+import com.example.questionpaper.Screens.mytest.UpComing.UpComingTestFragment;
 
 import java.util.ArrayList;
 import java.util.List;

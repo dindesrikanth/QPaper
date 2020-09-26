@@ -1,6 +1,5 @@
-package com.example.questionpaper.Screens.mytest;
+package com.example.questionpaper.Screens.mytest.DetailedAnalysis;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,11 +9,11 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.questionpaper.R;
-import com.example.questionpaper.Response.mytests.DetailedAnalysis;
+import com.example.questionpaper.Response.mytests.DetailedAnalysis.DetailedAnalysis;
 
 import java.util.List;
 
-public class DetailedAnalysisAdapter  extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class DetailedAnalysisAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private List<DetailedAnalysis> detailedAnalysesList;
     public DetailedAnalysisAdapter(List<DetailedAnalysis> detailedAnalysesList){
         this.detailedAnalysesList = detailedAnalysesList;

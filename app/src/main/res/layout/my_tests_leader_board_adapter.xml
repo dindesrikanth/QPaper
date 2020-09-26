@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:cardElevation="5dp"
+    app:cardCornerRadius="5dp"
+    style="@style/adapterRootProperty">
+
+    <LinearLayout
+        android:orientation="vertical"
+        style="@style/adapterRootProperty">
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent">
+
+                <TextView
+                    android:id="@+id/tvUserName"
+                    style="@style/subHeaderTitle15dpNormal"
+                    android:layout_width="0dp"
+                    android:layout_weight="0.5"
+                    tools:text="Test Name"
+                    android:paddingStart="@dimen/padding_10dp">
+                </TextView>
+                <TextView
+                    android:paddingStart="@dimen/padding_10dp"
+                    android:paddingEnd="@dimen/padding_10dp"
+                    android:id="@+id/tvRank"
+                    style="@style/subHeaderTitle15dpNormal"
+                    android:layout_weight="0.5"
+                    android:layout_width="0dp"
+                    tools:text="Rank"
+                    android:gravity="start"/>
+            </LinearLayout>
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_marginTop="@dimen/padding_15dp">
+                <TextView
+                    android:paddingStart="@dimen/padding_10dp"
+                    android:id="@+id/tvMarks"
+                    style="@style/subHeaderTitle15dpNormal"
+                    android:layout_width="0dp"
+                    android:layout_weight="0.5"
+                    tools:text="Marks">
+                </TextView>
+                <TextView
+                    android:paddingStart="@dimen/padding_10dp"
+                    android:paddingEnd="@dimen/padding_10dp"
+                    android:id="@+id/tvAmountWon"
+                    style="@style/subHeaderTitle15dpNormal"
+                    android:layout_weight="0.5"
+                    android:layout_width="0dp"
+                    tools:text="Amount Won"
+                    android:gravity="start"/>
+            </LinearLayout>
+
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>
+

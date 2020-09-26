@@ -14,13 +14,14 @@ import com.example.questionpaper.Model.TestDetailRequestmodel;
 import com.example.questionpaper.Model.UserCourses;
 import com.example.questionpaper.Model.signinmodel;
 import com.example.questionpaper.Model.user_response;
-import com.example.questionpaper.Response.mytests.DetailedAnalysisResponse;
+import com.example.questionpaper.Response.mytests.Completed.CompletedTestsResponse;
+import com.example.questionpaper.Response.mytests.DetailedAnalysis.DetailedAnalysisResponse;
+import com.example.questionpaper.Response.mytests.LeaderBoard.LeaderBoardResponse;
 import com.example.questionpaper.Response.mytests.LiveTest.LiveTestResponse;
 import com.example.questionpaper.Response.mytests.Requests.MyTests.CompletedTestsRequest;
 import com.example.questionpaper.Response.mytests.Requests.MyTests.DetailedAnalysisRequest;
 import com.example.questionpaper.Response.mytests.Requests.MyTests.UserTestRequest;
 import com.example.questionpaper.Response.mytests.UpComing.UpcomingTestsResponse;
-import com.example.questionpaper.Response.mytests.completed.CompletedTestsResponse;
 
 import java.util.List;
 
@@ -112,6 +113,14 @@ public interface Api {
     Call<DetailedAnalysisResponse> detailedAnalysisAPI(
             @Body DetailedAnalysisRequest detailedAnalysisRequest);
 
+
+    @Headers({
+            "Accept: application/json",
+            "Content-Type: application/json"
+    })
+    @POST("leader-board-ranks")
+    Call<LeaderBoardResponse> leaderBoardAPI(
+            @Body DetailedAnalysisRequest detailedAnalysisRequest);
 
 
 

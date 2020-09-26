@@ -1,4 +1,4 @@
-package com.example.questionpaper.Response.mytests.completed;
+package com.example.questionpaper.Response.mytests.Completed;
 
 import com.example.questionpaper.Response.mytests.LiveTest.TestData;
 import com.google.gson.annotations.Expose;

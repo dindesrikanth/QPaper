@@ -17,10 +17,11 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.example.questionpaper.R;
-import com.example.questionpaper.Screens.mytest.DetailedAnalysisFragment;
+import com.example.questionpaper.Screens.mytest.DetailedAnalysis.DetailedAnalysisFragment;
+import com.example.questionpaper.Screens.mytest.LeaderBoard.LeaderBoardFragment;
 import com.example.questionpaper.Screens.mytest.MyTestsLandingFragment;
 import com.example.questionpaper.Screens.mytest.SelectNoOfMonthsFragment;
-import com.example.questionpaper.Screens.mytest.UpComingTestFragment;
+import com.example.questionpaper.Screens.mytest.UpComing.UpComingTestFragment;
 import com.google.android.material.navigation.NavigationView;
 
 public class ContainerActivity extends AppCompatActivity {
@@ -44,7 +45,7 @@ public class ContainerActivity extends AppCompatActivity {
         setNavigationDrawerLayout();
 
         fManager= getSupportFragmentManager();
-        displayFragment(2);
+        displayFragment(0);
     }
     public void displayFragment(int position){
         switch (position){
@@ -68,6 +69,10 @@ public class ContainerActivity extends AppCompatActivity {
                 tr.commit();
                 break;
             case 3:
+                tr=fManager.beginTransaction();
+                tr.replace(R.id.containerLayout,new LeaderBoardFragment());
+                tr.addToBackStack(null);
+                tr.commit();
                 break;
             case 4:
                 break;

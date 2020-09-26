@@ -30,7 +30,7 @@ public class SelectNoOfMonthsFragment extends Fragment implements SelectNoOfMont
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View v=inflater.inflate(R.layout.select_no_of_months, container, false);
+        View v=inflater.inflate(R.layout.select_no_of_months_fragment, container, false);
         inItView(v);
         return v;
     }

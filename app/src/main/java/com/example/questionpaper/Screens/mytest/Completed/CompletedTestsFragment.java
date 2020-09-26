@@ -1,4 +1,4 @@
-package com.example.questionpaper.Screens.mytest;
+package com.example.questionpaper.Screens.mytest.Completed;
 
 import android.app.ProgressDialog;
 import android.os.Bundle;
@@ -11,12 +11,14 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.questionpaper.Activity.ContainerActivity;
 import com.example.questionpaper.Common.Utility;
 import com.example.questionpaper.Network.RetrofitClient;
 import com.example.questionpaper.R;
+import com.example.questionpaper.Response.mytests.Completed.CompletedTestsResponse;
 import com.example.questionpaper.Response.mytests.LiveTest.TestData;
 import com.example.questionpaper.Response.mytests.Requests.MyTests.CompletedTestsRequest;
-import com.example.questionpaper.Response.mytests.completed.CompletedTestsResponse;
+import com.example.questionpaper.Screens.mytest.RootViewClickInterface;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,9 +27,9 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class CompletedTestsFragment  extends Fragment implements RootViewClickInterface{
+public class CompletedTestsFragment  extends Fragment implements RootViewClickInterface,CompletedTestsAdapter.AdapterInterface {
     private static final String TAG = CompletedTestsFragment.class.getName();
-   // private Spinner spnMonths;
+    private ContainerActivity activity;
     private RecyclerView rViewCommon;
     private TextView tvErrorMessage;
     private ProgressDialog pDialog;
@@ -39,6 +41,7 @@ public class CompletedTestsFragment  extends Fragment implements RootViewClickIn
         // Inflate the layout for this fragment
         View v=inflater.inflate(R.layout.mytests_completed_fragment, container, false);
         recyclerViewData = new ArrayList<>();
+        this.activity=(ContainerActivity)getActivity();
         inItView(v);
         pDialog= Utility.getProgressDialog(getActivity());
         return v;
@@ -49,34 +52,11 @@ public class CompletedTestsFragment  extends Fragment implements RootViewClickIn
         //spnMonths = v.findViewById(R.id.spnMonths);
         RecyclerView.LayoutManager layoutManager=new LinearLayoutManager(getActivity(),RecyclerView.VERTICAL,false);
         rViewCommon.setLayoutManager(layoutManager);
-       // setDataToMonthsSpinner();
     }
-
-   /* private void setDataToMonthsSpinner() {
-
-        CustomAdapter customAdapter=new CustomAdapter(getContext(),Utility.listOfMonths);
-        spnMonths.setAdapter(customAdapter);
-
-        spnMonths.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
-                getCompletedTestData(Utility.listOfMonths[position]+"");
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-                // nothing
-            }
-        });
-
-
-
-    }*/
 
     @Override
     public void onResume() {
         super.onResume();
-       // Toast.makeText(getContext(),"onresume-completed",Toast.LENGTH_LONG).show();
         if(!getUserVisibleHint()){
             return;
         }
@@ -132,12 +112,11 @@ public class CompletedTestsFragment  extends Fragment implements RootViewClickIn
     }
     private void showData(CompletedTestsResponse response) {
         if(response !=null && response.getData()!=null && response.getData().size()>0){
-            //getRecyclerViewData(response.getData());
             recyclerViewData.clear();
             recyclerViewData.addAll(response.getData());
             tvErrorMessage.setVisibility(View.GONE);
             rViewCommon.setVisibility(View.VISIBLE);
-            adapter= new CompletedTestsAdapter(this,recyclerViewData,response.getData());
+            adapter= new CompletedTestsAdapter(this,recyclerViewData,response.getData(),this);
             rViewCommon.setAdapter(adapter);
         }else{
             tvErrorMessage.setVisibility(View.VISIBLE);
@@ -167,5 +146,10 @@ public class CompletedTestsFragment  extends Fragment implements RootViewClickIn
         if(responseActualData != null && responseActualData.size()>0){
             getRecyclerViewData(responseActualData);
         }
+    }
+
+    @Override
+    public void detailedAnalysisButtonClicked(int position) {
+        activity.displayFragment(2);
     }
 }
