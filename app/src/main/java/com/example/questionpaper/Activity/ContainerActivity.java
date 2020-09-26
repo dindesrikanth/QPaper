@@ -17,6 +17,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.example.questionpaper.R;
+import com.example.questionpaper.Screens.mytest.DetailedAnalysisFragment;
 import com.example.questionpaper.Screens.mytest.MyTestsLandingFragment;
 import com.example.questionpaper.Screens.mytest.SelectNoOfMonthsFragment;
 import com.example.questionpaper.Screens.mytest.UpComingTestFragment;
@@ -43,7 +44,7 @@ public class ContainerActivity extends AppCompatActivity {
         setNavigationDrawerLayout();
 
         fManager= getSupportFragmentManager();
-        displayFragment(0);
+        displayFragment(2);
     }
     public void displayFragment(int position){
         switch (position){
@@ -61,6 +62,10 @@ public class ContainerActivity extends AppCompatActivity {
                 tr.commit();
                 break;
             case 2:
+                tr=fManager.beginTransaction();
+                tr.replace(R.id.containerLayout,new DetailedAnalysisFragment());
+                tr.addToBackStack(null);
+                tr.commit();
                 break;
             case 3:
                 break;

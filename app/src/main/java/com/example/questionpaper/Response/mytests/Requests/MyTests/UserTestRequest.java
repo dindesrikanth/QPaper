@@ -1,4 +1,4 @@
-package com.example.questionpaper.Screens.mytest;
+package com.example.questionpaper.Response.mytests.Requests.MyTests;
 
 public class UserTestRequest {
     String typeOfTests;

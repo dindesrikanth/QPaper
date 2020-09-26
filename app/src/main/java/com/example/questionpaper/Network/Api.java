@@ -14,11 +14,13 @@ import com.example.questionpaper.Model.TestDetailRequestmodel;
 import com.example.questionpaper.Model.UserCourses;
 import com.example.questionpaper.Model.signinmodel;
 import com.example.questionpaper.Model.user_response;
-import com.example.questionpaper.Response.mytests.Requests.CompletedTestsRequest;
-import com.example.questionpaper.Response.mytests.completed.CompletedTestsResponse;
+import com.example.questionpaper.Response.mytests.DetailedAnalysisResponse;
 import com.example.questionpaper.Response.mytests.LiveTest.LiveTestResponse;
+import com.example.questionpaper.Response.mytests.Requests.MyTests.CompletedTestsRequest;
+import com.example.questionpaper.Response.mytests.Requests.MyTests.DetailedAnalysisRequest;
+import com.example.questionpaper.Response.mytests.Requests.MyTests.UserTestRequest;
 import com.example.questionpaper.Response.mytests.UpComing.UpcomingTestsResponse;
-import com.example.questionpaper.Screens.mytest.UserTestRequest;
+import com.example.questionpaper.Response.mytests.completed.CompletedTestsResponse;
 
 import java.util.List;
 
@@ -100,6 +102,17 @@ public interface Api {
     @POST("tests-history")
     Call<CompletedTestsResponse> completedTestData(
             @Body CompletedTestsRequest userTestRequest);
+
+
+    @Headers({
+            "Accept: application/json",
+            "Content-Type: application/json"
+    })
+    @POST("user-test-history-result")
+    Call<DetailedAnalysisResponse> detailedAnalysisAPI(
+            @Body DetailedAnalysisRequest detailedAnalysisRequest);
+
+
 
 
 /*
