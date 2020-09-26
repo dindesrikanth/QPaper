@@ -39,6 +39,7 @@ public class UpComingTestFragment extends Fragment implements UpComingTestAdapte
         // Inflate the layout for this fragment
         View v= inflater.inflate(R.layout.mytests_upcoming_fragment, container, false);
         recyclerViewData = new ArrayList<>();
+        recyclerViewData.clear();
         inItView(v);
         pDialog=Utility.getProgressDialog(getActivity());
 
@@ -95,6 +96,7 @@ public class UpComingTestFragment extends Fragment implements UpComingTestAdapte
         if(response !=null && response.getData()!=null && response.getData().size()>0){
             tvErrorMessage.setVisibility(View.GONE);
             rViewCommon.setVisibility(View.VISIBLE);
+            recyclerViewData.clear();
             recyclerViewData.addAll(response.getData());
             adapter= new UpComingTestAdapter((UpComingTestAdapter.RootViewClickInterface) this,recyclerViewData,response.getData());
             rViewCommon.setAdapter(adapter);

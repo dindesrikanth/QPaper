@@ -3,15 +3,41 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center">
+    android:background="@color/white">
 
     <include layout="@layout/action_bar_header_fragment_level" />
 
-    <include layout="@layout/recyclerview_common_layout"
-        android:layout_height="@dimen/padding_0dp"
-        android:layout_weight="1"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_marginStart="@dimen/padding_20dp"
-        android:layout_marginEnd="@dimen/padding_20dp"/>
+        android:layout_height="370dp"
+        android:orientation="vertical"
+        android:background="@color/bg_grey"
+        android:layout_margin="@dimen/padding_20dp"
+        android:paddingStart="@dimen/padding_15dp"
+        android:paddingEnd="@dimen/padding_15dp">
+
+        <TextView android:paddingTop="@dimen/padding_20dp"
+            style="@style/subHeaderTitle15dpBold"
+            android:text="Choose time period for emailing transaction statement:"
+            android:background="@color/bg_grey"/>
+
+        <include layout="@layout/recyclerview_common_layout"
+            android:layout_height="220dp"
+            android:layout_width="match_parent"
+            android:padding="@dimen/padding_30dp"/>
+
+        <TextView android:layout_marginTop="@dimen/padding_20dp"
+            android:id="@+id/tvNext"
+            style="@style/customButtonStyle"
+            android:minWidth="@dimen/min_single_button_width"
+            android:background="@drawable/box_border_blue_bg"
+            android:text="Next"
+            android:gravity="center"
+            android:layout_gravity="center"/>
+
+    </LinearLayout>
 
 </LinearLayout>
+
+
+

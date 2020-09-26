@@ -56,9 +56,10 @@ public class MyTestsLandingFragment extends Fragment implements View.OnClickList
         imgBackArrow.setOnClickListener(this);
         imgNotes.setOnClickListener(this);
 
+
     }
     private void setData() {
-        tvHeaderTitle.setText("Recent Tests");
+        tvHeaderTitle.setText("My Tests");
 
         List<String> tabsList=new ArrayList<>();
         tabsList.clear();

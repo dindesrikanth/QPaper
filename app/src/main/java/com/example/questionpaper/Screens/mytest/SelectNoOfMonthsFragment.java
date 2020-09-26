@@ -20,11 +20,11 @@ import com.example.questionpaper.R;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SelectNoOfMonthsFragment extends Fragment implements SelectNoOfMonthsAdapter.OnAdapterItemClicked {
+public class SelectNoOfMonthsFragment extends Fragment implements SelectNoOfMonthsAdapter.OnAdapterItemClicked,View.OnClickListener {
 
     private RecyclerView rViewCommon;
     private ImageView imgNotes,imgBackArrow;
-    private TextView tvHeaderTitle;
+    private TextView tvHeaderTitle,tvNext;
     List<NoOfMonthsModel> listDataToRecyclerView;
     SelectNoOfMonthsAdapter adapter;
     @Nullable
@@ -39,22 +39,18 @@ public class SelectNoOfMonthsFragment extends Fragment implements SelectNoOfMont
         imgNotes=v.findViewById(R.id.imgNotes);
         imgBackArrow = v.findViewById(R.id.imgBackArrow);
         tvHeaderTitle=v.findViewById(R.id.tvHeaderTitle);
+        tvNext= v.findViewById(R.id.tvNext);
+
+        imgBackArrow.setOnClickListener(this);
+        tvNext.setOnClickListener(this);
 
         imgNotes.setVisibility(View.GONE);
-        tvHeaderTitle.setText("select no of months");
+        tvHeaderTitle.setText("My Tests Statement");
 
 
         RecyclerView.LayoutManager layoutManager=new LinearLayoutManager(getActivity(),RecyclerView.VERTICAL,false);
         rViewCommon.setLayoutManager(layoutManager);
         setData();
-
-        imgBackArrow.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                getActivity().getSupportFragmentManager().popBackStackImmediate();
-            }
-        });
-
     }
     @Override
     public void onResume() {
@@ -117,4 +113,17 @@ public class SelectNoOfMonthsFragment extends Fragment implements SelectNoOfMont
         return listData;
     }
 
+    @Override
+    public void onClick(View view) {
+        int id = view.getId();
+        switch (id)
+        {
+            case R.id.tvNext:
+                     getActivity().getSupportFragmentManager().popBackStackImmediate();
+                break;
+            case R.id.imgBackArrow:
+                     getActivity().getSupportFragmentManager().popBackStackImmediate();
+                break;
+        }
+    }
 }
