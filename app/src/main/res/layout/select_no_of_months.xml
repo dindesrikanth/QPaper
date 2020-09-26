@@ -18,15 +18,15 @@
 
         <TextView android:paddingTop="@dimen/padding_20dp"
             style="@style/subHeaderTitle15dpBold"
-            android:text="Choose time period for emailing transaction statement:"
+            android:text="Choose number of months"
             android:background="@color/bg_grey"/>
 
         <include layout="@layout/recyclerview_common_layout"
-            android:layout_height="220dp"
+            android:layout_height="270dp"
             android:layout_width="match_parent"
             android:padding="@dimen/padding_30dp"/>
 
-        <TextView android:layout_marginTop="@dimen/padding_20dp"
+        <TextView android:layout_marginTop="@dimen/padding_10dp"
             android:id="@+id/tvNext"
             style="@style/customButtonStyle"
             android:minWidth="@dimen/min_single_button_width"

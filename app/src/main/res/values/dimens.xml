@@ -30,5 +30,5 @@
 
     <dimen name="textSize_15dp">15dp</dimen>
     <dimen name="textSize_20dp">20dp</dimen>
-    <dimen name="min_single_button_width">200dp</dimen>
+    <dimen name="min_single_button_width">180dp</dimen>
 </resources>

@@ -106,9 +106,14 @@ public class SelectNoOfMonthsFragment extends Fragment implements SelectNoOfMont
         listData.add(monthsModel3);
 
         NoOfMonthsModel monthsModel4=new NoOfMonthsModel();
-        monthsModel4.setTitle("12");
+        monthsModel4.setTitle("9");
         monthsModel4.setSelected(false);
         listData.add(monthsModel4);
+
+        NoOfMonthsModel monthsModel5=new NoOfMonthsModel();
+        monthsModel5.setTitle("12");
+        monthsModel5.setSelected(false);
+        listData.add(monthsModel5);
 
         return listData;
     }
