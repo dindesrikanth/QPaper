@@ -28,11 +28,11 @@ public class LeaderBoardAdapter  extends RecyclerView.Adapter<RecyclerView.ViewH
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         AdapterViewHolder vh=(AdapterViewHolder)holder;
-        vh.tvUserName.setText("Name    : "+userTestRanksList.get(position).getUserName());
-        vh.tvRank.setText("Rank    : "+userTestRanksList.get(position).getRank());
-        vh.tvMarks.setText("Marks   : "+userTestRanksList.get(position).getMarks());
+        vh.tvUserName.setText(userTestRanksList.get(position).getUserName());
+        vh.tvRank.setText(userTestRanksList.get(position).getRank());
+        vh.tvMarks.setText(userTestRanksList.get(position).getMarks());
         //vh.tvAmountWon.setText(userTestRanksList.get(position).getAmountWon());
-        vh.tvAmountWon.setText("Amount Won : "+"100");
+        vh.tvAmountWon.setText("Won : "+"100");
     }
 
     @Override

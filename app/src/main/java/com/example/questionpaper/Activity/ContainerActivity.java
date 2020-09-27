@@ -131,16 +131,44 @@ public class ContainerActivity extends AppCompatActivity {
         Fragment fragment = null;
         Class fragmentClass = null;
         switch(menuItem.getItemId()) {
-            case R.id.nav_first_fragment:
+            case R.id.nav_performance:
                 //Toast.makeText(getApplicationContext(),"first clicked...",Toast.LENGTH_SHORT).show();
                 fragmentClass = MyTestsLandingFragment.class;
                 break;
-            /*case R.id.nav_second_fragment:
+            case R.id.nav_videos:
                 //fragmentClass = SecondFragment.class;
                 break;
-            case R.id.nav_third_fragment:
+            case R.id.nav_materials:
                 //fragmentClass = ThirdFragment.class;
-                break;*/
+                break;
+
+
+            case R.id.nav_balance:
+                //fragmentClass = SecondFragment.class;
+                break;
+            case R.id.nav_cources:
+                //fragmentClass = ThirdFragment.class;
+                break;
+            case R.id.nav_toppers:
+                //fragmentClass = SecondFragment.class;
+                break;
+            case R.id.nav_purchase_material:
+                //fragmentClass = ThirdFragment.class;
+                break;
+
+
+            case R.id.nav_invite:
+                //fragmentClass = SecondFragment.class;
+                break;
+            case R.id.nav_info_settings:
+                //fragmentClass = ThirdFragment.class;
+                break;
+            case R.id.nav_temrs_conditions:
+                //fragmentClass = ThirdFragment.class;
+                break;
+            case R.id.nav_miscellaneous:
+                //fragmentClass = ThirdFragment.class;
+                break;
             default:
                 fragmentClass = UpComingTestFragment.class;
         }

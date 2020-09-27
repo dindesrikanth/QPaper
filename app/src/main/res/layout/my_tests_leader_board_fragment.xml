@@ -13,8 +13,43 @@
         android:layout_weight="1"
         android:layout_marginTop="@dimen/padding_15dp"
         android:paddingStart="@dimen/padding_15dp"
-        android:paddingEnd="@dimen/padding_15dp">
+        android:paddingEnd="@dimen/padding_15dp"
+        android:orientation="vertical"
+        android:background="@color/bg_grey">
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:paddingTop="@dimen/padding_15dp"
+            android:paddingBottom="@dimen/padding_15dp">
 
+            <TextView
+                style="@style/subHeaderTitle15dpBold"
+                android:layout_width="0dp"
+                android:layout_weight="0.5"
+                android:text="Test Name"
+                android:paddingStart="@dimen/padding_10dp"
+                android:background="@color/bg_grey">
+            </TextView>
+            <TextView
+                android:paddingStart="@dimen/padding_10dp"
+                style="@style/subHeaderTitle15dpBold"
+                android:layout_width="0dp"
+                android:layout_weight="0.3"
+                android:text="Marks"
+                android:background="@color/bg_grey"/>
+
+            <TextView
+                android:paddingStart="@dimen/padding_10dp"
+                android:paddingEnd="@dimen/padding_10dp"
+                style="@style/subHeaderTitle15dpBold"
+                android:layout_weight="0.2"
+                android:layout_width="0dp"
+                android:text="Rank"
+                android:gravity="start"
+                android:background="@color/bg_grey"/>
+
+        </LinearLayout>
         <include layout="@layout/recyclerview_common_layout"/>
 
     </LinearLayout>

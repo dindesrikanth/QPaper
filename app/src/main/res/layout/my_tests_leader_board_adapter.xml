@@ -24,28 +24,31 @@
                     android:paddingStart="@dimen/padding_10dp">
                 </TextView>
                 <TextView
-                    android:paddingStart="@dimen/padding_10dp"
+                    android:paddingStart="@dimen/padding_15dp"
+                    android:id="@+id/tvMarks"
+                    style="@style/subHeaderTitle15dpNormal"
+                    android:layout_width="0dp"
+                    android:layout_weight="0.3"
+                    tools:text="Marks"
+                    />
+
+                <TextView
+                    android:paddingStart="@dimen/padding_15dp"
                     android:paddingEnd="@dimen/padding_10dp"
                     android:id="@+id/tvRank"
                     style="@style/subHeaderTitle15dpNormal"
-                    android:layout_weight="0.5"
+                    android:layout_weight="0.2"
                     android:layout_width="0dp"
                     tools:text="Rank"
                     android:gravity="start"/>
+
             </LinearLayout>
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_height="wrap_content"
                 android:layout_width="match_parent"
                 android:layout_marginTop="@dimen/padding_15dp">
-                <TextView
-                    android:paddingStart="@dimen/padding_10dp"
-                    android:id="@+id/tvMarks"
-                    style="@style/subHeaderTitle15dpNormal"
-                    android:layout_width="0dp"
-                    android:layout_weight="0.5"
-                    tools:text="Marks">
-                </TextView>
+
                 <TextView
                     android:paddingStart="@dimen/padding_10dp"
                     android:paddingEnd="@dimen/padding_10dp"
@@ -54,7 +57,8 @@
                     android:layout_weight="0.5"
                     android:layout_width="0dp"
                     tools:text="Amount Won"
-                    android:gravity="start"/>
+                    android:gravity="start"
+                    android:textColor="@color/test_button_blue"/>
             </LinearLayout>
 
 

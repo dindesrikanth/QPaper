@@ -2,14 +2,44 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_first_fragment"
-            android:title="Home" />
-      <!--  <item
-            android:id="@+id/nav_second_fragment"
-            android:title="Settings" />
+            android:id="@+id/nav_performance"
+            android:title="My Performance" />
         <item
-            android:id="@+id/nav_third_fragment"
-            android:icon="@drawable/icon_fi"
-            android:title="Organization Details" />-->
+            android:id="@+id/nav_videos"
+            android:title="My Videos" />
+        <item
+            android:id="@+id/nav_materials"
+            android:title="My e-materials" />
+
+        <item
+            android:id="@+id/nav_balance"
+            android:title="My Balance" />
+        <item
+            android:id="@+id/nav_cources"
+            android:title="Add Cources" />
+
+        <item
+            android:id="@+id/nav_toppers"
+            android:title="View Toppers" />
+        <item
+            android:id="@+id/nav_purchase_material"
+            android:title="Purchase Material" />
+
+        <item
+            android:id="@+id/nav_invite"
+            android:title="Invite Friends" />
+        <item
+            android:id="@+id/nav_info_settings"
+            android:title="My Info &amp; Settings" />
+
+        <item
+            android:id="@+id/nav_temrs_conditions"
+            android:title="Terms &amp; Conditions" />
+
+        <item
+            android:id="@+id/nav_miscellaneous"
+            android:title="Miscellaneous" />
+
+
     </group>
 </menu>
