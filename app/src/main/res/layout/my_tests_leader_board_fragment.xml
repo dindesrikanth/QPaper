@@ -37,7 +37,8 @@
                 android:layout_width="0dp"
                 android:layout_weight="0.3"
                 android:text="Marks"
-                android:background="@color/bg_grey"/>
+                android:background="@color/bg_grey"
+                android:gravity="center"/>
 
             <TextView
                 android:paddingStart="@dimen/padding_10dp"
@@ -46,7 +47,7 @@
                 android:layout_weight="0.2"
                 android:layout_width="0dp"
                 android:text="Rank"
-                android:gravity="start"
+                android:gravity="center"
                 android:background="@color/bg_grey"/>
 
         </LinearLayout>

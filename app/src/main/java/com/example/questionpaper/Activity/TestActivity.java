@@ -7,7 +7,6 @@ import android.content.Intent;
 import android.content.ServiceConnection;
 import android.os.Bundle;
 import android.os.CountDownTimer;
-import android.os.Environment;
 import android.os.Handler;
 import android.os.IBinder;
 import android.util.Log;
@@ -31,7 +30,6 @@ import com.example.questionpaper.Activity.TestSubmissionDialog.MyDialogListener;
 import com.example.questionpaper.Adapter.TestAdapter;
 import com.example.questionpaper.Fragments.StatusView;
 import com.example.questionpaper.Model.AnswerSubmitModel;
-import com.example.questionpaper.Model.Loginmodel;
 import com.example.questionpaper.Model.Questionesmodel;
 import com.example.questionpaper.Network.RetrofitClient;
 import com.example.questionpaper.R;
@@ -43,7 +41,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -282,16 +279,19 @@ public class TestActivity extends AppCompatActivity implements TestAdapter.OnIte
     }
 
     private String createAnswers(){
-        String answerString = "";
-        for(int i = 0; i < userList.size(); i++){
-            if(i != 0){
+        String answerString = "[";
+        for(int i = 0; i < userList.size(); i++)
+        {
+            if(i != 0)
+            {
                 answerString += ",";
             }
-            answerString += i + 1;
-            answerString += "," + convertAnswerIdToOptions(userList.get(i).getAnswerId());
+            answerString += " \" " + (i + 1) + ":" + convertAnswerIdToOptions(userList.get(i).getAnswerId()) + " \" ";
         }
+        answerString += "]";
         return answerString;
     }
+
 
     public  void submitAnswersToApi(){
         final AnswerSubmitModel answerSubmitModel = new AnswerSubmitModel("1", userList.get(0).getCourse_id() + "", userList.get(0).getSub_id()+ "", userList.get(0).getTest_id()+ "", createAnswers(), timeSpent + "");

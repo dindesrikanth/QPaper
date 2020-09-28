@@ -30,6 +30,7 @@
                     android:layout_width="0dp"
                     android:layout_weight="0.3"
                     tools:text="Marks"
+                    android:gravity="center"
                     />
 
                 <TextView
@@ -40,7 +41,7 @@
                     android:layout_weight="0.2"
                     android:layout_width="0dp"
                     tools:text="Rank"
-                    android:gravity="start"/>
+                    android:gravity="center"/>
 
             </LinearLayout>
             <LinearLayout
