@@ -1,5 +1,6 @@
 package com.example.questionpaper.Screens.InfoAndSettings;
 
+import android.graphics.Paint;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -47,6 +48,8 @@ public class UserInfoScreenFragment extends Fragment implements View.OnClickList
         toggleNotification=v.findViewById(R.id.toggleNotification);
         toggleSuspend=v.findViewById(R.id.toggleSuspend);
         tvLogout=v.findViewById(R.id.tvLogout);
+        tvLogout.setPaintFlags(tvLogout.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
+
         tvUpdateProfile = v.findViewById(R.id.tvUpdateProfile);
     }
     private void setData(){

@@ -12,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.example.questionpaper.Activity.ContainerActivity;
 import com.example.questionpaper.Common.CustomEditText;
 import com.example.questionpaper.R;
 
@@ -41,11 +42,27 @@ public class ChangePasswordFragment extends Fragment implements View.OnClickList
         edtNewPassword=v.findViewById(R.id.edtNewPassword);
         edtConfirmPassword=v.findViewById(R.id.edtConfirmPassword);
 
-        tvChangePassword= v.findViewById(R.id.tvNext);
+        tvChangePassword= v.findViewById(R.id.tvChangePassword);
         tvChangePassword.setOnClickListener(this);
+        setData();
+    }
+    private void setData(){
+
+        edtOldPassword.setValueToLayout("Old Password", "");
+        edtNewPassword.setValueToLayout("New Password", "");
+        edtConfirmPassword.setValueToLayout("Confirm Password", "");
+    }
+    @Override
+    public void onResume() {
+        super.onResume();
+        ContainerActivity.relativeCustomActionBar.setVisibility(View.GONE);
     }
 
-
+    @Override
+    public void onStop() {
+        super.onStop();
+        ContainerActivity.relativeCustomActionBar.setVisibility(View.VISIBLE);
+    }
     private boolean validatePassword(){
         boolean isValid = true;
         if(TextUtils.isEmpty(edtOldPassword.getEditTextValue())) {
