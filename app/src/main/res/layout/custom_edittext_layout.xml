@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_grey">
+
+    <TextView
+        android:id="@+id/editTextLabel"
+        style="@style/subHeaderTitle15dpNormal"
+        tools:text="Enter Customer Id"
+        android:background="@color/bg_grey"
+        />
+    <EditText
+        android:id="@+id/customEditText"
+        style="@style/subHeaderTitle15dpNormal"
+        android:background="@drawable/edittext_border"
+        android:layout_width="match_parent"
+        android:paddingStart="@dimen/padding_10dp"
+        android:paddingEnd="@dimen/padding_10dp"
+        android:minHeight="@dimen/minimum_edittext_height"
+        android:singleLine="true"
+        tools:hint="Enter Id"
+        android:layout_marginTop="@dimen/padding_10dp"
+        />
+
+    <TextView
+        android:id="@+id/editTextErrorLabel"
+        style="@style/subHeaderTitle15dpNormal"
+        tools:text="Invalid Customer Id"
+        android:textColor="@color/red"
+        android:visibility="gone"
+        />
+
+
+
+</LinearLayout>
