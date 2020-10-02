@@ -14,6 +14,8 @@
     <dimen name="popup_height">300dp</dimen>
     <dimen name="popup_width">300dp</dimen>
 
+    <dimen name="toggle_height">55dp</dimen>
+    <dimen name="toggle_width">60dp</dimen>
 
     <dimen name="padding_0dp">0dp</dimen>
     <dimen name="padding_5dp">5dp</dimen>
@@ -26,11 +28,13 @@
     <dimen name="padding_40dp">40dp</dimen>
     <dimen name="padding_50dp">50dp</dimen>
 
+
     <dimen name="tab_layout_height">40dp</dimen>
 
 
     <dimen name="textSize_15dp">15dp</dimen>
     <dimen name="textSize_20dp">20dp</dimen>
     <dimen name="min_single_button_width">180dp</dimen>
+    <dimen name="padding_25dp">25dp</dimen>
 
 </resources>

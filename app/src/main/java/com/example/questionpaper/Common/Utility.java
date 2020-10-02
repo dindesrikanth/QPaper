@@ -20,6 +20,9 @@ public class Utility {
             "Chandigarh","Dadra and Nagar Haveli and Daman and Diu","Delhi","Jammu and Kashmir","Ladakh","Lakshadweep","Puducherry"};
     public static final int ACTION_DONE = 1;
 
+    // User info fragment
+    public static String password = "";
+
     private Utility(){
 
     }

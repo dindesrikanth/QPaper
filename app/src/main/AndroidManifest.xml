@@ -92,7 +92,8 @@
 <!--            </intent-filter>-->
         </activity>
 
-        <activity android:name=".Activity.ContainerActivity">
+        <activity android:name=".Activity.ContainerActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />

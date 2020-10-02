@@ -14,6 +14,7 @@ import androidx.fragment.app.Fragment;
 
 import com.example.questionpaper.Activity.ContainerActivity;
 import com.example.questionpaper.Common.CustomEditText;
+import com.example.questionpaper.Common.Utility;
 import com.example.questionpaper.R;
 
 public class ChangePasswordFragment extends Fragment implements View.OnClickListener{
@@ -93,6 +94,7 @@ public class ChangePasswordFragment extends Fragment implements View.OnClickList
                 }
                 break;
             case R.id.imgBackArrow:
+                Utility.password = edtNewPassword.getEditTextValue();
                 getActivity().getSupportFragmentManager().popBackStackImmediate();
                 break;
             default:

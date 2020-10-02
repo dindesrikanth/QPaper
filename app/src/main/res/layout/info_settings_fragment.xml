@@ -9,10 +9,18 @@
         style="@style/fragmentRootProperty"
         android:layout_height="@dimen/padding_0dp"
         android:layout_weight="1"
+        android:scrollbars="none"
         android:background="@color/bg_grey">
+
         <LinearLayout
             android:orientation="vertical" android:layout_width="match_parent"
             android:layout_height="match_parent" >
+
+            <TextView android:layout_marginTop="@dimen/padding_20dp"
+                style="@style/headerTitle20dpBold"
+                android:text="Info &amp; Settings"
+                android:background="@color/bg_grey"/>
+
             <com.example.questionpaper.Common.CustomEditText
                 android:id="@+id/edtName"
                 style="@style/subHeaderTitle15dpNormal"
@@ -25,53 +33,117 @@
                 android:layout_width="match_parent"
                 android:layout_marginTop="@dimen/padding_20dp"/>
 
-            <com.example.questionpaper.Common.CustomEditText
-                android:id="@+id/edtPassword"
-                style="@style/subHeaderTitle15dpNormal"
-                android:layout_width="match_parent"
+
+            <TextView
                 android:layout_marginTop="@dimen/padding_20dp"
+                style="@style/subHeaderTitle15dpNormal"
+                android:text= "Password"
+                android:background="@color/bg_grey"
                 />
-
-            <com.example.questionpaper.Common.CustomEditText
-                android:id="@+id/edtDob"
-                style="@style/subHeaderTitle15dpNormal"
-                android:layout_width="match_parent"
-                android:layout_marginTop="@dimen/padding_20dp"/>
-
-            <com.example.questionpaper.Common.CustomEditText
-                android:id="@+id/edtMobileNo"
-                style="@style/subHeaderTitle15dpNormal"
-                android:layout_width="match_parent"
-                android:layout_marginTop="@dimen/padding_20dp"/>
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_marginTop="@dimen/padding_20dp">
-                <TextView
+                android:background="@drawable/edittext_border"
+                android:minHeight="@dimen/minimum_edittext_height"
+                android:layout_marginTop="@dimen/padding_10dp">
+
+                <EditText
+                    android:id="@+id/edtPassword"
                     style="@style/subHeaderTitle15dpNormal"
-                    android:layout_width="@dimen/padding_0dp"
+                    android:layout_width="0dp"
                     android:layout_weight="1"
-                    android:text="Allow SMS notifications"
-                    android:background="@color/bg_grey"/>
-                <ToggleButton android:layout_marginStart="@dimen/padding_30dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/toggleNotification"/>
+                    android:layout_height="match_parent"
+                    android:background="@null"
+                    android:paddingStart="@dimen/padding_10dp"
+                    android:paddingEnd="@dimen/padding_10dp"
+                    android:minHeight="@dimen/minimum_edittext_height"
+                    android:singleLine="true"
+                    />
+
+                <ImageView android:id="@+id/imgEditPassword"
+                    android:layout_width="@dimen/padding_35dp"
+                    android:layout_height="@dimen/padding_35dp"
+                    android:src="@drawable/ic_edit"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="@dimen/padding_10dp"
+                    android:padding="@dimen/padding_5dp"/>
             </LinearLayout>
 
-            <com.example.questionpaper.Common.CustomEditText
-                android:id="@+id/edtAddress"
-                style="@style/subHeaderTitle15dpNormal"
-                android:layout_width="match_parent"
-                android:layout_marginTop="@dimen/padding_20dp"/>
+        <com.example.questionpaper.Common.CustomEditText
+            android:id="@+id/edtDob"
+            style="@style/subHeaderTitle15dpNormal"
+            android:layout_width="match_parent"
+            android:layout_marginTop="@dimen/padding_20dp"/>
 
-            <com.example.questionpaper.Common.CustomEditText
-                android:id="@+id/edtCity"
-                style="@style/subHeaderTitle15dpNormal"
+        <TextView
+            android:layout_marginTop="@dimen/padding_20dp"
+            style="@style/subHeaderTitle15dpNormal"
+            android:text= "Mobile No"
+            android:background="@color/bg_grey"
+            />
+        <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_marginTop="@dimen/padding_20dp"/>
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:background="@drawable/edittext_border"
+                android:minHeight="@dimen/minimum_edittext_height"
+                android:layout_marginTop="@dimen/padding_10dp">
+
+                <EditText
+                    android:id="@+id/edtMobileNo"
+                    style="@style/subHeaderTitle15dpNormal"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent"
+                    android:background="@null"
+                    android:paddingStart="@dimen/padding_10dp"
+                    android:paddingEnd="@dimen/padding_10dp"
+                    android:minHeight="@dimen/minimum_edittext_height"
+                    android:singleLine="true"
+                    />
+
+                <ImageView android:id="@+id/imgMobileNo"
+                    android:layout_width="@dimen/padding_35dp"
+                    android:layout_height="@dimen/padding_35dp"
+                    android:src="@drawable/ic_edit"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="@dimen/padding_10dp"
+                    android:padding="@dimen/padding_5dp"/>
+            </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/padding_20dp">
+            <TextView
+                style="@style/subHeaderTitle15dpNormal"
+                android:layout_width="@dimen/padding_0dp"
+                android:layout_weight="1"
+                android:text="Allow SMS notifications"
+                android:background="@color/bg_grey"/>
+            <ToggleButton
+                android:layout_marginStart="@dimen/padding_30dp"
+                android:layout_width="@dimen/toggle_width"
+                android:layout_height="@dimen/toggle_height"
+                android:id="@+id/toggleNotification"
+                android:background="@drawable/toggle_selector"
+                android:textOff=""
+                android:textOn=""/>
+        </LinearLayout>
+
+        <com.example.questionpaper.Common.CustomEditText
+            android:id="@+id/edtAddress"
+            style="@style/subHeaderTitle15dpNormal"
+            android:layout_width="match_parent"
+            android:layout_marginTop="@dimen/padding_20dp"/>
+
+        <com.example.questionpaper.Common.CustomEditText
+            android:id="@+id/edtCity"
+            style="@style/subHeaderTitle15dpNormal"
+            android:layout_width="match_parent"
+            android:layout_marginTop="@dimen/padding_20dp"/>
 
             <com.example.questionpaper.Common.CustomEditText
                 android:id="@+id/edtPinCode"
@@ -111,9 +183,12 @@
 
                 <ToggleButton
                     android:layout_marginStart="@dimen/padding_30dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/toggleSuspend"/>
+                    android:layout_width="@dimen/toggle_width"
+                    android:layout_height="@dimen/toggle_height"
+                    android:id="@+id/toggleSuspend"
+                    android:background="@drawable/toggle_selector"
+                    android:textOff=""
+                    android:textOn=""/>
             </LinearLayout>
 
 
@@ -121,10 +196,10 @@
     </ScrollView>
     <TextView
         android:id="@+id/tvLogout"
-        android:layout_marginTop="@dimen/padding_20dp"
         android:background="@color/bg_grey"
         android:layout_marginStart="@dimen/padding_20dp"
         style="@style/subHeaderTitle15dpNormal"
+        android:layout_marginTop="@dimen/padding_20dp"
         android:text="Logout"/>
 
     <LinearLayout

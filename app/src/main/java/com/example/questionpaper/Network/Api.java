@@ -14,6 +14,7 @@ import com.example.questionpaper.Model.TestDetailRequestmodel;
 import com.example.questionpaper.Model.UserCourses;
 import com.example.questionpaper.Model.signinmodel;
 import com.example.questionpaper.Model.user_response;
+import com.example.questionpaper.Response.InfoAndSettings.UserInfoScreenResponse;
 import com.example.questionpaper.Response.mytests.Completed.CompletedTestsResponse;
 import com.example.questionpaper.Response.mytests.DetailedAnalysis.DetailedAnalysisResponse;
 import com.example.questionpaper.Response.mytests.LeaderBoard.LeaderBoardResponse;
@@ -123,6 +124,16 @@ public interface Api {
             @Body DetailedAnalysisRequest detailedAnalysisRequest);
 
 
+/*    @Headers({
+            "Accept: application/json",
+            "Content-Type: application/json"
+    })
+    @GET("uta/user/user-info/")
+    Call<UserInfoScreenResponse> userInfoAndSettingsAPI(
+            @Body InputRequest userInfoRequest);*/
+
+    @GET("uta/user/user-info/3")
+    Call<UserInfoScreenResponse> userInfoAndSettingsAPI();
 
 /*
 
