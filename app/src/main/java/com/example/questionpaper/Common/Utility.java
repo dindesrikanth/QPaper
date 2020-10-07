@@ -10,6 +10,8 @@ import android.content.DialogInterface;
 
 import androidx.fragment.app.Fragment;
 
+import java.util.regex.Pattern;
+
 public class Utility {
     public static Utility instance = null;
     public static int my_test_months_data=1;
@@ -95,4 +97,15 @@ public class Utility {
             }
         }
     }
+
+    public static boolean isValidEmail(String email){
+       /// email = "contribute@geeksforgeeks.org";
+        if (email == null)
+            return false;
+        String EMAIL_REGEX = "^[\\w-\\+]+(\\.[\\w]+)*@[\\w-]+(\\.[\\w]+)*(\\.[a-z]{2,})$";
+        Pattern pat = Pattern.compile(EMAIL_REGEX);
+
+        return pat.matcher(email).matches();
+    }
+
 }

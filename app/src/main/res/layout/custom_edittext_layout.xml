@@ -31,6 +31,7 @@
         tools:text="Invalid Customer Id"
         android:textColor="@color/red"
         android:visibility="gone"
+        android:background="@color/bg_grey"
         />
 
 

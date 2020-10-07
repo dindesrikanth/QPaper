@@ -2,9 +2,12 @@ package com.example.questionpaper.Common;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.text.Editable;
 import android.text.InputFilter;
+import android.text.TextWatcher;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -57,6 +60,25 @@ public class CustomEditText extends LinearLayout {
         editTextLabel=findViewById(R.id.editTextLabel);
         editTextErrorLabel=findViewById(R.id.editTextErrorLabel);
         customEditText.setId(generateViewId());
+
+        customEditText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void afterTextChanged(Editable s) {
+                // TODO Auto-generated method stub
+            }
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                // TODO Auto-generated method stub
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                //doSomething();
+                editTextErrorLabel.setText("");
+                editTextErrorLabel.setVisibility(View.GONE);
+            }
+        });
     }
     public void setValueToLayout(String editTextHint, String textViewValue){
         this.editTextHint= editTextHint;
@@ -75,6 +97,7 @@ public class CustomEditText extends LinearLayout {
         customEditText.setText(textViewValue);
         editTextLabel.setText(editTextHint);
         editTextLabel.setTextColor(Color.parseColor("#000000"));
+        editTextErrorLabel.setVisibility(View.GONE);
     }
 
     public String getEditTextValue(){
@@ -108,6 +131,7 @@ public class CustomEditText extends LinearLayout {
 
     public void setEditTextErrorLabel(String errorMessage){
         customEditText.setText("");
+        editTextErrorLabel.setVisibility(View.VISIBLE);
         editTextErrorLabel.setText(errorMessage);
     }
 

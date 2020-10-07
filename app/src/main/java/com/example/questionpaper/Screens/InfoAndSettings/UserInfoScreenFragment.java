@@ -121,6 +121,11 @@ public class UserInfoScreenFragment extends Fragment implements View.OnClickList
         int id=view.getId();
         switch (id){
             case R.id.tvUpdateProfile:
+                if(Utility.isValidEmail(edtEmail.getEditTextValue())){
+                    Toast.makeText(getActivity(),"valid...",Toast.LENGTH_LONG).show();
+                }else{
+                    Toast.makeText(getActivity(),"not valid...",Toast.LENGTH_LONG).show();
+                }
                 break;
             case R.id.imgEditPassword:
                 activity.displayFragment(5);

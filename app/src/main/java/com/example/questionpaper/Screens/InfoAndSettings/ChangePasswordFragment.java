@@ -17,10 +17,26 @@ import com.example.questionpaper.Common.CustomEditText;
 import com.example.questionpaper.Common.Utility;
 import com.example.questionpaper.R;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class ChangePasswordFragment extends Fragment implements View.OnClickListener{
     private ImageView imgNotes,imgBackArrow;
     private TextView tvHeaderTitle,tvChangePassword;
     CustomEditText edtOldPassword, edtNewPassword,edtConfirmPassword;
+
+    /*^ represents starting character of the string.
+                (?=.*[0-9]) represents a digit must occur at least once.
+                (?=.*[a-z]) represents a lower case alphabet must occur at least once.
+                (?=.*[A-Z]) represents an upper case alphabet that must occur at least once.
+                (?=.*[@#$%^&-+=()] represents a special character that must occur at least once.
+                (?=\\S+$) white spaces don’t allowed in the entire string.
+                .{8, 20} represents at least 8 characters and at most 20 characters.
+        $ represents the end of the string.*/
+   // private String regEx = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&-+=()])(?=\\S+$).{8,20}$";
+
+    private static final String PASSWORD_PATTERN =
+            "((?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%]).{6,20})";
 
     @Nullable
     @Override
@@ -65,40 +81,47 @@ public class ChangePasswordFragment extends Fragment implements View.OnClickList
         ContainerActivity.relativeCustomActionBar.setVisibility(View.VISIBLE);
     }
     private boolean validatePassword(){
-        boolean isValid = true;
-        if(TextUtils.isEmpty(edtOldPassword.getEditTextValue())) {
-            edtOldPassword.setEditTextErrorLabel("Enter Old password");
-            isValid =  false;
-        }if(TextUtils.isEmpty(edtNewPassword.getEditTextValue())){
-            edtNewPassword.setEditTextErrorLabel("Enter New password");
-            isValid = false;
-        }if(TextUtils.isEmpty(edtConfirmPassword.getEditTextValue())){
-            edtConfirmPassword.setEditTextErrorLabel("Enter Confirm password");
-            isValid = false;
-        }
-        if(!TextUtils.isEmpty(edtNewPassword.getEditTextValue())  && !TextUtils.isEmpty(edtConfirmPassword.getEditTextValue()) && !edtNewPassword.getEditTextValue().trim().equals(edtConfirmPassword.getEditTextValue().trim()) ){
-            edtConfirmPassword.setEditTextErrorLabel("New & Confirm password should match");
-            isValid = false;
+        Pattern p = Pattern.compile(PASSWORD_PATTERN);
+        Matcher m =null;
+        if(!TextUtils.isEmpty(edtNewPassword.getEditTextValue())){
+            m = p.matcher(edtNewPassword.getEditTextValue());
         }
 
-        return isValid;
+        if(TextUtils.isEmpty(edtOldPassword.getEditTextValue())) {
+            edtOldPassword.setEditTextErrorLabel("Enter Old password");
+            return false;
+        }else if(TextUtils.isEmpty(edtNewPassword.getEditTextValue())){
+            edtNewPassword.setEditTextErrorLabel("Enter New password");
+            return false;
+        }else if(TextUtils.isEmpty(edtConfirmPassword.getEditTextValue())){
+            edtConfirmPassword.setEditTextErrorLabel("Enter Confirm password");
+            return false;
+        }
+        else if(!TextUtils.isEmpty(edtNewPassword.getEditTextValue())  && !TextUtils.isEmpty(edtConfirmPassword.getEditTextValue()) && !edtNewPassword.getEditTextValue().trim().equals(edtConfirmPassword.getEditTextValue().trim()) ){
+            edtConfirmPassword.setEditTextErrorLabel("New & Confirm password should match");
+            return false;
+        }else if(!m.matches()){
+
+            edtNewPassword.setEditTextErrorLabel("Invalid password pattern");
+            return false;
+        }
+        return true;
     }
 
     @Override
     public void onClick(View view) {
         int id=view.getId();
-        switch (id){
-            case R.id.tvChangePassword:
+        if (id ==  R.id.tvChangePassword ||  id == R.id.imgBackArrow ){
+           /* case R.id.tvChangePassword:*/
                 if(validatePassword()){
+                    Utility.password = edtNewPassword.getEditTextValue();
                     getActivity().getSupportFragmentManager().popBackStackImmediate();
                 }
-                break;
+             /*   break;
             case R.id.imgBackArrow:
                 Utility.password = edtNewPassword.getEditTextValue();
                 getActivity().getSupportFragmentManager().popBackStackImmediate();
-                break;
-            default:
-                break;
+                break; */
         }
     }
 
