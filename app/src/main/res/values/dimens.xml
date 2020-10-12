@@ -36,5 +36,6 @@
     <dimen name="textSize_20dp">20dp</dimen>
     <dimen name="min_single_button_width">180dp</dimen>
     <dimen name="padding_25dp">25dp</dimen>
+    <dimen name="padding_80dp">80dp</dimen>
 
 </resources>

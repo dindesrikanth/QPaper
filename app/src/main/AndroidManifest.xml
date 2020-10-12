@@ -17,7 +17,12 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Activity.Login_Activity"></activity>
+        <activity android:name=".Activity.LoginActivity">
+          <!--  <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>-->
+        </activity>
         <activity android:name=".Activity.Load_cources" />
         <activity android:name=".Activity.Register" />
         <activity android:name=".Activity.GetUserTest" />
@@ -94,7 +99,7 @@
 
         <activity android:name=".Activity.ContainerActivity"
             android:screenOrientation="portrait">
-            <intent-filter>
+             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>

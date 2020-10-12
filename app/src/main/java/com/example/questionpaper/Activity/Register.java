@@ -1,7 +1,5 @@
 package com.example.questionpaper.Activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -10,6 +8,8 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.questionpaper.Model.signinmodel;
 import com.example.questionpaper.Network.RetrofitClient;
@@ -20,7 +20,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class Register extends AppCompatActivity {
-    private EditText nametext, password,email_id;
+    private EditText edtUserName, edtPassword,edtEmail,edtMobileNo,edtReEnterPassword;
     RadioButton prf,govt,both;
     TextView sucess,whichjobtext;
     boolean checked;
@@ -45,9 +45,12 @@ public class Register extends AppCompatActivity {
         });
     }
     void initview(){
-        email_id = findViewById(R.id.username);
-        password = findViewById(R.id.password);
-        nametext= findViewById(R.id.name);
+        edtUserName= findViewById(R.id.edtUserName);
+        edtEmail = findViewById(R.id.edtEmail);
+        edtMobileNo= findViewById(R.id.edtMobileNo);
+        edtPassword = findViewById(R.id.edtPassword);
+        edtReEnterPassword= findViewById(R.id.edtReEnterPassword);
+
         sucess = findViewById(R.id.sucess);
         register = findViewById(R.id.signin);
         prf = findViewById(R.id.prf);
@@ -57,35 +60,51 @@ public class Register extends AppCompatActivity {
     }
     public void onLoginFailed() {
         Toast.makeText(getBaseContext(), "Login failed", Toast.LENGTH_LONG).show();
-
         //register.setEnabled(true);
     }
     public boolean validate() {
         boolean valid = true;
 
-        String email = email_id.getText().toString();
-        String passwordtext = password.getText().toString();
-        String name = nametext.getText().toString();
+        String email = edtEmail.getText().toString();
+        String passwordtext = edtPassword.getText().toString();
+        String reEnterPassword =  edtReEnterPassword.getText().toString();
+        String name = edtUserName.getText().toString();
+        String mobileNp= edtMobileNo.getText().toString();
 
         if (email.isEmpty() || !android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-            email_id.setError("enter a valid email address");
+            edtEmail.setError("Enter a valid email address");
             valid = false;
         } else {
-            email_id.setError(null);
+            edtEmail.setError(null);
         }
         if (name.isEmpty()) {
-            nametext.setError("enter Your Name");
+            edtUserName.setError("Enter Your Name");
             valid = false;
         } else {
-            nametext.setError(null);
+            edtUserName.setError(null);
         }
 
-        if (passwordtext.isEmpty() || passwordtext.length() < 4 || passwordtext.length() > 10) {
-            password.setError("between 4 and 10 alphanumeric characters");
+        if (name.isEmpty()) {
+            edtMobileNo.setError("Enter Mobile No");
             valid = false;
         } else {
-            password.setError(null);
+            edtMobileNo.setError(null);
         }
+
+        if (passwordtext.isEmpty() || passwordtext.length() < 8 || passwordtext.length() > 10) {
+            edtPassword.setError("between 4 and 10 alphanumeric characters");
+            valid = false;
+        } else {
+            edtPassword.setError(null);
+        }
+
+        if(!passwordtext.equalsIgnoreCase(reEnterPassword)){
+            edtReEnterPassword.setError("Password not match");
+            valid = false;
+        }else{
+            edtPassword.setError(null);
+        }
+
         if(checked == false){
             whichjobtext.setError("Please Select Any One Of The Following Options");
         }
@@ -120,9 +139,9 @@ public class Register extends AppCompatActivity {
     }
 
     public  void signin(){
-        String email =email_id.getText().toString();
-        String pw =password.getText().toString();
-        String name =nametext.getText().toString();
+        String email =edtEmail.getText().toString();
+        String pw =edtPassword.getText().toString();
+        String name =edtUserName.getText().toString();
         if (!validate()) {
             onLoginFailed();
             return;

@@ -7,6 +7,7 @@ import android.app.FragmentTransaction;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 
 import androidx.fragment.app.Fragment;
 
@@ -107,6 +108,11 @@ public class Utility {
         Pattern pat = Pattern.compile(EMAIL_REGEX);
 
         return pat.matcher(email).matches();
+    }
+
+    public static SharedPreferences getSharedPreference(Context context){
+        SharedPreferences sharedPreferences = context.getSharedPreferences("SPF_UserDetails",Context.MODE_PRIVATE);
+        return sharedPreferences;
     }
 
 }

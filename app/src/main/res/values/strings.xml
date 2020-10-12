@@ -18,7 +18,7 @@
     <string name="action_ques_right">Correct</string>
     <string name="action_ques_wrong">Incorrect</string>
     <string name="action_ques_unattempted">Unattempted</string>
-    <string name="your_string"><u>Sign in</u></string>
+    <string name="sign_in"><u>Sign In</u></string>
 
     <string name="test_mark_next">Mark &amp; Next</string>
     <string name="test_clear_response">Clear Response</string>
