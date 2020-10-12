@@ -4,7 +4,10 @@ import android.content.Context;
 import android.graphics.Color;
 import android.text.Editable;
 import android.text.InputFilter;
+import android.text.InputType;
+import android.text.Spanned;
 import android.text.TextWatcher;
+import android.text.method.PasswordTransformationMethod;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -104,8 +107,8 @@ public class CustomEditText extends LinearLayout {
         return customEditText.getText().toString();
     }
 
-    public void setMaxValue(int maxValue){
-        customEditText.setFilters(new InputFilter[]{new InputFilter.LengthFilter(maxValue),new EmojiExcludeFilter()});
+    public void setMaxLength(int maxLength){
+        customEditText.setFilters(new InputFilter[]{new InputFilter.LengthFilter(maxLength),new EmojiExcludeFilter()});
     }
 
     public void setEditTextValue(String editTextString){
@@ -133,6 +136,30 @@ public class CustomEditText extends LinearLayout {
         customEditText.setText("");
         editTextErrorLabel.setVisibility(View.VISIBLE);
         editTextErrorLabel.setText(errorMessage);
+    }
+
+    public void setInputTypeAndLength(String inputType,int length){
+        if("number".equalsIgnoreCase(inputType)){
+            customEditText.setInputType(InputType.TYPE_CLASS_NUMBER);
+            customEditText.setFilters(new InputFilter[] {new InputFilter.LengthFilter(length)});
+        }else if("password".equalsIgnoreCase(inputType)){
+            customEditText.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+            customEditText.setTransformationMethod(PasswordTransformationMethod.getInstance());
+        }if("alphaNumericSpecialChar".equalsIgnoreCase(inputType)){
+            customEditText.setFilters(new InputFilter[]{
+                    new InputFilter() {
+                        @Override
+                        public CharSequence filter(CharSequence src, int start, int end, Spanned spanned, int dStart, int dEnd) {
+                            if (src.equals("")){
+                                return src;
+                            }if(src.toString().matches("[a-zA-Z 0-9#@$&()-+=_<>?/;:.]")){
+                                return src;
+                            }
+                            return "";
+                        }
+                    }, new InputFilter.LengthFilter(length)
+            });
+        }
     }
 
 

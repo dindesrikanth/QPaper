@@ -14,11 +14,13 @@ import com.example.questionpaper.Model.TestDetailRequestmodel;
 import com.example.questionpaper.Model.UserCourses;
 import com.example.questionpaper.Model.signinmodel;
 import com.example.questionpaper.Model.user_response;
+import com.example.questionpaper.Response.InfoAndSettings.UpdateProfileResponse;
 import com.example.questionpaper.Response.InfoAndSettings.UserInfoScreenResponse;
 import com.example.questionpaper.Response.mytests.Completed.CompletedTestsResponse;
 import com.example.questionpaper.Response.mytests.DetailedAnalysis.DetailedAnalysisResponse;
 import com.example.questionpaper.Response.mytests.LeaderBoard.LeaderBoardResponse;
 import com.example.questionpaper.Response.mytests.LiveTest.LiveTestResponse;
+import com.example.questionpaper.Response.mytests.Requests.InfoAndSettings.UpdateProfileRequest;
 import com.example.questionpaper.Response.mytests.Requests.MyTests.CompletedTestsRequest;
 import com.example.questionpaper.Response.mytests.Requests.MyTests.DetailedAnalysisRequest;
 import com.example.questionpaper.Response.mytests.Requests.MyTests.UserTestRequest;
@@ -134,6 +136,17 @@ public interface Api {
 
     @GET("uta/user/user-info/3")
     Call<UserInfoScreenResponse> userInfoAndSettingsAPI();
+
+
+
+    @Headers({
+            "Accept: application/json",
+            "Content-Type: application/json"
+    })
+    @POST("uta/user/update-user")
+    Call<UpdateProfileResponse> updateUserProfileAPI(
+            @Body UpdateProfileRequest updateProfileRequest);
+
 
 /*
 

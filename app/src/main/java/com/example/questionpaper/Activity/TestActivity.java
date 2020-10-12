@@ -277,16 +277,14 @@ public class TestActivity extends AppCompatActivity implements TestAdapter.OnIte
         Log.e("JSON STRING --> " , jsonObject.toString());
         return jsonObject.toString();
     }
-
     private String createAnswers(){
         String answerString = "[";
-        for(int i = 0; i < userList.size(); i++)
-        {
-            if(i != 0)
-            {
+        for(int i = 0; i < userList.size(); i++){
+            if(i != 0){
                 answerString += ",";
             }
-            answerString += " \" " + (i + 1) + ":" + convertAnswerIdToOptions(userList.get(i).getAnswerId()) + " \" ";
+            answerString += " \" " + (i + 1)  + ":" + convertAnswerIdToOptions(userList.get(i).getAnswerId()) + " \" ";
+//            answerString += "," + convertAnswerIdToOptions(userList.get(i).getAnswerId());
         }
         answerString += "]";
         return answerString;

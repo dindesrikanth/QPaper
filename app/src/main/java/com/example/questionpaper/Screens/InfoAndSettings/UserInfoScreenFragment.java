@@ -3,7 +3,9 @@ package com.example.questionpaper.Screens.InfoAndSettings;
 import android.app.ProgressDialog;
 import android.graphics.Paint;
 import android.os.Bundle;
+import android.text.Editable;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,19 +28,22 @@ import com.example.questionpaper.Common.Utility;
 import com.example.questionpaper.Network.RetrofitClient;
 import com.example.questionpaper.R;
 import com.example.questionpaper.Response.InfoAndSettings.InputRequest;
+import com.example.questionpaper.Response.InfoAndSettings.UpdateProfileResponse;
 import com.example.questionpaper.Response.InfoAndSettings.UserInfoScreenResponse;
+import com.example.questionpaper.Response.mytests.Requests.InfoAndSettings.UpdateProfileRequest;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 public class UserInfoScreenFragment extends Fragment implements View.OnClickListener {
-    private CustomEditText edtName,edtEmail,edtDob,edtAddress,edtCity,edtPinCode,edtCountry;
+    private CustomEditText edtName,edtEmail,edtDob,edtAddress,edtCity,edtPinCode,edtCountry,edtPreferredExams;
     private EditText edtPassword,edtMobileNo;
+    private TextView tvMobileError;
 
     private ImageView imgEditPassword,imgMobileNo;
     private ToggleButton toggleNotification,toggleSuspend;
-    private Spinner spnState;
+    private Spinner spnState,spnGender;
     private TextView tvLogout,tvUpdateProfile;
     private ContainerActivity activity;
     private ProgressDialog pDialog;
@@ -49,10 +54,33 @@ public class UserInfoScreenFragment extends Fragment implements View.OnClickList
         this.activity=(ContainerActivity)getActivity();
         pDialog=Utility.getProgressDialog(getActivity());
         inItView(v);
+        setLength();
         setClickEnable();
         setData();
+        setTextChange();
         getUserInfoData("3");
         return v;
+    }
+
+    private void setTextChange() {
+        edtMobileNo.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                // No implementation
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                // Empty
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                // No implementation
+                tvMobileError.setText("");
+                tvMobileError.setVisibility(View.GONE);
+            }
+        });
     }
 
     private void setClickEnable() {
@@ -69,6 +97,7 @@ public class UserInfoScreenFragment extends Fragment implements View.OnClickList
 
         edtDob=v.findViewById(R.id.edtDob);
         edtMobileNo=v.findViewById(R.id.edtMobileNo);
+        tvMobileError = v.findViewById(R.id.tvMobileError);
         imgMobileNo= v.findViewById(R.id.imgMobileNo);
 
         edtAddress = v.findViewById(R.id.edtAddress);
@@ -76,13 +105,31 @@ public class UserInfoScreenFragment extends Fragment implements View.OnClickList
         edtPinCode = v.findViewById(R.id.edtPinCode);
 
         spnState=v.findViewById(R.id.spnState);
+        spnGender= v.findViewById(R.id.spnGender);
         edtCountry = v.findViewById(R.id.edtCountry);
+        edtPreferredExams= v.findViewById(R.id.edtPreferredExams);
+
         toggleNotification=v.findViewById(R.id.toggleNotification);
         toggleSuspend=v.findViewById(R.id.toggleSuspend);
         tvLogout=v.findViewById(R.id.tvLogout);
         tvLogout.setPaintFlags(tvLogout.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
 
         tvUpdateProfile = v.findViewById(R.id.tvUpdateProfile);
+    }
+    private void setLength(){
+        edtName.setMaxLength(30);
+        edtEmail.setMaxLength(30);
+        edtDob.setMaxLength(10);
+        edtAddress.setMaxLength(60);
+        edtCity.setMaxLength(30);
+        edtPreferredExams.setMaxLength(100);
+
+        edtPinCode.setInputTypeAndLength("number",6);
+
+
+        //edtPinCode.setMaxLength(6);
+
+        edtCountry.setMaxLength(30);
     }
     private void setData(){
         edtName.setValueToLayout("Name", "");
@@ -95,9 +142,13 @@ public class UserInfoScreenFragment extends Fragment implements View.OnClickList
         edtPinCode.setValueToLayout("Pin code","");
         edtCountry.setValueToLayout("Country","India");
 
+        edtPreferredExams.setValueToLayout("Preferred Exams","");
+
+        CustomAdapter customAdapter=new CustomAdapter(getContext(), Utility.listOfGender);
+        spnGender.setAdapter(customAdapter);
+
         setStates();
     }
-
     private void setStates(){
         CustomAdapter customAdapter=new CustomAdapter(getContext(), Utility.listOfStates);
         spnState.setAdapter(customAdapter);
@@ -121,8 +172,8 @@ public class UserInfoScreenFragment extends Fragment implements View.OnClickList
         int id=view.getId();
         switch (id){
             case R.id.tvUpdateProfile:
-                if(Utility.isValidEmail(edtEmail.getEditTextValue())){
-                    Toast.makeText(getActivity(),"valid...",Toast.LENGTH_LONG).show();
+                if(validate()){
+                    updateUserProfile();
                 }else{
                     Toast.makeText(getActivity(),"not valid...",Toast.LENGTH_LONG).show();
                 }
@@ -200,4 +251,89 @@ public class UserInfoScreenFragment extends Fragment implements View.OnClickList
         }
     }
 
+    private boolean validate(){
+        if(TextUtils.isEmpty(edtName.getEditTextValue())){
+            edtName.setEditTextErrorLabel("Enter name");
+            return false;
+        }
+        if(TextUtils.isEmpty(edtEmail.getEditTextValue()) || !Utility.isValidEmail(edtEmail.getEditTextValue()) ){
+            edtEmail.setEditTextErrorLabel("Enter Valid EmailId");
+            return false;
+        }
+      /*  if(TextUtils.isEmpty(edtPassword.getText())){
+            edtPassword.set("Enter Password");
+            return false;
+        }*/
+        if(TextUtils.isEmpty(edtDob.getEditTextValue())){
+            edtDob.setEditTextErrorLabel("Enter DOB");
+            return false;
+        }
+        if(TextUtils.isEmpty(edtMobileNo.getText())){
+            tvMobileError.setVisibility(View.VISIBLE);
+            tvMobileError.setText("Invalid mobile No");
+            return false;
+        }
+        if(TextUtils.isEmpty(edtPreferredExams.getEditTextValue())){
+            edtPreferredExams.setEditTextErrorLabel("Enter Preferred Exams");
+            return false;
+        }
+        if(TextUtils.isEmpty(edtAddress.getEditTextValue())){
+            edtAddress.setEditTextErrorLabel("Enter Address");
+            return false;
+        }
+        if(TextUtils.isEmpty(edtCity.getEditTextValue())){
+            edtCity.setEditTextErrorLabel("Enter City");
+            return false;
+        }
+        if(TextUtils.isEmpty(edtPinCode.getEditTextValue())){
+            edtPinCode.setEditTextErrorLabel("Enter PinCode");
+            return false;
+        }
+       /* if(TextUtils.isEmpty(spnState.getSelectedItem().toString())){
+            state.setEditTextErrorLabel("Enter DOB");
+            return false;
+        }*/
+        if(TextUtils.isEmpty(edtCountry.getEditTextValue())){
+            edtCountry.setEditTextErrorLabel("Enter DOB");
+            return false;
+        }
+        return true;
+    }
+
+
+
+    private void updateUserProfile(){
+        pDialog.show();
+        final UpdateProfileRequest updateProfileRequest = new UpdateProfileRequest(edtAddress.getEditTextValue(),
+                edtCity.getEditTextValue(),edtCountry.getEditTextValue(),edtDob.getEditTextValue(),
+                edtEmail.getEditTextValue(),spnGender.getSelectedItem().toString(),edtMobileNo.getText().toString(),
+                edtName.getEditTextValue(),edtPassword.getText().toString(),edtPinCode.getEditTextValue(),
+                edtPreferredExams.getEditTextValue(),toggleNotification.isChecked()+"",
+                spnState.getSelectedItem().toString(),"3"
+                );
+        Call<UpdateProfileResponse> call = RetrofitClient.getInstance().getApi().updateUserProfileAPI(updateProfileRequest);
+        call.enqueue(new Callback<UpdateProfileResponse>() {
+            @Override
+            public void onResponse(Call<UpdateProfileResponse> call, Response<UpdateProfileResponse> response) {
+                try {
+                    if (response.isSuccessful()) {
+                         Toast.makeText(getActivity(),"Submitted successfully",Toast.LENGTH_LONG).show();
+                       // showData(response.body());
+                    }else{
+                        Toast.makeText(getActivity(),"Failed to load API...",Toast.LENGTH_LONG).show();
+                    }
+                }catch (Exception ex){
+                    ex.printStackTrace();
+                }
+                pDialog.dismiss();
+            }
+
+            @Override
+            public void onFailure(Call<UpdateProfileResponse> call, Throwable t) {
+                Toast.makeText(getActivity(),"Response failed ...",Toast.LENGTH_LONG).show();
+                pDialog.dismiss();
+                return;
+            }
+        });
+    }
 }

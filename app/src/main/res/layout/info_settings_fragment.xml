@@ -59,6 +59,8 @@
                     android:paddingEnd="@dimen/padding_10dp"
                     android:minHeight="@dimen/minimum_edittext_height"
                     android:singleLine="true"
+                    android:inputType="textPassword"
+                    android:enabled="false"
                     />
 
                 <ImageView android:id="@+id/imgEditPassword"
@@ -69,6 +71,18 @@
                     android:layout_marginStart="@dimen/padding_10dp"
                     android:padding="@dimen/padding_5dp"/>
             </LinearLayout>
+
+            <TextView
+                style="@style/subHeaderTitle15dpNormal"
+                android:text="Gender"
+                android:background="@color/bg_grey"
+                android:layout_marginTop="@dimen/padding_20dp"/>
+            <Spinner
+                android:id="@+id/spnGender"
+                style="@style/subHeaderTitle15dpNormal"
+                android:layout_width="match_parent"
+                android:layout_marginTop="@dimen/padding_5dp"
+                android:background="@drawable/edittext_border"/>
 
         <com.example.questionpaper.Common.CustomEditText
             android:id="@+id/edtDob"
@@ -101,6 +115,8 @@
                     android:paddingEnd="@dimen/padding_10dp"
                     android:minHeight="@dimen/minimum_edittext_height"
                     android:singleLine="true"
+                    android:maxLength="10"
+                    android:inputType="number"
                     />
 
                 <ImageView android:id="@+id/imgMobileNo"
@@ -109,8 +125,17 @@
                     android:src="@drawable/ic_edit"
                     android:layout_gravity="center_vertical"
                     android:layout_marginStart="@dimen/padding_10dp"
-                    android:padding="@dimen/padding_5dp"/>
+                    android:padding="@dimen/padding_5dp"
+                    android:visibility="invisible"/>
             </LinearLayout>
+            <TextView
+                android:id="@+id/tvMobileError"
+                style="@style/subHeaderTitle15dpNormal"
+                android:text="Invalid Mobile"
+                android:background="@color/bg_grey"
+                android:textColor="@color/red"
+                android:visibility="gone"
+                />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -132,6 +157,14 @@
                 android:textOff=""
                 android:textOn=""/>
         </LinearLayout>
+
+
+
+        <com.example.questionpaper.Common.CustomEditText
+            android:id="@+id/edtPreferredExams"
+            style="@style/subHeaderTitle15dpNormal"
+            android:layout_width="match_parent"
+            android:layout_marginTop="@dimen/padding_20dp"/>
 
         <com.example.questionpaper.Common.CustomEditText
             android:id="@+id/edtAddress"
