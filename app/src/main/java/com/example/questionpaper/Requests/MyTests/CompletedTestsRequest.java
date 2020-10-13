@@ -1,4 +1,4 @@
-package com.example.questionpaper.Response.mytests.Requests.MyTests;
+package com.example.questionpaper.Requests.MyTests;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;

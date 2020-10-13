@@ -14,16 +14,19 @@ import com.example.questionpaper.Model.TestDetailRequestmodel;
 import com.example.questionpaper.Model.UserCourses;
 import com.example.questionpaper.Model.signinmodel;
 import com.example.questionpaper.Model.user_response;
+import com.example.questionpaper.Requests.Login.LoginApiRequest;
+import com.example.questionpaper.Requests.Login.RegisterApiRequest;
 import com.example.questionpaper.Response.InfoAndSettings.UpdateProfileResponse;
 import com.example.questionpaper.Response.InfoAndSettings.UserInfoScreenResponse;
+import com.example.questionpaper.Response.Login.LoginApiResponse;
 import com.example.questionpaper.Response.mytests.Completed.CompletedTestsResponse;
 import com.example.questionpaper.Response.mytests.DetailedAnalysis.DetailedAnalysisResponse;
 import com.example.questionpaper.Response.mytests.LeaderBoard.LeaderBoardResponse;
 import com.example.questionpaper.Response.mytests.LiveTest.LiveTestResponse;
-import com.example.questionpaper.Response.mytests.Requests.InfoAndSettings.UpdateProfileRequest;
-import com.example.questionpaper.Response.mytests.Requests.MyTests.CompletedTestsRequest;
-import com.example.questionpaper.Response.mytests.Requests.MyTests.DetailedAnalysisRequest;
-import com.example.questionpaper.Response.mytests.Requests.MyTests.UserTestRequest;
+import com.example.questionpaper.Requests.InfoAndSettings.UpdateProfileRequest;
+import com.example.questionpaper.Requests.MyTests.CompletedTestsRequest;
+import com.example.questionpaper.Requests.MyTests.DetailedAnalysisRequest;
+import com.example.questionpaper.Requests.MyTests.UserTestRequest;
 import com.example.questionpaper.Response.mytests.UpComing.UpcomingTestsResponse;
 
 import java.util.List;
@@ -125,6 +128,23 @@ public interface Api {
     Call<LeaderBoardResponse> leaderBoardAPI(
             @Body DetailedAnalysisRequest detailedAnalysisRequest);
 
+
+    @Headers({
+            "Accept: application/json",
+            "Content-Type: application/json"
+    })
+    @POST("uta/user/login")
+    Call<LoginApiResponse> loginApiRequest(
+            @Body LoginApiRequest loginApiRequest);
+
+
+    @Headers({
+            "Accept: application/json",
+            "Content-Type: application/json"
+    })
+    @POST("uta/user/register-user")
+    Call<LoginApiResponse> registerApiRequest(
+            @Body RegisterApiRequest registerApiRequest);
 
 /*    @Headers({
             "Accept: application/json",

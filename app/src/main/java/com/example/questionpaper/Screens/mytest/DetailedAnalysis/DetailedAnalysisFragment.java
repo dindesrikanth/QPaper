@@ -18,7 +18,7 @@ import com.example.questionpaper.Common.Utility;
 import com.example.questionpaper.Network.RetrofitClient;
 import com.example.questionpaper.R;
 import com.example.questionpaper.Response.mytests.DetailedAnalysis.DetailedAnalysisResponse;
-import com.example.questionpaper.Response.mytests.Requests.MyTests.DetailedAnalysisRequest;
+import com.example.questionpaper.Requests.MyTests.DetailedAnalysisRequest;
 
 import retrofit2.Call;
 import retrofit2.Callback;

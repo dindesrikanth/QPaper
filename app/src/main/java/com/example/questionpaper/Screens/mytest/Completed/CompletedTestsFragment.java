@@ -17,7 +17,7 @@ import com.example.questionpaper.Network.RetrofitClient;
 import com.example.questionpaper.R;
 import com.example.questionpaper.Response.mytests.Completed.CompletedTestsResponse;
 import com.example.questionpaper.Response.mytests.LiveTest.TestData;
-import com.example.questionpaper.Response.mytests.Requests.MyTests.CompletedTestsRequest;
+import com.example.questionpaper.Requests.MyTests.CompletedTestsRequest;
 import com.example.questionpaper.Screens.mytest.RootViewClickInterface;
 
 import java.util.ArrayList;

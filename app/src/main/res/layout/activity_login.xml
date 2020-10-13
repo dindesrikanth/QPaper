@@ -14,7 +14,7 @@
        style="@style/subHeaderTitle15dpNormal"
         android:text="WELCOME to online examination"
         android:textStyle="bold"
-        android:textColor="#663399"
+        android:textColor="@color/test_button_blue"
         android:textAllCaps="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="@dimen/padding_80dp"
@@ -65,18 +65,20 @@
             android:layout_height="match_parent"
             android:layout_marginTop="@dimen/padding_30dp"
             android:text="Login"
-            android:id="@+id/signin"
+            android:id="@+id/btnLogIn"
             android:textAllCaps="true"
             android:textColor="#FFFFFF"
-            android:onClick="signin"
-            android:background="#663399"
+            style="@style/customButtonStyle"
+            android:background="@drawable/box_border_blue_bg"
             android:layout_gravity="center">
 
         </Button>
-        <TextView
+
+
+        <TextView android:id="@+id/tvForgotPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/padding_20dp"
+            android:layout_marginTop="@dimen/padding_30dp"
             android:text="forgot password?"
             android:textAllCaps="true"
             android:textAlignment="center">
@@ -84,7 +86,7 @@
         </TextView>
 
         <TextView
-            android:id="@+id/sigininbtn"
+            android:id="@+id/tvSignIn"
             android:layout_height="wrap_content"
             android:layout_width="match_parent"
             android:textSize="@dimen/padding_20dp"

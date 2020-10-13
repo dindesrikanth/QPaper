@@ -46,7 +46,7 @@ public class ContainerActivity extends AppCompatActivity {
         setNavigationDrawerLayout();
 
         fManager= getSupportFragmentManager();
-        displayFragment(4);
+        displayFragment(0);
     }
     public void displayFragment(int position){
         switch (position){

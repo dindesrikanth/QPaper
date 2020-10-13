@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.questionpaper.Common.Utility;
 import com.example.questionpaper.Network.RetrofitClient;
 import com.example.questionpaper.R;
-import com.example.questionpaper.Response.mytests.Requests.MyTests.UserTestRequest;
+import com.example.questionpaper.Requests.MyTests.UserTestRequest;
 import com.example.questionpaper.Response.mytests.UpComing.Data;
 import com.example.questionpaper.Response.mytests.UpComing.UpcomingTestsResponse;
 

@@ -17,7 +17,7 @@
             style="@style/subHeaderTitle15dpNormal"
             android:text="WELCOME to online examination"
             android:textStyle="bold"
-            android:textColor="#663399"
+            android:textColor="@color/test_button_blue"
             android:textAllCaps="true"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="@dimen/padding_80dp"
@@ -59,7 +59,8 @@
                 android:id="@+id/edtUserName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="#663399">
+                android:textColor="#663399"
+                android:maxLength="30">
 
             </EditText>
             <TextView android:layout_marginTop="@dimen/padding_20dp"
@@ -72,7 +73,8 @@
                 android:id="@+id/edtEmail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="#663399">
+                android:textColor="#663399"
+                android:maxLength="30">
 
             </EditText>
 
@@ -88,7 +90,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textColor="#663399"
-                android:inputType="number"/>
+                android:inputType="number"
+                android:maxLength="10"/>
 
             <TextView android:layout_marginTop="@dimen/padding_20dp"
                 style="@style/subHeaderTitle15dpNormal"
@@ -100,7 +103,8 @@
                 android:id="@+id/edtPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="#663399">
+                android:textColor="#663399"
+                android:maxLength="20">
 
             </EditText>
             <TextView
@@ -113,14 +117,13 @@
                 android:id="@+id/edtReEnterPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="#663399">
+                android:textColor="#663399"
+                android:maxLength="20"/>
 
-            </EditText>
             <TextView android:layout_marginTop="@dimen/padding_20dp"
                 style="@style/subHeaderTitle15dpNormal"
                 android:id="@+id/whichjob"
-                android:text="Which Jobs Your Preparing For?"
-                android:textColor="#663399">
+                android:text="Which Jobs Your Preparing For?">
 
             </TextView>
             <LinearLayout
@@ -149,7 +152,7 @@
                         android:layout_width="@dimen/padding_0dp"
                         android:layout_weight="0.3"
                         android:layout_height="wrap_content"
-                        android:text="GOvt Jobs"
+                        android:text="Govt Jobs"
                         android:padding="@dimen/padding_15dp"
                         android:onClick="Radiobuttonclick"
                         >
@@ -176,7 +179,8 @@
                 android:id="@+id/signin"
                 android:textAllCaps="true"
                 android:textColor="#FFFFFF"
-                android:background="#663399"
+                style="@style/customButtonStyle"
+                android:background="@drawable/box_border_blue_bg"
                 >
 
             </Button>

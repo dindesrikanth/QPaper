@@ -16,7 +16,7 @@ import com.example.questionpaper.Network.RetrofitClient;
 import com.example.questionpaper.R;
 import com.example.questionpaper.Response.mytests.LiveTest.LiveTestResponse;
 import com.example.questionpaper.Response.mytests.LiveTest.TestData;
-import com.example.questionpaper.Response.mytests.Requests.MyTests.UserTestRequest;
+import com.example.questionpaper.Requests.MyTests.UserTestRequest;
 import com.example.questionpaper.Screens.mytest.RootViewClickInterface;
 import com.google.gson.Gson;
 

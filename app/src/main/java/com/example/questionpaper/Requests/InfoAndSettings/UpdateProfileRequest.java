@@ -1,4 +1,4 @@
-package com.example.questionpaper.Response.mytests.Requests.InfoAndSettings;
+package com.example.questionpaper.Requests.InfoAndSettings;
 
 public class UpdateProfileRequest {
     String  address,city,country,dob,email,gender,  mobileNumber,  name,

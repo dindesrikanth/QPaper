@@ -30,7 +30,7 @@ import com.example.questionpaper.R;
 import com.example.questionpaper.Response.InfoAndSettings.InputRequest;
 import com.example.questionpaper.Response.InfoAndSettings.UpdateProfileResponse;
 import com.example.questionpaper.Response.InfoAndSettings.UserInfoScreenResponse;
-import com.example.questionpaper.Response.mytests.Requests.InfoAndSettings.UpdateProfileRequest;
+import com.example.questionpaper.Requests.InfoAndSettings.UpdateProfileRequest;
 
 import retrofit2.Call;
 import retrofit2.Callback;

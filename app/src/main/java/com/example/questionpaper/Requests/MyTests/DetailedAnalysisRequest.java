@@ -1,4 +1,4 @@
-package com.example.questionpaper.Response.mytests.Requests.MyTests;
+package com.example.questionpaper.Requests.MyTests;
 
 public class DetailedAnalysisRequest {
     String testId;

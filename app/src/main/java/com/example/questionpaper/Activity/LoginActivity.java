@@ -1,10 +1,12 @@
 package com.example.questionpaper.Activity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
+import android.text.TextUtils;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -12,104 +14,95 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.questionpaper.Common.CustomEditText;
 import com.example.questionpaper.Common.Utility;
-import com.example.questionpaper.Model.Loginmodel;
 import com.example.questionpaper.Network.RetrofitClient;
 import com.example.questionpaper.R;
+import com.example.questionpaper.Requests.Login.LoginApiRequest;
+import com.example.questionpaper.Response.Login.LoginApiResponse;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class LoginActivity extends AppCompatActivity {
-private CustomEditText edtUserName, edtPassword;
-    String KEY_SAVED_G = "SAVE_G";
-    String KEY_SAVED_USER_ID = "userId";
+public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
+    private CustomEditText edtUserName, edtPassword;
+    private Button btnLogIn;
+    private TextView tvForgotPassword,tvSignIn;
+
+
     SharedPreferences sp;
     TextView sucess;
     SharedPreferences sharedPreferences;
-    SharedPreferences.Editor editor;
+
+    ProgressDialog pDialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        edtUserName = findViewById(R.id.edtUserName);
-        edtPassword = findViewById(R.id.edtPassword);
-        sucess = findViewById(R.id.sucess);
+        pDialog =Utility.getProgressDialog(this);
+        init();
         sp = getSharedPreferences("login",MODE_PRIVATE);
-
         edtUserName.setValueToLayout("Email Id", "");
         edtPassword.setValueToLayout("Password","");
-
-      //  if(sp.getBoolean("logged",false)){
-          // Intent mainscreen = new Intent(Login_Activity.this,MainActivity.class);
-        //    startActivity(mainscreen);
-      //  }
     }
-    public  void signin(View v){
+    private void init(){
+        edtUserName = findViewById(R.id.edtUserName);
+        edtPassword = findViewById(R.id.edtPassword);
+
+        btnLogIn = findViewById(R.id.btnLogIn);
+        tvForgotPassword = findViewById(R.id.tvForgotPassword);
+        tvSignIn = findViewById(R.id.tvSignIn);
+        sucess = findViewById(R.id.sucess);
+
+        btnLogIn.setOnClickListener(this);
+        tvForgotPassword.setOnClickListener(this);
+        tvSignIn.setOnClickListener(this);
+    }
+
+    public  void logInClicked(){
         String uname =edtUserName.getEditTextValue();
         String pw =edtPassword.getEditTextValue();
+        if(!TextUtils.isEmpty(uname) && !TextUtils.isEmpty(pw)){
+            loginApiCall(uname,pw);
+        }else{
+            Toast.makeText(getApplicationContext(),"Please enter details...",Toast.LENGTH_LONG).show();
+        }
+    }
 
-        final Loginmodel login = new Loginmodel(uname,pw);
-        Call<Loginmodel> call = RetrofitClient.getInstance().getApi().signinnewuser(login);
-        call.enqueue(new Callback<Loginmodel>() {
+    private void loginApiCall(String email, String password){
+        pDialog.show();
+        final LoginApiRequest userTestRequest = new LoginApiRequest(email, password);
+        Call<LoginApiResponse> call = RetrofitClient.getInstance().getApi().loginApiRequest(userTestRequest);
+        call.enqueue(new Callback<LoginApiResponse>() {
             @Override
-            public void onResponse(Call<Loginmodel> call, Response<Loginmodel> response) {
+            public void onResponse(Call<LoginApiResponse> call, Response<LoginApiResponse> response) {
                 try {
                     if (response.isSuccessful()) {
-                        Loginmodel resobj = response.body();
-                       // resobj.getUser_email_id()
-                       Toast toast = Toast.makeText(LoginActivity.this,resobj.getMessage(),Toast.LENGTH_LONG);
-                       //toast.setMargin(50,50);
-                       toast.show();
-                       /*if(resobj.getIs_govt_job().equals("Y")){
-                          //sp.edit().putString("is_govt_job","G");
-                           Savepreferences(KEY_SAVED_G,"G");
-                           String S = sharedPreferences.getString(KEY_SAVED_G, null);
-                           Log.d("key",S);
-                       }
-                        if(resobj.getIs_prof_job().equals("Y")){
-//sp.edit().putString("is_pro_job","P");
-                            Savepreferences(KEY_SAVED_G,"P");
-                        }
-                        if(resobj.getIs_both().equals("Y")){
-                            Savepreferences(KEY_SAVED_G,"B");
-                        }*/
-                       if(resobj.getMessage().equals("Login Successful")) {
-                           Long user_id_pref = resobj.getUser_id();
-                           if(resobj.getIs_govt_job().equals("Y")){
-                               resobj.setGovt_job("G");
-                               //Savepreferences(KEY_SAVED_G,"G");
-                           }
-                           if(resobj.getIs_prof_job().equals("Y")){
-                               resobj.setProf_job("P");
-                               //Savepreferences(KEY_SAVED_G,"P");
-                           }
-                           Savepreferenceslong(KEY_SAVED_USER_ID,user_id_pref);
-
-                           saveUserDetailsToSPF();
-
-                            sucess.append("Thanks for your regstration!"+resobj.getMessage() + ","+resobj.getIs_govt_job()+","+resobj.getIs_prof_job()+","+resobj.getIs_both());
-                           Intent mainscreen = new Intent(LoginActivity.this, Load_cources.class);
-                           startActivity(mainscreen);
-                           //sp.edit().putBoolean("logged", true).apply();
-                       }
-                        return;
+                        showData(response.body());
+                    }else{
+                         Toast.makeText(getApplicationContext(),"Invalid details...",Toast.LENGTH_LONG).show();
                     }
                 }catch (Exception ex){
-                    Log.i("exdcf",ex.getMessage());
+                    ex.printStackTrace();
                 }
+                pDialog.dismiss();
             }
 
             @Override
-            public void onFailure(Call<Loginmodel> call, Throwable t) {
-                sucess.setText(t.getMessage());
+            public void onFailure(Call<LoginApiResponse> call, Throwable t) {
+                pDialog.dismiss();
+                return;
             }
         });
     }
-    public void sigInToMain(View v){
-        Intent Register = new Intent(LoginActivity.this,Register.class);
-        startActivity(Register);
+    private void showData(LoginApiResponse response) {
+        if (response != null && response.getStatus().equalsIgnoreCase("success")) {
+            saveUserDetailsToSPF(response.getUserId());
+            startActivity(new Intent(LoginActivity.this,ContainerActivity.class));
+        }else{
+            Toast.makeText(getApplicationContext(),"invalid details.."+response.getErrorMsg(),Toast.LENGTH_LONG).show();
+        }
     }
+
     private  void Savepreferences(String key, String value){
         SharedPreferences sharedPreferences = getSharedPreferences("MY_PREF",MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
@@ -123,11 +116,26 @@ private CustomEditText edtUserName, edtPassword;
         editor.commit();
     }
 
-    private void saveUserDetailsToSPF(){
+    private void saveUserDetailsToSPF(String userId){
         SharedPreferences spf= Utility.getSharedPreference(getApplicationContext());
-        SharedPreferences.Editor editor = sharedPreferences.edit();
+        SharedPreferences.Editor editor = spf.edit();
         editor.putString("loginId",edtUserName.getEditTextValue());
+        editor.putString("userId",userId);
         editor.commit();
     }
 
+    @Override
+    public void onClick(View view) {
+        int id = view.getId();
+        if(id == R.id.btnLogIn){
+           logInClicked();
+        }
+        else if(id == R.id.tvForgotPassword){
+
+        }
+        else if(id == R.id.tvSignIn){
+            Intent Register = new Intent(LoginActivity.this,Register.class);
+            startActivity(Register);
+        }
+    }
 }
