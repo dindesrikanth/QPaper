@@ -2,6 +2,7 @@ package com.example.questionpaper.Activity;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -193,6 +194,12 @@ public class Register extends AppCompatActivity {
     private void showData(LoginApiResponse response) {
         if (response != null && response.getStatus().equalsIgnoreCase("success")) {
             Toast.makeText(getApplicationContext(), "Registered Successfully ..", Toast.LENGTH_LONG).show();
+
+            SharedPreferences spf= Utility.getSharedPreference(getApplicationContext());
+            SharedPreferences.Editor editor = spf.edit();
+            editor.putString("loginId",edtEmail.getText().toString().trim());
+            editor.commit();
+
             startActivity(new Intent(Register.this, LoginActivity.class));
         } else {
             Toast.makeText(getApplicationContext(), "invalid details.." + response.getErrorMsg(), Toast.LENGTH_LONG).show();

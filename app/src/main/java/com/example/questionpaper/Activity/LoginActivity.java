@@ -28,7 +28,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private Button btnLogIn;
     private TextView tvForgotPassword,tvSignIn;
 
-
     SharedPreferences sp;
     TextView sucess;
     SharedPreferences sharedPreferences;
@@ -43,6 +42,13 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         sp = getSharedPreferences("login",MODE_PRIVATE);
         edtUserName.setValueToLayout("Email Id", "");
         edtPassword.setValueToLayout("Password","");
+
+        /// From registration flow
+        Bundle b = getIntent().getExtras();
+        if(b!=null){
+           String loginId = b.getString("loginId");
+           edtUserName.setEditTextValue(loginId);
+        }
     }
     private void init(){
         edtUserName = findViewById(R.id.edtUserName);

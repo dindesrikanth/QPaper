@@ -16,6 +16,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.example.questionpaper.R;
+import com.example.questionpaper.Screens.Courses.CoursesListScreenFragment;
 import com.example.questionpaper.Screens.InfoAndSettings.ChangePasswordFragment;
 import com.example.questionpaper.Screens.InfoAndSettings.UserInfoScreenFragment;
 import com.example.questionpaper.Screens.mytest.DetailedAnalysis.DetailedAnalysisFragment;
@@ -46,7 +47,7 @@ public class ContainerActivity extends AppCompatActivity {
         setNavigationDrawerLayout();
 
         fManager= getSupportFragmentManager();
-        displayFragment(0);
+        displayFragment(6);
     }
     public void displayFragment(int position){
         switch (position){
@@ -84,6 +85,12 @@ public class ContainerActivity extends AppCompatActivity {
             case 5:
                 tr=fManager.beginTransaction();
                 tr.replace(R.id.containerLayout,new ChangePasswordFragment());
+                tr.addToBackStack(null);
+                tr.commit();
+                break;
+            case 6:
+                tr=fManager.beginTransaction();
+                tr.replace(R.id.containerLayout,new CoursesListScreenFragment());
                 tr.addToBackStack(null);
                 tr.commit();
                 break;

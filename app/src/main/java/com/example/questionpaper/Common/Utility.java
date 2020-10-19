@@ -127,4 +127,11 @@ public class Utility {
         return sharedPreferences;
     }
 
+    public static String getUserIdFromSharedPref(Context context){
+        SharedPreferences spf = context.getSharedPreferences("SPF_UserDetails",Context.MODE_PRIVATE);
+        String userId= spf.getString("userId","");
+        return userId;
+    }
+
+
 }
