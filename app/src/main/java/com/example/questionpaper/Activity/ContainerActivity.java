@@ -47,7 +47,7 @@ public class ContainerActivity extends AppCompatActivity {
         setNavigationDrawerLayout();
 
         fManager= getSupportFragmentManager();
-        displayFragment(6);
+        displayFragment(4);
     }
     public void displayFragment(int position){
         switch (position){
@@ -158,12 +158,11 @@ public class ContainerActivity extends AppCompatActivity {
                 //fragmentClass = ThirdFragment.class;
                 break;
 
-
             case R.id.nav_balance:
                 //fragmentClass = SecondFragment.class;
                 break;
             case R.id.nav_cources:
-                //fragmentClass = ThirdFragment.class;
+                fragmentClass = CoursesListScreenFragment.class;
                 break;
             case R.id.nav_toppers:
                 //fragmentClass = SecondFragment.class;

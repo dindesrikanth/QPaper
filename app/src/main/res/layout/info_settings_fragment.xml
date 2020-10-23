@@ -84,13 +84,52 @@
                 android:layout_marginTop="@dimen/padding_5dp"
                 android:background="@drawable/edittext_border"/>
 
-        <com.example.questionpaper.Common.CustomEditText
+       <!-- <com.example.questionpaper.Common.CustomEditText
             android:id="@+id/edtDob"
             style="@style/subHeaderTitle15dpNormal"
             android:layout_width="match_parent"
-            android:layout_marginTop="@dimen/padding_20dp"/>
+            android:layout_marginTop="@dimen/padding_20dp"/>-->
 
-        <TextView
+
+
+            <TextView
+                android:layout_marginTop="@dimen/padding_20dp"
+                style="@style/subHeaderTitle15dpNormal"
+                android:text= "DOB"
+                android:background="@color/bg_grey"
+                />
+            <LinearLayout android:id="@+id/lnrDob"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:background="@drawable/edittext_border"
+                android:minHeight="@dimen/minimum_edittext_height"
+                android:layout_marginTop="@dimen/padding_10dp">
+                <EditText
+                    android:id="@+id/edtDob"
+                    style="@style/subHeaderTitle15dpNormal"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@null"
+                    android:paddingStart="@dimen/padding_10dp"
+                    android:paddingEnd="@dimen/padding_10dp"
+                    android:minHeight="@dimen/minimum_edittext_height"
+                    android:singleLine="true"
+                    android:hint="DD/MM/YYYY"
+                    android:inputType="number"
+                    android:digits="0123456789-"
+                    android:maxLength="10"/>
+            </LinearLayout>
+            <TextView
+                android:id="@+id/tvDobError"
+                style="@style/subHeaderTitle15dpNormal"
+                android:text="Enter Dob"
+                android:background="@color/bg_grey"
+                android:textColor="@color/red"
+                android:visibility="gone"
+                />
+
+            <TextView
             android:layout_marginTop="@dimen/padding_20dp"
             style="@style/subHeaderTitle15dpNormal"
             android:text= "Mobile No"

@@ -2,7 +2,7 @@ package com.example.questionpaper.Requests.InfoAndSettings;
 
 public class UpdateProfileRequest {
     String  address,city,country,dob,email,gender,  mobileNumber,  name,
-            password,  pincode,  preferedExams,  receiveNotifications, state,  userId;
+            password,  pincode,  preferedExams,  receiveNotifications, state, acct_status, userId;
 
     public UpdateProfileRequest(String address, String city,
                                 String country, String dob,
@@ -10,7 +10,7 @@ public class UpdateProfileRequest {
                                 String mobileNumber, String name,
                                 String password, String pincode,
                                 String preferedExams, String receiveNotifications,
-                                String state, String userId) {
+                                String state,String acct_status,  String userId) {
         this.address = address;
         this.city = city;
         this.country = country;
@@ -24,6 +24,7 @@ public class UpdateProfileRequest {
         this.preferedExams = preferedExams;
         this.receiveNotifications = receiveNotifications;
         this.state = state;
+        this.acct_status = acct_status;
         this.userId = userId;
     }
 }

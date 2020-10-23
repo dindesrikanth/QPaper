@@ -1,5 +1,6 @@
 package com.example.questionpaper.Screens.InfoAndSettings;
 
+import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
 import android.graphics.Paint;
 import android.os.Bundle;
@@ -10,8 +11,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -27,26 +30,27 @@ import com.example.questionpaper.Common.CustomEditText;
 import com.example.questionpaper.Common.Utility;
 import com.example.questionpaper.Network.RetrofitClient;
 import com.example.questionpaper.R;
-import com.example.questionpaper.Response.InfoAndSettings.InputRequest;
+import com.example.questionpaper.Requests.InfoAndSettings.UpdateProfileRequest;
 import com.example.questionpaper.Response.InfoAndSettings.UpdateProfileResponse;
 import com.example.questionpaper.Response.InfoAndSettings.UserInfoScreenResponse;
-import com.example.questionpaper.Requests.InfoAndSettings.UpdateProfileRequest;
+
+import java.util.Calendar;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 public class UserInfoScreenFragment extends Fragment implements View.OnClickListener {
-    private CustomEditText edtName,edtEmail,edtDob,edtAddress,edtCity,edtPinCode,edtCountry,edtPreferredExams;
-    private EditText edtPassword,edtMobileNo;
-    private TextView tvMobileError;
-
+    private CustomEditText edtName,edtEmail,edtAddress,edtCity,edtPinCode,edtCountry,edtPreferredExams;
+    private EditText edtPassword,edtMobileNo,edtDob;
+    private TextView tvMobileError,tvDobError;
     private ImageView imgEditPassword,imgMobileNo;
     private ToggleButton toggleNotification,toggleSuspend;
     private Spinner spnState,spnGender;
     private TextView tvLogout,tvUpdateProfile;
     private ContainerActivity activity;
     private ProgressDialog pDialog;
+    DatePickerDialog picker;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -96,6 +100,7 @@ public class UserInfoScreenFragment extends Fragment implements View.OnClickList
         imgEditPassword = v.findViewById(R.id.imgEditPassword);
 
         edtDob=v.findViewById(R.id.edtDob);
+        tvDobError= v.findViewById(R.id.tvDobError);
         edtMobileNo=v.findViewById(R.id.edtMobileNo);
         tvMobileError = v.findViewById(R.id.tvMobileError);
         imgMobileNo= v.findViewById(R.id.imgMobileNo);
@@ -119,24 +124,16 @@ public class UserInfoScreenFragment extends Fragment implements View.OnClickList
     private void setLength(){
         edtName.setMaxLength(30);
         edtEmail.setMaxLength(30);
-        edtDob.setMaxLength(10);
         edtAddress.setMaxLength(60);
         edtCity.setMaxLength(30);
         edtPreferredExams.setMaxLength(100);
 
         edtPinCode.setInputTypeAndLength("number",6);
-
-
-        //edtPinCode.setMaxLength(6);
-
         edtCountry.setMaxLength(30);
     }
     private void setData(){
         edtName.setValueToLayout("Name", "");
         edtEmail.setValueToLayout("Email", "");
-
-        edtDob.setValueToLayout("DOB", "");
-
         edtAddress.setValueToLayout("Address","");
         edtCity.setValueToLayout("City","");
         edtPinCode.setValueToLayout("Pin code","");
@@ -149,6 +146,8 @@ public class UserInfoScreenFragment extends Fragment implements View.OnClickList
 
         setStates();
     }
+
+
     private void setStates(){
         CustomAdapter customAdapter=new CustomAdapter(getContext(), Utility.listOfStates);
         spnState.setAdapter(customAdapter);
@@ -195,7 +194,6 @@ public class UserInfoScreenFragment extends Fragment implements View.OnClickList
 
     private void getUserInfoData(String userId){
         pDialog.show();
-        final InputRequest userTestRequest = new InputRequest(userId);
         Call<UserInfoScreenResponse> call = RetrofitClient.getInstance().getApi().userInfoAndSettingsAPI();
         call.enqueue(new Callback<UserInfoScreenResponse>() {
             @Override
@@ -227,8 +225,10 @@ public class UserInfoScreenFragment extends Fragment implements View.OnClickList
             edtName.setValueToLayout("Name", response.getName());
             edtEmail.setValueToLayout("Email", response.getUserEmailId());
             edtPassword.setText(response.getPassword());
+            edtMobileNo.setText(response.getMobileNumber());
 
-            edtDob.setValueToLayout("DOB", response.getDob());
+            edtPreferredExams.setValueToLayout("Preferred Exams", response.getPreferedExams());
+            edtDob.setText(response.getDob());
 
             edtAddress.setValueToLayout("Address",response.getAddress());
             edtCity.setValueToLayout("City",response.getCity());
@@ -264,8 +264,9 @@ public class UserInfoScreenFragment extends Fragment implements View.OnClickList
             edtPassword.set("Enter Password");
             return false;
         }*/
-        if(TextUtils.isEmpty(edtDob.getEditTextValue())){
-            edtDob.setEditTextErrorLabel("Enter DOB");
+        if(TextUtils.isEmpty(edtDob.getText())){
+            tvDobError.setVisibility(View.VISIBLE);
+            tvDobError.setText("Enter DOB");
             return false;
         }
         if(TextUtils.isEmpty(edtMobileNo.getText())){
@@ -294,22 +295,41 @@ public class UserInfoScreenFragment extends Fragment implements View.OnClickList
             return false;
         }*/
         if(TextUtils.isEmpty(edtCountry.getEditTextValue())){
-            edtCountry.setEditTextErrorLabel("Enter DOB");
+            edtCountry.setEditTextErrorLabel("Enter Country");
             return false;
         }
         return true;
     }
-
-
-
     private void updateUserProfile(){
         pDialog.show();
-        final UpdateProfileRequest updateProfileRequest = new UpdateProfileRequest(edtAddress.getEditTextValue(),
-                edtCity.getEditTextValue(),edtCountry.getEditTextValue(),edtDob.getEditTextValue(),
-                edtEmail.getEditTextValue(),spnGender.getSelectedItem().toString(),edtMobileNo.getText().toString(),
-                edtName.getEditTextValue(),edtPassword.getText().toString(),edtPinCode.getEditTextValue(),
-                edtPreferredExams.getEditTextValue(),toggleNotification.isChecked()+"",
-                spnState.getSelectedItem().toString(),"3"
+
+        String acct_status = "";
+        if(toggleSuspend.isChecked()){
+            acct_status = "Y";
+        }else{
+            acct_status = "N";
+        }
+
+        String receive_notification = "";
+        if(toggleNotification.isChecked()){
+            receive_notification = "Y";
+        }else{
+            receive_notification = "N";
+        }
+
+        final UpdateProfileRequest updateProfileRequest = new UpdateProfileRequest(
+                edtAddress.getEditTextValue(),
+                edtCity.getEditTextValue(),
+                edtCountry.getEditTextValue(),
+                edtDob.getText().toString(),
+                edtEmail.getEditTextValue(),
+                spnGender.getSelectedItem().toString(),
+                edtMobileNo.getText().toString(),
+                edtName.getEditTextValue(),
+                edtPassword.getText().toString(),
+                edtPinCode.getEditTextValue(),
+                edtPreferredExams.getEditTextValue(),receive_notification,
+                spnState.getSelectedItem().toString(),acct_status,"3"
                 );
         Call<UpdateProfileResponse> call = RetrofitClient.getInstance().getApi().updateUserProfileAPI(updateProfileRequest);
         call.enqueue(new Callback<UpdateProfileResponse>() {

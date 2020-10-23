@@ -42,7 +42,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         sp = getSharedPreferences("login",MODE_PRIVATE);
         edtUserName.setValueToLayout("Email Id", "");
         edtPassword.setValueToLayout("Password","");
-
+        //edtPassword.setInpu
         /// From registration flow
         Bundle b = getIntent().getExtras();
         if(b!=null){
