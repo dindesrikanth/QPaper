@@ -158,7 +158,7 @@ public interface Api {
     Call<UserInfoScreenResponse> userInfoAndSettingsAPI(
             @Body InputRequest userInfoRequest);*/
 
-    @GET("uta/user/user-info/3")
+    @GET("uta/user/user-info/4")
     Call<UserInfoScreenResponse> userInfoAndSettingsAPI();
 
 
@@ -167,7 +167,7 @@ public interface Api {
             "Accept: application/json",
             "Content-Type: application/json"
     })
-    @POST("uta/user/update-user")
+    @PUT("uta/user/update-user")
     Call<UpdateProfileResponse> updateUserProfileAPI(
             @Body UpdateProfileRequest updateProfileRequest);
 
@@ -179,7 +179,7 @@ public interface Api {
             "Accept: application/json",
             "content-type: application/json"
     })
-    @PUT("course/user-course-pref")
+    @POST("course/user-course-pref")
     Call<CommonResponse> coursesSubmitAPI(
             @Body CoursesListSubmitRequest submitRequest);
 /*

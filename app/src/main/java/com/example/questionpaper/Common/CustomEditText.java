@@ -96,6 +96,15 @@ public class CustomEditText extends LinearLayout {
         }
     }
 
+    public void setEnable(boolean isEnable){
+        if(isEnable){
+            customEditText.setEnabled(true);
+        }else{
+            customEditText.setEnabled(false);
+        }
+    }
+
+
     private void setDataOnUi(){
         customEditText.setText(textViewValue);
         editTextLabel.setText(editTextHint);

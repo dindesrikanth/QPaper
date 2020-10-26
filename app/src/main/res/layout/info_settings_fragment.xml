@@ -115,7 +115,7 @@
                     android:paddingEnd="@dimen/padding_10dp"
                     android:minHeight="@dimen/minimum_edittext_height"
                     android:singleLine="true"
-                    android:hint="DD/MM/YYYY"
+                    android:hint="YYYY-MM-DD"
                     android:inputType="number"
                     android:digits="0123456789-"
                     android:maxLength="10"/>

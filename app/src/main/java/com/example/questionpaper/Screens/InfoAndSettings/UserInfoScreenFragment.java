@@ -11,10 +11,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -34,8 +32,6 @@ import com.example.questionpaper.Requests.InfoAndSettings.UpdateProfileRequest;
 import com.example.questionpaper.Response.InfoAndSettings.UpdateProfileResponse;
 import com.example.questionpaper.Response.InfoAndSettings.UserInfoScreenResponse;
 
-import java.util.Calendar;
-
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -51,19 +47,30 @@ public class UserInfoScreenFragment extends Fragment implements View.OnClickList
     private ContainerActivity activity;
     private ProgressDialog pDialog;
     DatePickerDialog picker;
+    private String selectedGender,selectedState;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v=inflater.inflate(R.layout.info_settings_fragment, container, false);
+
+        return v;
+    }
+
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
         this.activity=(ContainerActivity)getActivity();
         pDialog=Utility.getProgressDialog(getActivity());
-        inItView(v);
+        inItView(view);
         setLength();
         setClickEnable();
         setData();
         setTextChange();
-        getUserInfoData("3");
-        return v;
+        getUserInfoData("4");
+
     }
 
     private void setTextChange() {
@@ -120,6 +127,10 @@ public class UserInfoScreenFragment extends Fragment implements View.OnClickList
         tvLogout.setPaintFlags(tvLogout.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
 
         tvUpdateProfile = v.findViewById(R.id.tvUpdateProfile);
+        edtEmail.setEnable(false);
+        edtMobileNo.setEnabled(false);
+        edtPreferredExams.setEnable(false);
+
     }
     private void setLength(){
         edtName.setMaxLength(30);
@@ -144,6 +155,19 @@ public class UserInfoScreenFragment extends Fragment implements View.OnClickList
         CustomAdapter customAdapter=new CustomAdapter(getContext(), Utility.listOfGender);
         spnGender.setAdapter(customAdapter);
 
+        spnGender.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
+                selectedGender = Utility.listOfGender[position]+"";
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+                // nothing
+            }
+        });
+
+
         setStates();
     }
 
@@ -155,7 +179,7 @@ public class UserInfoScreenFragment extends Fragment implements View.OnClickList
         spnState.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
-               // getCompletedTestData(Utility.listOfMonths[position]+"");
+               selectedState = Utility.listOfStates[position]+"";
             }
 
             @Override
@@ -171,11 +195,11 @@ public class UserInfoScreenFragment extends Fragment implements View.OnClickList
         int id=view.getId();
         switch (id){
             case R.id.tvUpdateProfile:
-                if(validate()){
+               /* if(validate()){*/
                     updateUserProfile();
-                }else{
+              /*  }else{
                     Toast.makeText(getActivity(),"not valid...",Toast.LENGTH_LONG).show();
-                }
+                }*/
                 break;
             case R.id.imgEditPassword:
                 activity.displayFragment(5);
@@ -305,9 +329,9 @@ public class UserInfoScreenFragment extends Fragment implements View.OnClickList
 
         String acct_status = "";
         if(toggleSuspend.isChecked()){
-            acct_status = "Y";
+            acct_status = "I";
         }else{
-            acct_status = "N";
+            acct_status = "A";
         }
 
         String receive_notification = "";
@@ -317,20 +341,28 @@ public class UserInfoScreenFragment extends Fragment implements View.OnClickList
             receive_notification = "N";
         }
 
-        final UpdateProfileRequest updateProfileRequest = new UpdateProfileRequest(
-                edtAddress.getEditTextValue(),
-                edtCity.getEditTextValue(),
-                edtCountry.getEditTextValue(),
-                edtDob.getText().toString(),
-                edtEmail.getEditTextValue(),
-                spnGender.getSelectedItem().toString(),
-                edtMobileNo.getText().toString(),
-                edtName.getEditTextValue(),
-                edtPassword.getText().toString(),
-                edtPinCode.getEditTextValue(),
-                edtPreferredExams.getEditTextValue(),receive_notification,
-                spnState.getSelectedItem().toString(),acct_status,"3"
-                );
+        final UpdateProfileRequest updateProfileRequest = new UpdateProfileRequest();
+        updateProfileRequest.setName(edtName.getEditTextValue());
+        updateProfileRequest.setCountry(edtCountry.getEditTextValue());
+        updateProfileRequest.setEmail(edtEmail.getEditTextValue());
+        updateProfileRequest.setDob(edtDob.getText().toString());
+        updateProfileRequest.setMobileNumber(edtMobileNo.getText().toString());
+
+        if(selectedGender.contains("Male")){
+            updateProfileRequest.setGender("M");
+        }else if(selectedGender.contains("Female")){
+            updateProfileRequest.setGender("F");
+        }
+        updateProfileRequest.setPassword(edtPassword.getText().toString());
+        updateProfileRequest.setAddress(edtAddress.getEditTextValue());
+        updateProfileRequest.setCity(edtCity.getEditTextValue());
+        updateProfileRequest.setPincode(edtPinCode.getEditTextValue());
+        updateProfileRequest.setState(selectedState);
+        updateProfileRequest.setPreferedExams(edtPreferredExams.getEditTextValue());
+        updateProfileRequest.setReceiveNotifications(receive_notification);
+        updateProfileRequest.setAccountStatus(acct_status);
+        updateProfileRequest.setUserId("4");
+
         Call<UpdateProfileResponse> call = RetrofitClient.getInstance().getApi().updateUserProfileAPI(updateProfileRequest);
         call.enqueue(new Callback<UpdateProfileResponse>() {
             @Override
