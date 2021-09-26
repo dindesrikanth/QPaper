@@ -17,8 +17,8 @@ import com.example.questionpaper.Activity.ContainerActivity;
 import com.example.questionpaper.Common.Utility;
 import com.example.questionpaper.Network.RetrofitClient;
 import com.example.questionpaper.R;
-import com.example.questionpaper.Response.mytests.DetailedAnalysis.DetailedAnalysisResponse;
 import com.example.questionpaper.Requests.MyTests.DetailedAnalysisRequest;
+import com.example.questionpaper.Response.mytests.DetailedAnalysis.DetailedAnalysisResponse;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -82,7 +82,7 @@ public class DetailedAnalysisFragment extends Fragment implements View.OnClickLi
         pDialog.show();
 
         String testId = "1";
-        String userId = "1";
+        String userId = Utility.getUserIdFromSharedPref(getContext());;
         final DetailedAnalysisRequest userTestRequest = new DetailedAnalysisRequest(testId, userId);
         Call<DetailedAnalysisResponse> call = RetrofitClient.getInstance().getApi().detailedAnalysisAPI(userTestRequest);
         call.enqueue(new Callback<DetailedAnalysisResponse>() {
@@ -142,10 +142,12 @@ public class DetailedAnalysisFragment extends Fragment implements View.OnClickLi
                 getActivity().getSupportFragmentManager().popBackStackImmediate();
                 break;
             case R.id.tvPurchase:
-                Toast.makeText(getContext(),"Purchase clicked ...",Toast.LENGTH_LONG).show();
+                //Toast.makeText(getContext(),"Purchase clicked ...",Toast.LENGTH_LONG).show();
+                Utility.showCommonMessage(getContext(),"Purchase clicked ...");
                 break;
             case R.id.tvView:
                 Toast.makeText(getContext(),"View clicked ...",Toast.LENGTH_LONG).show();
+                Utility.showCommonMessage(getContext(),"View clicked ...");
                 break;
             case R.id.tvLeaderBoardView:
                 activity.displayFragment(3);

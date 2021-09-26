@@ -97,10 +97,10 @@
             android:imeOptions="actionDone"
             android:onClick="sigInToMain"
             android:selectAllOnFocus="true"
-            android:text="@string/sign_in"
+            android:text="@string/sign_up"
             android:typeface="serif"
             android:textAlignment="center"
-            android:textColor="@android:color/holo_blue_dark"
+            android:textColor="@color/test_button_blue"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/login" />

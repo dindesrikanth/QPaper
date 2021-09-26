@@ -1,6 +1,7 @@
 package com.example.questionpaper.Screens.Courses;
 
 import android.app.ProgressDialog;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -8,12 +9,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.questionpaper.Activity.ContainerActivity;
+import com.example.questionpaper.Common.Constants;
 import com.example.questionpaper.Common.Utility;
 import com.example.questionpaper.Network.RetrofitClient;
 import com.example.questionpaper.R;
@@ -36,11 +38,14 @@ public class CoursesListScreenFragment extends Fragment implements CoursesListSc
     ProgressDialog pDialog;
     private boolean isCourseSelected= false;
     private List<CoursesDetails> coursesDetails;
+    ContainerActivity activity;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view  = inflater.inflate(R.layout.courses_list_fragment, container, false);
         pDialog= Utility.getProgressDialog(getContext());
+        this.activity=(ContainerActivity) getActivity();
         inItView(view);
         getCoursesListData();
         return view;
@@ -57,7 +62,8 @@ public class CoursesListScreenFragment extends Fragment implements CoursesListSc
 
     private void getCoursesListData(){
         pDialog.show();
-        Call<CoursesListScreenResponse> call = RetrofitClient.getInstance().getApi().coursesListAPI();
+        String userId = Utility.getUserIdFromSharedPref(getContext());
+        Call<CoursesListScreenResponse> call = RetrofitClient.getInstance().getApi().coursesListAPI(userId);
         call.enqueue(new Callback<CoursesListScreenResponse>() {
             @Override
             public void onResponse(Call<CoursesListScreenResponse> call, Response<CoursesListScreenResponse> response) {
@@ -104,12 +110,32 @@ public class CoursesListScreenFragment extends Fragment implements CoursesListSc
 
     @Override
     public void onCourseSelected(int position, List<CoursesDetails> coursesDetailsList) {
-        coursesDetailsList.get(position).setSelected(true);
+
+        if(coursesDetailsList.get(position).isSelected()){
+            coursesDetailsList.get(position).setSelected(false);
+        }else{
+            coursesDetailsList.get(position).setSelected(true);
+        }
+
         adapter.notifyDataSetChanged();
 
-        this.isCourseSelected = true;
-        tvSubmit.setBackgroundResource(R.drawable.box_border_blue_bg);
-        tvSubmit.setTextColor(Color.parseColor("#FFFFFF"));
+        isCourseSelected = false;
+        for (CoursesDetails cDetails: coursesDetailsList){
+            if(cDetails.isSelected()){
+                isCourseSelected = true;
+                break;
+            }
+        }
+
+        if(isCourseSelected){
+            tvSubmit.setBackgroundResource(R.drawable.box_border_blue_bg);
+            tvSubmit.setTextColor(Color.parseColor("#FFFFFF"));
+        }else{
+            tvSubmit.setBackgroundResource(R.drawable.box_border_grey_bg);
+            tvSubmit.setTextColor(Color.parseColor("#000000"));
+        }
+
+
         coursesDetails= new ArrayList<>();
         coursesDetails.clear();
         coursesDetails.addAll(coursesDetailsList);
@@ -126,7 +152,8 @@ public class CoursesListScreenFragment extends Fragment implements CoursesListSc
         }
         if(!TextUtils.isEmpty(id)){
             id= id.substring(0, id.length() - 1);
-            submitSelectedCoursesApi("2",id);
+            String userId = Utility.getUserIdFromSharedPref(getContext());
+            submitSelectedCoursesApi(userId,id);
         }
     }
     private void submitSelectedCoursesApi(String userId, String preferredCourses){
@@ -140,7 +167,8 @@ public class CoursesListScreenFragment extends Fragment implements CoursesListSc
                     if (response.isSuccessful()) {
                         showData(response.body());
                     }else{
-                        Toast.makeText(getActivity(),"Invalid response...",Toast.LENGTH_LONG).show();
+                        // Toast.makeText(getActivity(),"Invalid response...",Toast.LENGTH_LONG).show();
+                        Utility.showCommonMessage(getActivity(),"Invalid response...");
                     }
                 }catch (Exception ex){
                     ex.printStackTrace();
@@ -158,9 +186,15 @@ public class CoursesListScreenFragment extends Fragment implements CoursesListSc
 
     private void showData(CommonResponse response) {
         if(response !=null && response.getStatus().equalsIgnoreCase("success")) {
-            Toast.makeText(getActivity(),"Course(s) list submitted successfully ...",Toast.LENGTH_LONG).show();
+            // Toast.makeText(getActivity(),"Course(s) list submitted successfully ...",Toast.LENGTH_LONG).show();
+           /* SharedPreferences spf= Utility.getSharedPreference(getContext());
+            SharedPreferences.Editor edt =spf.edit();
+            edt.putBoolean(Constants.isCoursesLoaded_key,true);
+            edt.commit();*/
+            activity.displayFragment(8);
         }else{
-            Toast.makeText(getActivity(),"failed to submit course details...",Toast.LENGTH_LONG).show();
+           // Toast.makeText(getActivity(),"failed to submit course details...",Toast.LENGTH_LONG).show();
+            Utility.showCommonMessage(getActivity(),"failed to submit course details...");
         }
     }
 
@@ -170,7 +204,8 @@ public class CoursesListScreenFragment extends Fragment implements CoursesListSc
         if(id == R.id.tvSubmit && isCourseSelected){
             submitSelectedCourseList();
         }else{
-            Toast.makeText(getActivity(),"Please select courses you are preparing ...",Toast.LENGTH_LONG).show();
+           // Toast.makeText(getActivity(),"Please select courses you are preparing ...",Toast.LENGTH_LONG).show();
+            Utility.showCommonMessage(getActivity(),"Please select courses you are preparing ...");
         }
     }
 }

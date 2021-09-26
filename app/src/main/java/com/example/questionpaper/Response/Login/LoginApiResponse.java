@@ -18,6 +18,11 @@ public class LoginApiResponse {
     @Expose
     private String message;
 
+    @SerializedName("courseSelecetd")
+    @Expose
+    private boolean courseSelecetd;
+
+
     public String getStatus() {
         return status;
     }
@@ -27,8 +32,11 @@ public class LoginApiResponse {
     public String getErrorMsg() {
         return errorMsg;
     }
-
     public String getMessage() {
         return message;
+    }
+
+    public boolean getCourseSelecetd() {
+        return courseSelecetd;
     }
 }

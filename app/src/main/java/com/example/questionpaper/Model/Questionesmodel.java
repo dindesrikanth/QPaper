@@ -22,7 +22,7 @@ public class Questionesmodel implements Parcelable {
     public Questionesmodel(Long course_id, Long sub_id, Long test_id, Long ques_id, Long ques_local_id, String ques_detail, String opta, String optb, String optc, String optd, String opte, String answerId, boolean isMarked, boolean isSeen) {
         this.course_id = course_id;
         this.sub_id = sub_id;
-        this.test_id = test_id;
+        this.test_id = 2l;
         this.ques_id = ques_id;
         this.ques_local_id = ques_local_id;
         this.ques_detail = ques_detail;
@@ -186,7 +186,7 @@ public class Questionesmodel implements Parcelable {
     }
 
     public void setMarked(boolean marked) {
-        isMarked = marked;
+        this.isMarked = marked;
     }
 
     public boolean isSeen() {
@@ -194,7 +194,7 @@ public class Questionesmodel implements Parcelable {
     }
 
     public void setSeen(boolean seen) {
-        isSeen = seen;
+        this.isSeen = seen;
     }
 
     @Override

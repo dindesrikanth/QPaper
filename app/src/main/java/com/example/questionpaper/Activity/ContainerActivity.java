@@ -1,9 +1,11 @@
 package com.example.questionpaper.Activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -15,15 +17,18 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.example.questionpaper.Common.Utility;
 import com.example.questionpaper.R;
 import com.example.questionpaper.Screens.Courses.CoursesListScreenFragment;
 import com.example.questionpaper.Screens.InfoAndSettings.ChangePasswordFragment;
 import com.example.questionpaper.Screens.InfoAndSettings.UserInfoScreenFragment;
+import com.example.questionpaper.Screens.Payments.ShowBalanceFragment;
 import com.example.questionpaper.Screens.mytest.DetailedAnalysis.DetailedAnalysisFragment;
 import com.example.questionpaper.Screens.mytest.LeaderBoard.LeaderBoardFragment;
 import com.example.questionpaper.Screens.mytest.MyTestsLandingFragment;
 import com.example.questionpaper.Screens.mytest.SelectNoOfMonthsFragment;
 import com.example.questionpaper.Screens.mytest.UpComing.UpComingTestFragment;
+import com.example.questionpaper.Screens.mytest.review.ExamReviewScreenFragment;
 import com.google.android.material.navigation.NavigationView;
 
 public class ContainerActivity extends AppCompatActivity {
@@ -47,7 +52,15 @@ public class ContainerActivity extends AppCompatActivity {
         setNavigationDrawerLayout();
 
         fManager= getSupportFragmentManager();
-        displayFragment(4);
+
+       // boolean isLoaded = Utility.getIsCoursesScreenLoadedFromSharedPref(getApplicationContext());
+        boolean isLoaded = Utility.getIsCoursesScreenLoadedFromSharedPref(getApplicationContext());
+        if(isLoaded){
+            //displayFragment(0);
+            displayFragment(8);
+        }else{
+            displayFragment(6);
+        }
     }
     public void displayFragment(int position){
         switch (position){
@@ -91,6 +104,18 @@ public class ContainerActivity extends AppCompatActivity {
             case 6:
                 tr=fManager.beginTransaction();
                 tr.replace(R.id.containerLayout,new CoursesListScreenFragment());
+                tr.addToBackStack(null);
+                tr.commit();
+                break;
+            case 7:
+                tr=fManager.beginTransaction();
+                tr.replace(R.id.containerLayout,new TestDetailActivity());
+                tr.addToBackStack(null);
+                tr.commit();
+                break;
+            case 8:
+                tr=fManager.beginTransaction();
+                tr.replace(R.id.containerLayout,new DashboardScreenFragment());
                 tr.addToBackStack(null);
                 tr.commit();
                 break;
@@ -149,23 +174,27 @@ public class ContainerActivity extends AppCompatActivity {
         switch(menuItem.getItemId()) {
             case R.id.nav_performance:
                 //Toast.makeText(getApplicationContext(),"first clicked...",Toast.LENGTH_SHORT).show();
-                fragmentClass = MyTestsLandingFragment.class;
+                fragmentClass = DashboardScreenFragment.class;
+
+               // startActivity(new Intent(getApplicationContext(),DashboardActivity.class));
+
                 break;
             case R.id.nav_videos:
-                //fragmentClass = SecondFragment.class;
+                fragmentClass = ExamReviewScreenFragment.class;
                 break;
             case R.id.nav_materials:
                 //fragmentClass = ThirdFragment.class;
                 break;
 
             case R.id.nav_balance:
-                //fragmentClass = SecondFragment.class;
+                fragmentClass = ShowBalanceFragment.class;
+               //  startActivity(new Intent(getApplicationContext(),MyBalanceActivity.class));
                 break;
             case R.id.nav_cources:
                 fragmentClass = CoursesListScreenFragment.class;
                 break;
             case R.id.nav_toppers:
-                //fragmentClass = SecondFragment.class;
+               // fragmentClass = TestDetailActivity.class;
                 break;
             case R.id.nav_purchase_material:
                 //fragmentClass = ThirdFragment.class;
@@ -183,6 +212,10 @@ public class ContainerActivity extends AppCompatActivity {
                 break;
             case R.id.nav_miscellaneous:
                 //fragmentClass = ThirdFragment.class;
+                break;
+            case R.id.nav_exam:
+                //fragmentClass = ThirdFragment.class;
+                startActivity(new Intent(getApplicationContext(),TestActivity.class));
                 break;
             default:
                 fragmentClass = UpComingTestFragment.class;
@@ -206,13 +239,13 @@ public class ContainerActivity extends AppCompatActivity {
         mDrawer.closeDrawers();
     }
 
-  /*  @Override
+    @Override
     public void onBackPressed() {
         if(fManager.getBackStackEntryCount()>1){
             super.onBackPressed();
         }else{
-            Toast.makeText(getApplicationContext(),"no fragment in stack",Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(),"Exit the application",Toast.LENGTH_LONG).show();
         }
 
-    }*/
+    }
 }

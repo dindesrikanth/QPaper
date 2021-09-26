@@ -19,6 +19,9 @@
             android:title="Modify Cources" />
 
         <item
+            android:id="@+id/nav_exam"
+            android:title="Write Exam" />
+        <item
             android:id="@+id/nav_toppers"
             android:title="View Toppers" />
         <item
@@ -39,7 +42,6 @@
         <item
             android:id="@+id/nav_miscellaneous"
             android:title="Miscellaneous" />
-
 
     </group>
 </menu>

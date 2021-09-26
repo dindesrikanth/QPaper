@@ -8,10 +8,10 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.questionpaper.Common.Constants;
 import com.example.questionpaper.Common.CustomEditText;
 import com.example.questionpaper.Common.Utility;
 import com.example.questionpaper.Network.RetrofitClient;
@@ -40,8 +40,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         pDialog =Utility.getProgressDialog(this);
         init();
         sp = getSharedPreferences("login",MODE_PRIVATE);
-        edtUserName.setValueToLayout("Email Id", "");
-        edtPassword.setValueToLayout("Password","");
+        edtUserName.setValueToLayout("Email Id", "hari123@gmail.com");
+        edtPassword.setValueToLayout("Password","hari123");
+
         //edtPassword.setInpu
         /// From registration flow
         Bundle b = getIntent().getExtras();
@@ -58,19 +59,19 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         tvForgotPassword = findViewById(R.id.tvForgotPassword);
         tvSignIn = findViewById(R.id.tvSignIn);
         sucess = findViewById(R.id.sucess);
-
         btnLogIn.setOnClickListener(this);
         tvForgotPassword.setOnClickListener(this);
         tvSignIn.setOnClickListener(this);
     }
 
     public  void logInClicked(){
-        String uname =edtUserName.getEditTextValue();
-        String pw =edtPassword.getEditTextValue();
+        String uname =edtUserName.getEditTextValue().trim();
+        String pw =edtPassword.getEditTextValue().trim();
         if(!TextUtils.isEmpty(uname) && !TextUtils.isEmpty(pw)){
             loginApiCall(uname,pw);
         }else{
-            Toast.makeText(getApplicationContext(),"Please enter details...",Toast.LENGTH_LONG).show();
+           // Toast.makeText(getApplicationContext(),"Please enter details...",Toast.LENGTH_LONG).show();
+            Utility.showCommonMessage(getApplicationContext(),"Please enter details...");
         }
     }
 
@@ -85,7 +86,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     if (response.isSuccessful()) {
                         showData(response.body());
                     }else{
-                         Toast.makeText(getApplicationContext(),"Invalid details...",Toast.LENGTH_LONG).show();
+                        // Toast.makeText(getApplicationContext(),"Invalid details...",Toast.LENGTH_LONG).show();
+                        Utility.showCommonMessage(getApplicationContext(),"Invalid details...");
                     }
                 }catch (Exception ex){
                     ex.printStackTrace();
@@ -102,31 +104,21 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     }
     private void showData(LoginApiResponse response) {
         if (response != null && response.getStatus().equalsIgnoreCase("success")) {
-            saveUserDetailsToSPF(response.getUserId());
+            saveUserDetailsToSPF(response.getUserId(),response.getCourseSelecetd());
             startActivity(new Intent(LoginActivity.this,ContainerActivity.class));
         }else{
-            Toast.makeText(getApplicationContext(),"invalid details.."+response.getErrorMsg(),Toast.LENGTH_LONG).show();
+            //Toast.makeText(getApplicationContext(),"invalid details.."+response.getErrorMsg(),Toast.LENGTH_LONG).show();
+            Utility.showCommonMessage(getApplicationContext(),"invalid details.."+response.getErrorMsg());
         }
     }
 
-    private  void Savepreferences(String key, String value){
-        SharedPreferences sharedPreferences = getSharedPreferences("MY_PREF",MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString(key,value);
-        editor.commit();
-    }
-    private  void Savepreferenceslong(String key, Long value){
-        SharedPreferences sharedPreferences = getSharedPreferences("MY_PREF",MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putLong(key,value);
-        editor.commit();
-    }
-
-    private void saveUserDetailsToSPF(String userId){
+    private void saveUserDetailsToSPF(String userId, boolean courseSelecetd){
         SharedPreferences spf= Utility.getSharedPreference(getApplicationContext());
         SharedPreferences.Editor editor = spf.edit();
         editor.putString("loginId",edtUserName.getEditTextValue());
-        editor.putString("userId",userId);
+        editor.putBoolean(Constants.isCoursesLoaded_key,courseSelecetd);
+        editor.putString(Constants.userId_key,userId);
+        Constants.userId_value = userId;
         editor.commit();
     }
 

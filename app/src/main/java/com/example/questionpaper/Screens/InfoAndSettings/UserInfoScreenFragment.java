@@ -69,8 +69,7 @@ public class UserInfoScreenFragment extends Fragment implements View.OnClickList
         setClickEnable();
         setData();
         setTextChange();
-        getUserInfoData("4");
-
+        getUserInfoData();
     }
 
     private void setTextChange() {
@@ -216,9 +215,10 @@ public class UserInfoScreenFragment extends Fragment implements View.OnClickList
     }
 
 
-    private void getUserInfoData(String userId){
+    private void getUserInfoData(){
         pDialog.show();
-        Call<UserInfoScreenResponse> call = RetrofitClient.getInstance().getApi().userInfoAndSettingsAPI();
+        String userId = Utility.getUserIdFromSharedPref(getContext());
+        Call<UserInfoScreenResponse> call = RetrofitClient.getInstance().getApi().userInfoAndSettingsAPI(userId);
         call.enqueue(new Callback<UserInfoScreenResponse>() {
             @Override
             public void onResponse(Call<UserInfoScreenResponse> call, Response<UserInfoScreenResponse> response) {
@@ -227,7 +227,8 @@ public class UserInfoScreenFragment extends Fragment implements View.OnClickList
                        // Toast.makeText(getActivity(),"header"+response.headers(),Toast.LENGTH_LONG).show();
                         showData(response.body());
                     }else{
-                        Toast.makeText(getActivity(),"Failed to load API...",Toast.LENGTH_LONG).show();
+                       // Toast.makeText(getActivity(),"Failed to load API...",Toast.LENGTH_LONG).show();
+                        Utility.showCommonMessage(getActivity(),"Failed to load API...");
                     }
                 }catch (Exception ex){
                     ex.printStackTrace();
@@ -237,7 +238,8 @@ public class UserInfoScreenFragment extends Fragment implements View.OnClickList
 
             @Override
             public void onFailure(Call<UserInfoScreenResponse> call, Throwable t) {
-                Toast.makeText(getActivity(),"Response failed ...",Toast.LENGTH_LONG).show();
+               // Toast.makeText(getActivity(),"Response failed ...",Toast.LENGTH_LONG).show();
+                Utility.showCommonMessage(getContext(),"Response failed ...");
                 pDialog.dismiss();
                 return;
             }
@@ -361,7 +363,8 @@ public class UserInfoScreenFragment extends Fragment implements View.OnClickList
         updateProfileRequest.setPreferedExams(edtPreferredExams.getEditTextValue());
         updateProfileRequest.setReceiveNotifications(receive_notification);
         updateProfileRequest.setAccountStatus(acct_status);
-        updateProfileRequest.setUserId("4");
+        String userId = Utility.getUserIdFromSharedPref(getContext());
+        updateProfileRequest.setUserId(userId);
 
         Call<UpdateProfileResponse> call = RetrofitClient.getInstance().getApi().updateUserProfileAPI(updateProfileRequest);
         call.enqueue(new Callback<UpdateProfileResponse>() {
@@ -369,10 +372,12 @@ public class UserInfoScreenFragment extends Fragment implements View.OnClickList
             public void onResponse(Call<UpdateProfileResponse> call, Response<UpdateProfileResponse> response) {
                 try {
                     if (response.isSuccessful()) {
-                         Toast.makeText(getActivity(),"Submitted successfully",Toast.LENGTH_LONG).show();
+                       //  Toast.makeText(getActivity(),"Submitted successfully",Toast.LENGTH_LONG).show();
+                        Utility.showCommonMessage(getActivity(),"Submitted successfully");
                        // showData(response.body());
                     }else{
-                        Toast.makeText(getActivity(),"Failed to load API...",Toast.LENGTH_LONG).show();
+                        //Toast.makeText(getActivity(),"Failed to load API...",Toast.LENGTH_LONG).show();
+                        Utility.showCommonMessage(getActivity(),"Failed to load API...");
                     }
                 }catch (Exception ex){
                     ex.printStackTrace();
@@ -382,7 +387,8 @@ public class UserInfoScreenFragment extends Fragment implements View.OnClickList
 
             @Override
             public void onFailure(Call<UpdateProfileResponse> call, Throwable t) {
-                Toast.makeText(getActivity(),"Response failed ...",Toast.LENGTH_LONG).show();
+                //Toast.makeText(getActivity(),"Response failed ...",Toast.LENGTH_LONG).show();
+                Utility.showCommonMessage(getActivity(),"Response failed ...");
                 pDialog.dismiss();
                 return;
             }

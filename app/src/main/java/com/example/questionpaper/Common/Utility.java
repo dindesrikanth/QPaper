@@ -8,6 +8,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
+import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 
@@ -17,7 +18,14 @@ public class Utility {
     public static Utility instance = null;
     public static int my_test_months_data=1;
     public static String[] listOfMonths={"1","3","6","9","12"};
+
     public static String[] listOfGender={"Male","Female"};
+    public static String[] listOfIsses={"Question","Answer","Explanation"};
+    public static String[] listOfObjections={"Question is incorrect","Question is incomplete",
+                                         "Question is irrelevant","Answer is incorrect",
+                                         "Answer not options","Explanation is incorrect"};
+
+
     public static String[] listOfStates={"Andhra Pradesh","Arunachal Pradesh","Assam","Bihar","Chhattisgarh",
     "Goa","Gujarat","Haryana","Himachal Pradesh","Jharkhand","Karnataka","Kerala","Madhya Pradesh","Maharastra","Manipur","Meghalaya","Mizoram","Nagaland",
             "Odisha","Punjab","Rajasthan","Sikkim","Tamil Nadu","Telangana","Trippura","Uttar Pradesh","Uttarakhand","West Bengal","Andaman and Nicobar Islands",
@@ -123,15 +131,22 @@ public class Utility {
     }
 
     public static SharedPreferences getSharedPreference(Context context){
-        SharedPreferences sharedPreferences = context.getSharedPreferences("SPF_UserDetails",Context.MODE_PRIVATE);
+        SharedPreferences sharedPreferences = context.getSharedPreferences(Constants.SPF_UserDetails,Context.MODE_PRIVATE);
         return sharedPreferences;
     }
 
     public static String getUserIdFromSharedPref(Context context){
-        SharedPreferences spf = context.getSharedPreferences("SPF_UserDetails",Context.MODE_PRIVATE);
-        String userId= spf.getString("userId","");
+        SharedPreferences spf = context.getSharedPreferences(Constants.SPF_UserDetails,Context.MODE_PRIVATE);
+        String userId= spf.getString(Constants.userId_key,"");
         return userId;
     }
+    public static boolean getIsCoursesScreenLoadedFromSharedPref(Context context){
+        SharedPreferences spf = context.getSharedPreferences(Constants.SPF_UserDetails,Context.MODE_PRIVATE);
+        return spf.getBoolean(Constants.isCoursesLoaded_key,false);
+    }
 
+    public static void showCommonMessage(Context context,String message){
+        Toast.makeText(context,message,Toast.LENGTH_LONG).show();
+    }
 
 }

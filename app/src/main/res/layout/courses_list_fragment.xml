@@ -25,6 +25,7 @@
     <TextView
         android:id="@+id/tvSubmit"
         style="@style/buttonDisableStyle"
+        android:background="@drawable/box_border_grey_bg"
         android:text="Submit"
         android:layout_marginTop="@dimen/padding_10dp"
         android:layout_gravity="center"/>

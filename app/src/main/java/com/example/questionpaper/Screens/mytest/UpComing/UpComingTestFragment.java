@@ -59,7 +59,7 @@ public class UpComingTestFragment extends Fragment implements UpComingTestAdapte
         pDialog.show();
 
         String typeOfTests = "E";
-        String userId = "1";
+        String userId = Utility.getUserIdFromSharedPref(getContext());
         final UserTestRequest userTestRequest = new UserTestRequest(typeOfTests, userId);
         Call<UpcomingTestsResponse> call = RetrofitClient.getInstance().getApi().upcomingTestsData(userTestRequest);
         call.enqueue(new Callback<UpcomingTestsResponse>() {

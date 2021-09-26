@@ -51,38 +51,16 @@ public class PaymentGatewayActivity extends AppCompatActivity implements Payment
         progress_bar = findViewById(R.id.progress_bar);
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-    }
-
     public void startPayment() {
         /**
          * Instantiate Checkout
          */
         Checkout checkout = new Checkout();
         checkout.setKeyID(testKey);
-
         /**
          * Set your logo here
          */
         checkout.setImage(R.drawable.icons_checked);
-
         /**
          * Reference to current activity
          */

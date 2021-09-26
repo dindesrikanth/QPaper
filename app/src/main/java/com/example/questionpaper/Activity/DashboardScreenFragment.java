@@ -1,78 +1,50 @@
 package com.example.questionpaper.Activity;
 
-import android.content.ComponentName;
-import android.content.Context;
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.content.ServiceConnection;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.os.CountDownTimer;
-import android.os.Handler;
-import android.os.IBinder;
 import android.text.TextUtils;
-import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.Button;
-import android.widget.ImageView;
+import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.PagerSnapHelper;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.recyclerview.widget.SnapHelper;
 
-import com.example.questionpaper.Activity.TestSubmissionDialog.MyDialogListener;
 import com.example.questionpaper.Adapter.CourseAdapter;
 import com.example.questionpaper.Adapter.CourseItemAdapter;
-import com.example.questionpaper.Adapter.TestAdapter;
-import com.example.questionpaper.Fragments.StatusView;
-import com.example.questionpaper.Model.AnswerSubmitModel;
+import com.example.questionpaper.Common.Utility;
 import com.example.questionpaper.Model.AppCourseModel;
-import com.example.questionpaper.Model.Course;
-import com.example.questionpaper.Model.Dashboardmodel;
-import com.example.questionpaper.Model.Questionesmodel;
+import com.example.questionpaper.Model.DashboardModelNew;
 import com.example.questionpaper.Network.RetrofitClient;
 import com.example.questionpaper.R;
-import com.example.questionpaper.Service.StickyService;
-import com.example.questionpaper.ServiceCallbacks;
-import com.google.gson.Gson;
-import com.google.gson.internal.LinkedTreeMap;
+import com.google.android.gms.common.util.CollectionUtils;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.IOException;
-import java.io.InputStream;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import java.util.TimeZone;
-import java.util.concurrent.TimeUnit;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class DashboardActivity extends AppCompatActivity implements  View.OnClickListener, CourseAdapter.OnItemClickListener, CourseItemAdapter.OnItemClickListener{
-
+public class DashboardScreenFragment extends Fragment implements  View.OnClickListener, CourseAdapter.OnItemClickListener, CourseItemAdapter.OnItemClickListener{
     private LinearLayoutManager layoutManager;
     private TextView btn_notifications, btn_home, btn_more, btn_test;
-    private ImageView iv_user, iv_refresh;
+   // private ImageView iv_user, iv_refresh;
     private RelativeLayout dashboard_main_layout, home_layout, test_layout, notification_layout, more_layout;
     private ProgressBar dashboard_loader;
     private RecyclerView rv_sub_header, rv_items;
@@ -81,35 +53,27 @@ public class DashboardActivity extends AppCompatActivity implements  View.OnClic
     private static final int NOTIFICATIONS_LAYOUT_ID = 3;
     private static final int MORE_LAYOUT_ID = 4;
     int currentSelectedFooerId = -1;
-    private List<Dashboardmodel.Coursedata> coursedataList;
-    private List<Dashboardmodel.Testdata> testDataList;
+    private List<DashboardModelNew.CourseSpecificTests> coursedataList;
+    private List<DashboardModelNew.DashBoardTests> testDataList;
 
     private SimpleDateFormat dateFormatInput, dateFormatOutput, timeFormatInput, timeFormatOutput, dateTimeFormat, outputDateTimeFormat;
 
     private CourseAdapter courseAdapter;
     private CourseItemAdapter courseItemAdapter;
     List<AppCourseModel> courseList;
+    ContainerActivity activity;
 
+    View v;
+
+    @Nullable
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_dashboard);
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+
+        v=inflater.inflate(R.layout.activity_dashboard,container,false);
+        this.activity=(ContainerActivity) getActivity();
         initViews();
+        return v;
     }
-
-
-
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-    }
-
 
     private void initViews(){
         dateFormatInput = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
@@ -119,42 +83,41 @@ public class DashboardActivity extends AppCompatActivity implements  View.OnClic
         dateTimeFormat = new SimpleDateFormat("dd/MM/yyyy hh:mm a");
         outputDateTimeFormat = new SimpleDateFormat("dd/MM/yyyy hh:mm a");
         outputDateTimeFormat.setTimeZone(TimeZone.getDefault());
-        iv_user = findViewById(R.id.iv_user);
-        iv_refresh = findViewById(R.id.iv_refresh);
-        btn_notifications = findViewById(R.id.btn_notifications);
-        btn_home = findViewById(R.id.btn_home);
-        btn_more = findViewById(R.id.btn_more);
-        btn_test = findViewById(R.id.btn_test);
-        home_layout = findViewById(R.id.home_layout);
-        test_layout = findViewById(R.id.test_layout);
-        notification_layout = findViewById(R.id.notification_layout);
-        more_layout = findViewById(R.id.more_layout);
-        rv_sub_header = findViewById(R.id.rv_sub_header);
-        rv_items = findViewById(R.id.rv_items);
-        dashboard_main_layout = findViewById(R.id.dashboard_main_layout);
-        dashboard_loader = findViewById(R.id.dashboard_loader);
+        btn_notifications = v.findViewById(R.id.btn_notifications);
+        btn_home = v.findViewById(R.id.btn_home);
+        btn_more = v.findViewById(R.id.btn_more);
+        btn_test = v.findViewById(R.id.btn_test);
+        home_layout = v.findViewById(R.id.home_layout);
+        test_layout = v.findViewById(R.id.test_layout);
+        notification_layout = v.findViewById(R.id.notification_layout);
+        more_layout = v.findViewById(R.id.more_layout);
+        rv_sub_header = v.findViewById(R.id.rv_sub_header);
+        rv_items = v.findViewById(R.id.rv_items);
+        dashboard_main_layout = v.findViewById(R.id.dashboard_main_layout);
+        dashboard_loader = v.findViewById(R.id.dashboard_loader);
         dashboard_main_layout.setVisibility(View.GONE);
         dashboard_loader.setVisibility(View.VISIBLE);
-        iv_user.setOnClickListener(this);
-        iv_refresh.setOnClickListener(this);
+       // iv_user.setOnClickListener(this);
+       // iv_refresh.setOnClickListener(this);
         btn_notifications.setOnClickListener(this);
         btn_home.setOnClickListener(this);
         btn_more.setOnClickListener(this);
         btn_test.setOnClickListener(this);
         setFooter(HOME_LAYOUT_ID);
         getDashboardData();
-
     }
 
     private void setSubHeader(){
         try {
-            layoutManager = new LinearLayoutManager(DashboardActivity.this, LinearLayoutManager.HORIZONTAL, false);
-            rv_sub_header = findViewById(R.id.rv_sub_header);
+            layoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
+            rv_sub_header = v.findViewById(R.id.rv_sub_header);
             courseList = getCourseList();
-            courseAdapter = new CourseAdapter(courseList, getApplicationContext());
-            rv_sub_header.setLayoutManager(layoutManager);
-            courseAdapter.setOnItemClickListener(DashboardActivity.this);
-            rv_sub_header.setAdapter(courseAdapter);
+            if(!CollectionUtils.isEmpty(courseList)){
+                courseAdapter = new CourseAdapter(courseList, getContext());
+                rv_sub_header.setLayoutManager(layoutManager);
+                courseAdapter.setOnItemClickListener(DashboardScreenFragment.this);
+                rv_sub_header.setAdapter(courseAdapter);
+            }
         } catch (Exception ex) {
             ex.printStackTrace();
         }
@@ -162,36 +125,30 @@ public class DashboardActivity extends AppCompatActivity implements  View.OnClic
 
     private void setItems(){
         try {
-                layoutManager = new LinearLayoutManager(DashboardActivity.this, LinearLayoutManager.VERTICAL, false);
-            rv_items = findViewById(R.id.rv_items);
-            testDataList = getTestDataList(coursedataList.get(0).getCourseName());
-            courseItemAdapter = new CourseItemAdapter(testDataList, getApplicationContext());
+            layoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
+            rv_items = v.findViewById(R.id.rv_items);
+            if(!CollectionUtils.isEmpty(coursedataList)) {
+                testDataList = getTestDataList(coursedataList.get(0).getCourseName());
+            }
+
+            courseItemAdapter = new CourseItemAdapter(testDataList, getContext());
             rv_items.setLayoutManager(layoutManager);
-            courseItemAdapter.setOnItemClickListener(DashboardActivity.this);
+            courseItemAdapter.setOnItemClickListener(DashboardScreenFragment.this);
             rv_items.setAdapter(courseItemAdapter);
         } catch (Exception ex) {
             ex.printStackTrace();
         }
     }
 
-
-
     private void getDashboardData(){
-        Call<Dashboardmodel> call = RetrofitClient.getInstance().getApi().getDashboardDetails();
-        call.enqueue(new Callback<Dashboardmodel>() {
+        String userId = Utility.getUserIdFromSharedPref(getContext());
+        Call<DashboardModelNew> call = RetrofitClient.getInstance().getApi().getDashboardDetailsNew(userId);
+        call.enqueue(new Callback<DashboardModelNew>() {
             @Override
-            public void onResponse(Call<Dashboardmodel> call, Response<Dashboardmodel> response) {
+            public void onResponse(Call<DashboardModelNew> call, Response<DashboardModelNew> response) {
                 try {
                     if (response.isSuccessful()) {
-
-
-//                        Gson gson = new Gson();
-//                        String json = loadJSONFromAsset();
-//                        Dashboardmodel dashboardmodel = gson.fromJson(json, Dashboardmodel.class);
-//                        coursedataList = dashboardmodel.getData();
-
-
-                        coursedataList = response.body().getData();
+                        coursedataList = response.body().getCourseSpecificTests();
                         dashboard_main_layout.setVisibility(View.VISIBLE);
                         dashboard_loader.setVisibility(View.GONE);
                         setSubHeader();
@@ -206,7 +163,7 @@ public class DashboardActivity extends AppCompatActivity implements  View.OnClic
             }
 
             @Override
-            public void onFailure(Call<Dashboardmodel> call, Throwable t) {
+            public void onFailure(Call<DashboardModelNew> call, Throwable t) {
                 showMessageAndCloseScreen();
                 return;
             }
@@ -214,23 +171,20 @@ public class DashboardActivity extends AppCompatActivity implements  View.OnClic
     }
 
     private void showMessageAndCloseScreen(){
-        Toast.makeText(DashboardActivity.this, getString(R.string.unknown_error), Toast.LENGTH_SHORT).show();
+        Toast.makeText(getContext(), getString(R.string.unknown_error), Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void onClick(View v) {
         try {
             switch (v.getId()) {
-                case R.id.iv_user:
-                    Toast.makeText(this, "User Clicked", Toast.LENGTH_SHORT).show();
-                    break;
-
                 case R.id.btn_notifications:
                     setFooter(NOTIFICATIONS_LAYOUT_ID);
                     break;
 
                 case R.id.btn_test:
                     setFooter(TEST_LAYOUT_ID);
+                    activity.displayFragment(0);
                     break;
 
                 case R.id.btn_home:
@@ -240,13 +194,8 @@ public class DashboardActivity extends AppCompatActivity implements  View.OnClic
                 case R.id.btn_more:
                     setFooter(MORE_LAYOUT_ID);
                     break;
-
-                case R.id.iv_refresh:
-                    getDashboardData();
-                    break;
                 default:
                     break;
-
             }
         }catch(Exception e){
             e.printStackTrace();
@@ -254,44 +203,29 @@ public class DashboardActivity extends AppCompatActivity implements  View.OnClic
     }
 
 
-    @Override
-    protected void onPause() {
-        super.onPause();
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-    }
-
     private void setFooter(int id){
         switch(currentSelectedFooerId){
             case HOME_LAYOUT_ID:
-                btn_home.setTextColor(getColor(R.color.dashboard_grey));
-                btn_home.setCompoundDrawablesWithIntrinsicBounds(null, getDrawable(R.drawable.icon_home_unselected) ,null,null);
+                btn_home.setTextColor(getResources().getColor(R.color.dashboard_grey));
+                btn_home.setCompoundDrawablesWithIntrinsicBounds(null, getResources().getDrawable(R.drawable.icon_home_unselected) ,null,null);
                 home_layout.setVisibility(View.GONE);
                 break;
 
             case TEST_LAYOUT_ID:
-                btn_test.setTextColor(getColor(R.color.dashboard_grey));
-                btn_test.setCompoundDrawablesWithIntrinsicBounds(null, getDrawable(R.drawable.icon_degree_unselected) ,null,null);
+                btn_test.setTextColor(getResources().getColor(R.color.dashboard_grey));
+                btn_test.setCompoundDrawablesWithIntrinsicBounds(null, getResources().getDrawable(R.drawable.icon_degree_unselected) ,null,null);
                 test_layout.setVisibility(View.GONE);
                 break;
 
             case NOTIFICATIONS_LAYOUT_ID:
-                btn_notifications.setTextColor(getColor(R.color.dashboard_grey));
-                btn_notifications.setCompoundDrawablesWithIntrinsicBounds(null, getDrawable(R.drawable.icon_notification_bell_unselected) ,null,null);
+                btn_notifications.setTextColor(getResources().getColor(R.color.dashboard_grey));
+                btn_notifications.setCompoundDrawablesWithIntrinsicBounds(null, getResources().getDrawable(R.drawable.icon_notification_bell_unselected) ,null,null);
                 notification_layout.setVisibility(View.GONE);
                 break;
 
             case MORE_LAYOUT_ID:
-                btn_more.setTextColor(getColor(R.color.dashboard_grey));
-                btn_more.setCompoundDrawablesWithIntrinsicBounds(null, getDrawable(R.drawable.icon_more_unselected) ,null,null);
+                btn_more.setTextColor(getResources().getColor(R.color.dashboard_grey));
+                btn_more.setCompoundDrawablesWithIntrinsicBounds(null, getResources().getDrawable(R.drawable.icon_more_unselected) ,null,null);
                 more_layout.setVisibility(View.GONE);
                 break;
 
@@ -301,33 +235,33 @@ public class DashboardActivity extends AppCompatActivity implements  View.OnClic
 
         switch(id){
             case HOME_LAYOUT_ID:
-                btn_home.setTextColor(getColor(R.color.test_button_blue));
-                Drawable drawableHome = getDrawable(R.drawable.icon_home_selected);
-                drawableHome.setTint(getColor(R.color.test_button_blue));
+                btn_home.setTextColor(getResources().getColor(R.color.test_button_blue));
+                Drawable drawableHome = getResources().getDrawable(R.drawable.icon_home_selected);
+                drawableHome.setTint(getResources().getColor(R.color.test_button_blue));
                 btn_home.setCompoundDrawablesWithIntrinsicBounds(null, drawableHome ,null,null);
                 home_layout.setVisibility(View.VISIBLE);
                 break;
 
             case TEST_LAYOUT_ID:
-                btn_test.setTextColor(getColor(R.color.test_button_blue));
-                Drawable drawableTest = getDrawable(R.drawable.icon_degree_selected);
-                drawableTest.setTint(getColor(R.color.test_button_blue));
+                btn_test.setTextColor(getResources().getColor(R.color.test_button_blue));
+                Drawable drawableTest = getResources().getDrawable(R.drawable.icon_degree_selected);
+                drawableTest.setTint(getResources().getColor(R.color.test_button_blue));
                 btn_test.setCompoundDrawablesWithIntrinsicBounds(null, drawableTest ,null,null);
                 test_layout.setVisibility(View.VISIBLE);
                 break;
 
             case NOTIFICATIONS_LAYOUT_ID:
-                btn_notifications.setTextColor(getColor(R.color.test_button_blue));
-                Drawable drawableNotifications = getDrawable(R.drawable.icon_notification_bell_selected);
-                drawableNotifications.setTint(getColor(R.color.test_button_blue));
+                btn_notifications.setTextColor(getResources().getColor(R.color.test_button_blue));
+                Drawable drawableNotifications = getResources().getDrawable(R.drawable.icon_notification_bell_selected);
+                drawableNotifications.setTint(getResources().getColor(R.color.test_button_blue));
                 btn_notifications.setCompoundDrawablesWithIntrinsicBounds(null, drawableNotifications ,null,null);
                 notification_layout.setVisibility(View.VISIBLE);
                 break;
 
             case MORE_LAYOUT_ID:
-                btn_more.setTextColor(getColor(R.color.test_button_blue));
-                Drawable drawableMore = getDrawable(R.drawable.icon_more_selected);
-                drawableMore.setTint(getColor(R.color.test_button_blue));
+                btn_more.setTextColor(getResources().getColor(R.color.test_button_blue));
+                Drawable drawableMore = getResources().getDrawable(R.drawable.icon_more_selected);
+                drawableMore.setTint(getResources().getColor(R.color.test_button_blue));
                 btn_more.setCompoundDrawablesWithIntrinsicBounds(null, drawableMore ,null,null);
                 more_layout.setVisibility(View.VISIBLE);
                 break;
@@ -356,21 +290,21 @@ public class DashboardActivity extends AppCompatActivity implements  View.OnClic
         return courseList;
     }
 
-    private List<Dashboardmodel.Testdata> getTestDataList(String courseName){
-        List<Dashboardmodel.Testdata> testList = null;
+    private List<DashboardModelNew.DashBoardTests> getTestDataList(String courseName){
+        List<DashboardModelNew.DashBoardTests> testList = null;
         for(int i = 0; i < coursedataList.size(); i++){
             if(coursedataList.get(i).getCourseName().equals(courseName)){
-                testList = coursedataList.get(i).getTests();
+                testList = coursedataList.get(i).getDashBoardTests();
             }
         }
 
         for(int i = 0; i < testList.size(); i++){
             try {
-                Date date = dateFormatInput.parse(testList.get(i).getDate());
-                testList.get(i).setDate(dateFormatOutput.format(date));
+                Date date = dateFormatInput.parse(testList.get(i).getTestDate());
+                testList.get(i).setTestDate(dateFormatOutput.format(date));
                 Date time = timeFormatInput.parse(testList.get(i).getTestTime());
                 testList.get(i).setTestTime(timeFormatOutput.format(time));
-                String clubbedDateTime = testList.get(i).getDate() + " " + testList.get(i).getTestTime();
+                String clubbedDateTime = testList.get(i).getTestDate() + " " + testList.get(i).getTestTime();
                 Date dateTime = dateTimeFormat.parse(clubbedDateTime);//"05/08/2020 04:00 PM"
                 Date currentTime = Calendar.getInstance().getTime();
                 long difference = dateTime.getTime() - currentTime.getTime();
@@ -380,7 +314,7 @@ public class DashboardActivity extends AppCompatActivity implements  View.OnClic
                 hours = (hours < 0 ? -hours : hours);
                 String timeLeft = (days > 0 ? days + " Days " :  (hours > 0 ? hours + " Hours " : "") + (min > 0 ? min + " Mins" : "" ));
                 timeLeft = TextUtils.isEmpty(timeLeft) ? "" : "Ends in " + timeLeft;
-                testList.get(i).setTimeLeft(timeLeft);
+               // testList.get(i).setTimeLeft(timeLeft);
                 //testList.get(i).setTimeLeft(outputDateTimeFormat.format(dateTime));
             } catch (ParseException e) {
                 e.printStackTrace();
@@ -402,33 +336,29 @@ public class DashboardActivity extends AppCompatActivity implements  View.OnClic
 
     @Override
     public void onCourseItemClick(int position) {
-        Intent intent = new Intent(DashboardActivity.this, TestDetailActivity.class);
-        Dashboardmodel.Testdata testdata= testDataList.get(position);
-        intent.putExtra(TestDetailActivity.TEST_NAME, testdata.getName());
-        intent.putExtra(TestDetailActivity.TIME_LEFT, testdata.getTimeLeft());
-        intent.putExtra(TestDetailActivity.TOTAL_PRIZE, testdata.getTotalPrize());
-        intent.putExtra(TestDetailActivity.ENTRY_FEE, testdata.getFee());
-        intent.putExtra(TestDetailActivity.TOTAL_SPOTS, testdata.getNumberOfParticipants());
-        intent.putExtra(TestDetailActivity.FIRST_PRIZE, testdata.getFirstPrize());
-        intent.putExtra(TestDetailActivity.PRIZE_PERCENT, testdata.getWinPercentage());
-//        intent.putExtra(TestDetailActivity.UPTO_VALUE, testdata.get);
-        startActivity(intent);
-    }
+        Bundle b = new Bundle();
+        DashboardModelNew.DashBoardTests testdata= testDataList.get(position);
 
-    public String loadJSONFromAsset() {
-        String json = null;
-        try {
-            InputStream is = getAssets().open("dashboard_jsonresponse.txt");
-            int size = is.available();
-            byte[] buffer = new byte[size];
-            is.read(buffer);
-            is.close();
-            json = new String(buffer, "UTF-8");
-        } catch (IOException ex) {
-            ex.printStackTrace();
-            return null;
-        }
-        return json;
+        b.putString(TestDetailActivity.TEST_NAME, testdata.getTestName());
+        //b.putString(TestDetailActivity.TIME_LEFT, testdata.getTimeLeft());
+        b.putInt(TestDetailActivity.TOTAL_PRIZE, testdata.getTotalPrize());
+        b.putString(TestDetailActivity.ENTRY_FEE, testdata.getTestFee());
+        b.putInt(TestDetailActivity.TOTAL_SPOTS, testdata.getTotalParticipants());
+        b.putInt(TestDetailActivity.FIRST_PRIZE, testdata.getFirstPrize());
+        b.putInt(TestDetailActivity.PRIZE_PERCENT, testdata.getWinPercentage());
+
+        b.putInt(TestDetailActivity.TEST_ID,Integer.parseInt(testdata.getTestId()));
+        b.putInt(TestDetailActivity.PRIZE_DISTRIBUTION_ID,testdata.getPrizeDistributionId());
+
+        TestDetailActivity detailActivity=new TestDetailActivity();
+        detailActivity.setArguments(b);
+
+        FragmentManager fManager= getFragmentManager();
+        FragmentTransaction tr=fManager.beginTransaction();
+        tr.replace(R.id.containerLayout,detailActivity);
+        tr.addToBackStack(null);
+        tr.commit();
+        //startActivity(intent);
     }
 }
 

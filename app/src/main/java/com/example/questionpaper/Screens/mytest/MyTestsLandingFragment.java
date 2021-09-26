@@ -10,7 +10,6 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -94,10 +93,11 @@ public class MyTestsLandingFragment extends Fragment implements View.OnClickList
         int id=view.getId();
         switch (id){
             case R.id.imgBackArrow:
-                getActivity().getSupportFragmentManager().popBackStackImmediate();
+               // activity.displayFragment(4);
+                getFragmentManager().popBackStack();
+
                 break;
             case R.id.imgNotes:
-
                 activity.displayFragment(1);
                 // showMonthsSelectionDialog();
                 break;
@@ -116,9 +116,8 @@ public class MyTestsLandingFragment extends Fragment implements View.OnClickList
             @Override
             public void onClick(View view) {
                 d.dismiss();
-
-              Toast.makeText(getContext(),tabLayout.getSelectedTabPosition()+"",Toast.LENGTH_LONG).show();
-
+               //Toast.makeText(getContext(),tabLayout.getSelectedTabPosition()+"",Toast.LENGTH_LONG).show();
+                Utility.showCommonMessage(getContext(),tabLayout.getSelectedTabPosition()+"");
             }
         });
 

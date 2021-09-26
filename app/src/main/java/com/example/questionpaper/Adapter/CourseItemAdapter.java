@@ -1,30 +1,27 @@
 package com.example.questionpaper.Adapter;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.questionpaper.Model.AppCourseModel;
-import com.example.questionpaper.Model.Dashboardmodel;
+import com.example.questionpaper.Model.DashboardModelNew;
 import com.example.questionpaper.R;
 
 import java.util.List;
 
 public class CourseItemAdapter extends RecyclerView.Adapter<CourseItemAdapter.ViewHolder> {
-    private List<Dashboardmodel.Testdata> item;
+    private List<DashboardModelNew.DashBoardTests> item;
     private Context context ;
     private CourseItemAdapter.OnItemClickListener mListener;
 
-    public CourseItemAdapter(List<Dashboardmodel.Testdata> item, Context context) {
+    public CourseItemAdapter(List<DashboardModelNew.DashBoardTests> item, Context context) {
         this.item = item;
         this.context = context;
     }
@@ -52,17 +49,16 @@ public class CourseItemAdapter extends RecyclerView.Adapter<CourseItemAdapter.Vi
 //            }
 //        });
 
-        holder.test_title.setText(item.get(position).getName());
-        holder.test_fees.setText(item.get(position).getFee());
+        holder.test_title.setText(item.get(position).getTestName());
+        holder.test_fees.setText(item.get(position).getTestFee());
         holder.total_prize_text_value.setText(item.get(position).getTotalPrize() + "");
         holder.question_count.setText(item.get(position).getTotalQuestions() +"");
-        holder.minutes.setText(item.get(position).getDuration() + "");
+        holder.minutes.setText(item.get(position).getTestDuration() + "");
         holder.time_value.setText(item.get(position).getTestTime());
         holder.price_amount.setText(item.get(position).getFirstPrize()+ "");
-        holder.date_value.setText(item.get(position).getDate());
-        holder.slots_count.setText(item.get(position).getNumberOfParticipants() + "");
-        holder.slots_count.setText(item.get(position).getNumberOfParticipants() + "");
-        holder.time_left.setText(item.get(position).getTimeLeft());
+        holder.date_value.setText(item.get(position).getTestDate());
+        holder.slots_count.setText(item.get(position).getTotalParticipants() + "");
+        //holder.time_left.setText(item.get(position).getTimeLeft());
         holder.parent_view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -85,7 +81,7 @@ public class CourseItemAdapter extends RecyclerView.Adapter<CourseItemAdapter.Vi
         mListener = listener;
     }
 
-    public void setItems(List<Dashboardmodel.Testdata> item){
+    public void setItems(List<DashboardModelNew.DashBoardTests> item){
         this.item = item;
         notifyDataSetChanged();
     }

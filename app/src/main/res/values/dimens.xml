@@ -18,6 +18,7 @@
     <dimen name="toggle_width">60dp</dimen>
 
     <dimen name="padding_0dp">0dp</dimen>
+    <dimen name="padding_1dp">1dp</dimen>
     <dimen name="padding_5dp">5dp</dimen>
     <dimen name="padding_10dp">10dp</dimen>
     <dimen name="padding_15dp">15dp</dimen>
@@ -31,7 +32,7 @@
 
     <dimen name="tab_layout_height">40dp</dimen>
 
-
+    <dimen name="textSize_11dp">11dp</dimen>
     <dimen name="textSize_15dp">15dp</dimen>
     <dimen name="textSize_20dp">20dp</dimen>
     <dimen name="min_single_button_width">180dp</dimen>

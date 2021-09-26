@@ -15,9 +15,9 @@ import com.example.questionpaper.Activity.ContainerActivity;
 import com.example.questionpaper.Common.Utility;
 import com.example.questionpaper.Network.RetrofitClient;
 import com.example.questionpaper.R;
+import com.example.questionpaper.Requests.MyTests.CompletedTestsRequest;
 import com.example.questionpaper.Response.mytests.Completed.CompletedTestsResponse;
 import com.example.questionpaper.Response.mytests.LiveTest.TestData;
-import com.example.questionpaper.Requests.MyTests.CompletedTestsRequest;
 import com.example.questionpaper.Screens.mytest.RootViewClickInterface;
 
 import java.util.ArrayList;
@@ -74,7 +74,7 @@ public class CompletedTestsFragment  extends Fragment implements RootViewClickIn
     private void getCompletedTestData(String numberOfMonths){
         pDialog.show();
         //String numberOfMonths = "1";
-        String userId = "1";
+        String userId = Utility.getUserIdFromSharedPref(getContext());
         final CompletedTestsRequest userTestRequest = new CompletedTestsRequest(numberOfMonths, userId);
         Call<CompletedTestsResponse> call = RetrofitClient.getInstance().getApi().completedTestData(userTestRequest);
         call.enqueue(new Callback<CompletedTestsResponse>() {

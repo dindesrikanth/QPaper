@@ -28,11 +28,13 @@ import androidx.recyclerview.widget.SnapHelper;
 
 import com.example.questionpaper.Activity.TestSubmissionDialog.MyDialogListener;
 import com.example.questionpaper.Adapter.TestAdapter;
+import com.example.questionpaper.Common.Utility;
 import com.example.questionpaper.Fragments.StatusView;
 import com.example.questionpaper.Model.AnswerSubmitModel;
 import com.example.questionpaper.Model.Questionesmodel;
 import com.example.questionpaper.Network.RetrofitClient;
 import com.example.questionpaper.R;
+import com.example.questionpaper.Requests.MyTests.ExamTestQuestionRequest;
 import com.example.questionpaper.Service.StickyService;
 import com.example.questionpaper.ServiceCallbacks;
 import com.google.gson.Gson;
@@ -88,9 +90,10 @@ public class TestActivity extends AppCompatActivity implements TestAdapter.OnIte
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test);
+
+        initViews(getIntent().getExtras());
         stickyService = new Intent(TestActivity.this, StickyService.class);
         startService(stickyService);
-        initViews(getIntent().getExtras());
     }
 
 
@@ -99,12 +102,14 @@ public class TestActivity extends AppCompatActivity implements TestAdapter.OnIte
     @Override
     protected void onStart() {
         super.onStart();
-        bindService(stickyService, serviceConnection, Context.BIND_AUTO_CREATE);
+      //  bindService(stickyService, serviceConnection, Context.BIND_AUTO_CREATE);
     }
 
     @Override
     protected void onStop() {
         super.onStop();
+        if(null != stickyService)
+        stopService(stickyService);
     }
 
 
@@ -349,13 +354,13 @@ public class TestActivity extends AppCompatActivity implements TestAdapter.OnIte
                 e.printStackTrace();
             }
 
-            Collections.sort(userList, new Comparator<Questionesmodel>() {
+         /*   Collections.sort(userList, new Comparator<Questionesmodel>() {
                 @Override
                 public int compare(Questionesmodel o1, Questionesmodel o2) {
                     return (int) (o1.getQues_local_id() - o2.getQues_local_id());
                 }
             });
-
+*/
         }
 
 
@@ -373,32 +378,21 @@ public class TestActivity extends AppCompatActivity implements TestAdapter.OnIte
         }
     }
 
-    public String loadJSONFromAsset() {
-        String json = null;
-        try {
-            InputStream is = getAssets().open("jsonresponse.txt");
-            int size = is.available();
-            byte[] buffer = new byte[size];
-            is.read(buffer);
-            is.close();
-            json = new String(buffer, "UTF-8");
-        } catch (IOException ex) {
-            ex.printStackTrace();
-            return null;
-        }
-        return json;
-    }
-
     private void getQuestionsFromApi(){
-        Call<Object> call = RetrofitClient.getInstance().getApi().getAllQuesDetails();
+        String userId = Utility.getUserIdFromSharedPref(getApplicationContext());
+        final ExamTestQuestionRequest request=new ExamTestQuestionRequest(2+"", userId);
+
+        Call<Object> call = RetrofitClient.getInstance().getApi().getExamTestQuestionResponse(request);
         call.enqueue(new Callback<Object>() {
             @Override
             public void onResponse(Call<Object> call, Response<Object> response) {
                 try {
                     if (response.isSuccessful()) {
-                        List<Questionesmodel> list = (List<Questionesmodel>)response.body();
+
+                        Toast.makeText(getApplicationContext(),response.body().toString(),Toast.LENGTH_LONG).show();
+                       // List<Questionesmodel> list = (List<Questionesmodel>)response.body();
                         Gson gson = new Gson();
-                        questionJsonString = gson.toJson(list);
+                        questionJsonString = gson.toJson(response.body().toString());
                         test_main_layout.setVisibility(View.VISIBLE);
                         test_loader.setVisibility(View.GONE);
                         getUserList(false);
@@ -586,7 +580,37 @@ public class TestActivity extends AppCompatActivity implements TestAdapter.OnIte
         if(countDownTimer != null) {
             countDownTimer.cancel();
         }
-
     }
+
+/*
+    private List<Questionesmodel> getData(){
+        List<Questionesmodel> data=new ArrayList<>();
+        data.clear();
+
+        Questionesmodel model=new Questionesmodel(1l,2l,3l,4l,5l,"Gopath brahman is associated with which of these Vedas",
+                "rig","sam","yaju", "adhv","opte","D",false,false);
+        model.setCourse_id(1L);
+        model.setSub_id(1L);
+        model.setTest_id(1L);
+        model.setQues_id(1L);
+        model.setQues_local_id(1L);
+        model.setQues_detail("Gopath brahman is associated with which of these Vedas");
+        model.setOpta("rig");
+        model.setOptb("sam");
+        model.setOptc("yaju");
+
+        model.setOptd("adhv");
+        model.setOpte("opte");
+        model.setAnswerId("D");
+
+        model.setMarked(false);
+        model.setSeen(false);
+
+        data.add(model);
+
+        return data;
+
+    }*/
+
 }
 

@@ -16,8 +16,8 @@ import com.example.questionpaper.Activity.ContainerActivity;
 import com.example.questionpaper.Common.Utility;
 import com.example.questionpaper.Network.RetrofitClient;
 import com.example.questionpaper.R;
-import com.example.questionpaper.Response.mytests.LeaderBoard.LeaderBoardResponse;
 import com.example.questionpaper.Requests.MyTests.DetailedAnalysisRequest;
+import com.example.questionpaper.Response.mytests.LeaderBoard.LeaderBoardResponse;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -68,7 +68,7 @@ public class LeaderBoardFragment  extends Fragment {
         pDialog.show();
 
         String testId = "1";
-        String userId = "";
+        String userId = Utility.getUserIdFromSharedPref(getContext());
         final DetailedAnalysisRequest userTestRequest = new DetailedAnalysisRequest(testId, userId);
         Call<LeaderBoardResponse> call = RetrofitClient.getInstance().getApi().leaderBoardAPI(userTestRequest);
         call.enqueue(new Callback<LeaderBoardResponse>() {

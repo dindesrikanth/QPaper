@@ -76,8 +76,6 @@ public class MyBalanceActivity extends AppCompatActivity implements  View.OnClic
     }
 
 
-
-
     @Override
     protected void onStart() {
         super.onStart();

@@ -26,9 +26,10 @@
     <color name="green_rupees_bg">#90EE90</color>
     <color name="dashboard_red">#c20404</color>
     <color name="dashboard_grey">#A9A9A9</color>
-
+    <color name="dark_green">#27AE60</color>
 
     <color name="tab_indicator_color">#D52B1E</color>
+    <color name="light_gray_text">#566573</color>
 
 
 </resources>

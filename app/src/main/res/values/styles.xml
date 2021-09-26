@@ -102,6 +102,26 @@
         <item name="android:textSize">@dimen/textSize_15dp</item>
         <item name="android:typeface">serif</item>
     </style>
+
+    <style name="subHeaderTitle15dpLightGrayNormal">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:background">@color/bg_grey</item>
+        <item name="android:textColor">@color/light_gray_text</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:textSize">@dimen/textSize_11dp</item>
+        <item name="android:typeface">serif</item>
+    </style>
+    <style name="subHeaderTitle11dpLightGrayNormal">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:background">@color/bg_grey</item>
+        <item name="android:textColor">@color/light_gray_text</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:textSize">@dimen/textSize_11dp</item>
+        <item name="android:typeface">serif</item>
+    </style>
+
     <style name="headerTitle20dpBold">
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_width">wrap_content</item>

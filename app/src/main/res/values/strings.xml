@@ -19,6 +19,7 @@
     <string name="action_ques_wrong">Incorrect</string>
     <string name="action_ques_unattempted">Unattempted</string>
     <string name="sign_in"><u>Sign In</u></string>
+    <string name="sign_up"><u>Sign Up</u></string>
 
     <string name="test_mark_next">Mark &amp; Next</string>
     <string name="test_clear_response">Clear Response</string>
@@ -78,4 +79,7 @@
     <string name="no_record_message">No Records Available</string>
     <string name="take_test">Take Test</string>
     <string name="detailed_analysis">Detailed Analysis</string>
+
+    <string name="add_cash_success_message">Rs.%1$d successfully added to wallet. Total balance available in wallet is Rs.%2$d</string>
+    <string name="no_data_found">No Data Found</string>
 </resources>

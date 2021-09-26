@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    style="@style/fragmentRootProperty"
+    android:minWidth="450dp">
+
+    <TextView
+        android:id="@+id/tvHeaderTitle"
+        style="@style/headerTitle20dpBold"
+        android:text="Objection"
+        android:textSize="@dimen/padding_25dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/padding_15dp"
+        android:background="@color/bg_grey"
+        />
+
+    <com.example.questionpaper.Common.CustomEditText
+        android:id="@+id/edtUserName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#663399"
+        android:layout_marginTop="@dimen/padding_15dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="@dimen/padding_10dp">
+
+
+        <TextView
+            android:id="@+id/tvQuestion"
+            style="@style/subHeaderTitle15dpNormal"
+            android:layout_height="match_parent"
+            android:text="Issue with"
+            android:layout_width="@dimen/padding_0dp"
+            android:layout_weight="0.3"/>
+
+        <Spinner android:id="@+id/spnIssueWith"
+            style="@style/subHeaderTitle15dpNormal"
+            android:background="@drawable/edittext_border"
+            android:minHeight="@dimen/minimum_edittext_height"
+            android:layout_width="@dimen/padding_0dp"
+            android:layout_weight="0.7"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="@dimen/padding_10dp">
+        <TextView
+            android:id="@+id/tvOjection"
+            style="@style/subHeaderTitle15dpNormal"
+            android:layout_height="match_parent"
+            android:text="Objection"
+            android:layout_width="@dimen/padding_0dp"
+            android:layout_weight="0.3"/>
+
+        <Spinner android:id="@+id/spnObjection"
+            style="@style/subHeaderTitle15dpNormal"
+            android:background="@drawable/edittext_border"
+            android:minHeight="@dimen/minimum_edittext_height"
+            android:layout_width="@dimen/padding_0dp"
+            android:layout_weight="0.7"/>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/editTextLabel"
+        style="@style/subHeaderTitle15dpNormal"
+        android:text="Enter Brief description"
+        android:background="@color/bg_grey"
+        android:layout_marginTop="@dimen/padding_10dp"
+        />
+    <EditText
+        android:id="@+id/edtDescription"
+        style="@style/subHeaderTitle15dpNormal"
+        android:background="@drawable/edittext_border"
+        android:layout_width="match_parent"
+        android:paddingStart="@dimen/padding_10dp"
+        android:paddingEnd="@dimen/padding_10dp"
+        android:minHeight="100dp"
+        android:singleLine="false"
+        tools:hint="Enter description"
+        android:layout_marginTop="@dimen/padding_10dp"
+        />
+
+    <Button
+        android:layout_marginTop="@dimen/padding_30dp"
+        android:text="Submit"
+        android:id="@+id/btnSubmit"
+        android:textAllCaps="true"
+        android:textColor="@color/white"
+        style="@style/customButtonStyle"
+        android:background="@drawable/box_border_blue_bg"
+        android:layout_gravity="center"/>
+
+</LinearLayout>

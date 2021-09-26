@@ -1,14 +1,15 @@
 package com.example.questionpaper.Activity;
 
+import android.os.Bundle;
+import android.widget.TextView;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.os.Bundle;
-import android.widget.TextView;
-
 import com.example.questionpaper.Adapter.Get_Test_indicator_adapter;
 import com.example.questionpaper.Adapter.Get_test_header_adapter;
+import com.example.questionpaper.Common.Utility;
 import com.example.questionpaper.Model.Get_user_test;
 import com.example.questionpaper.Network.RetrofitClient;
 import com.example.questionpaper.R;
@@ -38,7 +39,8 @@ RecyclerView recyclerView_header,recyclerView_body;
         gettest();
     }
     public void gettest(){
-        Call<List<Get_user_test>> call = RetrofitClient.getInstance().getApi().getAllTests();
+        String userId = Utility.getUserIdFromSharedPref(getApplicationContext());
+        Call<List<Get_user_test>> call = RetrofitClient.getInstance().getApi().getAllTests(userId);
         call.enqueue(new Callback<List<Get_user_test>>() {
             @Override
             public void onResponse(Call<List<Get_user_test>> call, Response<List<Get_user_test>> response) {

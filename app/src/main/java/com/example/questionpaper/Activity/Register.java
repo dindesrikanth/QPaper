@@ -2,7 +2,6 @@ package com.example.questionpaper.Activity;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -10,7 +9,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -66,7 +64,8 @@ public class Register extends AppCompatActivity {
     }
 
     public void onLoginFailed() {
-        Toast.makeText(getBaseContext(), "Login failed", Toast.LENGTH_LONG).show();
+        //Toast.makeText(getBaseContext(), "Login failed", Toast.LENGTH_LONG).show();
+        Utility.showCommonMessage(getApplicationContext(),"Login failed");
         //register.setEnabled(true);
     }
 
@@ -149,19 +148,17 @@ public class Register extends AppCompatActivity {
         String password = edtPassword.getText().toString();
         String examPref = "";
         if (prf.isChecked()) {
-            examPref = "prof";
+            examPref = "P";
         } else if (govt.isChecked()) {
-            examPref = "govt";
+            examPref = "G";
         } else {
-            examPref = "prof,govt";
+            examPref = "B";
         }
         if (!validate()) {
             //onLoginFailed();
             return;
         }
-
         registerApiCall(name, email, mobileNo, password, examPref);
-
     }
 
     private void registerApiCall(String name, String email, String mobileNo, String password, String examPref) {
@@ -175,7 +172,8 @@ public class Register extends AppCompatActivity {
                     if (response.isSuccessful()) {
                         showData(response.body());
                     } else {
-                        Toast.makeText(getApplicationContext(), "Invalid details...", Toast.LENGTH_LONG).show();
+                        //Toast.makeText(getApplicationContext(), "Invalid details...", Toast.LENGTH_LONG).show();
+                        Utility.showCommonMessage(getApplicationContext(),"Invalid details...");
                     }
                 } catch (Exception ex) {
                     ex.printStackTrace();
@@ -193,16 +191,12 @@ public class Register extends AppCompatActivity {
 
     private void showData(LoginApiResponse response) {
         if (response != null && response.getStatus().equalsIgnoreCase("success")) {
-            Toast.makeText(getApplicationContext(), "Registered Successfully ..", Toast.LENGTH_LONG).show();
-
-            SharedPreferences spf= Utility.getSharedPreference(getApplicationContext());
-            SharedPreferences.Editor editor = spf.edit();
-            editor.putString("loginId",edtEmail.getText().toString().trim());
-            editor.commit();
-
+            //Toast.makeText(getApplicationContext(), "Registered Successfully ..", Toast.LENGTH_LONG).show();
+            Utility.showCommonMessage(getApplicationContext(),"Registered Successfully ..");
             startActivity(new Intent(Register.this, LoginActivity.class));
         } else {
-            Toast.makeText(getApplicationContext(), "invalid details.." + response.getErrorMsg(), Toast.LENGTH_LONG).show();
+           // Toast.makeText(getApplicationContext(), "invalid details.." + response.getErrorMsg(), Toast.LENGTH_LONG).show();
+            Utility.showCommonMessage(getApplicationContext(),"invalid details.." + response.getErrorMsg());
         }
     }
 

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    style="@style/adapterRootProperty">
+
+    <TextView android:id="@+id/tvQuestion"
+        style="@style/headerTitle20dpBold"
+        tools:text="Question"/>
+
+    <TextView android:id="@+id/tvOptionA"
+        style="@style/subHeaderTitle15dpNormal"
+        tools:text="Option A"
+        android:layout_marginTop="@dimen/padding_10dp"/>
+
+    <TextView android:id="@+id/tvOptionB"
+        style="@style/subHeaderTitle15dpNormal"
+        tools:text="Option B"
+        android:layout_marginTop="@dimen/padding_10dp"/>
+
+    <TextView android:id="@+id/tvOptionC"
+        style="@style/subHeaderTitle15dpNormal"
+        tools:text="Option C"
+        android:layout_marginTop="@dimen/padding_10dp"/>
+
+    <TextView android:id="@+id/tvOptionD"
+        style="@style/subHeaderTitle15dpNormal"
+        tools:text="Option D"
+        android:layout_marginTop="@dimen/padding_10dp"/>
+
+    <TextView android:id="@+id/tvOptionE"
+        style="@style/subHeaderTitle15dpNormal"
+        tools:text="Option E"
+        android:layout_marginTop="@dimen/padding_10dp"/>
+
+    <TextView android:id="@+id/tvExplanation"
+        style="@style/subHeaderTitle15dpNormal"
+        tools:text="Explanation"
+        android:layout_marginTop="@dimen/padding_10dp"/>
+
+
+
+</LinearLayout>

@@ -10,13 +10,16 @@ public class CoursesDetails {
     @SerializedName("value")
     @Expose
     private String value;
+    @SerializedName("selected")
+    @Expose
+    private boolean isSelected;
 
-    private boolean isSelected= false;
+
+    //private boolean isSelected= false;
 
     public String getLabel() {
         return label;
     }
-
     public void setLabel(String label) {
         this.label = label;
     }
@@ -24,7 +27,6 @@ public class CoursesDetails {
     public String getValue() {
         return value;
     }
-
     public void setValue(String value) {
         this.value = value;
     }
@@ -32,8 +34,10 @@ public class CoursesDetails {
     public boolean isSelected() {
         return isSelected;
     }
-
     public void setSelected(boolean selected) {
         this.isSelected = selected;
     }
+
+
+
 }

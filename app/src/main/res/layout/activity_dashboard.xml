@@ -18,54 +18,6 @@
         android:visibility="visible">
         >
 
-
-        <RelativeLayout
-            android:id="@+id/header"
-            android:layout_width="match_parent"
-            android:layout_height="75dp"
-            android:layout_alignParentTop="true"
-            android:background="@color/test_button_blue"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:id="@+id/iv_user"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_alignParentLeft="true"
-                android:layout_centerVertical="true"
-                android:layout_margin="10dp"
-                android:onClick="openStatusView"
-                android:src="@drawable/icon_user_white" />
-
-
-            <TextView
-                android:id="@+id/dashboard_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:layout_centerVertical="true"
-                android:layout_margin="5dp"
-                android:drawableStart="@drawable/icon_degree_header"
-                android:drawableLeft="@drawable/icon_degree_header"
-                android:drawablePadding="5dp"
-                android:text="@string/app_name"
-                android:textAllCaps="false"
-                android:textColor="@color/white"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                android:typeface="serif"/>
-
-
-            <ImageView
-                android:id="@+id/iv_refresh"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:layout_margin="10dp"
-                android:src="@drawable/icon_refresh" />
-        </RelativeLayout>
-
         <RelativeLayout
             android:id="@+id/home_layout"
             android:layout_width="match_parent"

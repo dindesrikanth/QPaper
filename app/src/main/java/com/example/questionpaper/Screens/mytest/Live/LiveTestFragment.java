@@ -14,9 +14,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.questionpaper.Common.Utility;
 import com.example.questionpaper.Network.RetrofitClient;
 import com.example.questionpaper.R;
+import com.example.questionpaper.Requests.MyTests.UserTestRequest;
 import com.example.questionpaper.Response.mytests.LiveTest.LiveTestResponse;
 import com.example.questionpaper.Response.mytests.LiveTest.TestData;
-import com.example.questionpaper.Requests.MyTests.UserTestRequest;
 import com.example.questionpaper.Screens.mytest.RootViewClickInterface;
 import com.google.gson.Gson;
 
@@ -71,7 +71,7 @@ public class LiveTestFragment extends Fragment implements RootViewClickInterface
 
     private void getLiveTestsData() {
         String typeOfTests = "L";
-        String userId = "1";
+        String userId = Utility.getUserIdFromSharedPref(getContext());;
         final UserTestRequest userTestRequest = new UserTestRequest(typeOfTests, userId);
         Call<LiveTestResponse> call = RetrofitClient.getInstance().getApi().liveTestData(userTestRequest);
         call.enqueue(new Callback<LiveTestResponse>() {
