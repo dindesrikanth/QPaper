@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.questionpaper.Activity.ContainerActivity;
+import com.example.questionpaper.Common.Constants;
 import com.example.questionpaper.Common.Utility;
 import com.example.questionpaper.Network.RetrofitClient;
 import com.example.questionpaper.R;
@@ -23,7 +24,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class LeaderBoardFragment  extends Fragment {
+public class LeaderBoardFragment extends Fragment {
 
     private ImageView imgNotes,imgBackArrow;
     private TextView tvHeaderTitle;
@@ -32,11 +33,13 @@ public class LeaderBoardFragment  extends Fragment {
     RecyclerView.Adapter adapter;
     TextView tvErrorMessage;
     ProgressDialog pDialog;
+    ContainerActivity activity;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view  = inflater.inflate(R.layout.my_tests_leader_board_fragment, container, false);
         pDialog= Utility.getProgressDialog(getContext());
+        this.activity = (ContainerActivity)getActivity();
         inItView(view);
         getLeaderBoardData();
         return view;
@@ -47,7 +50,7 @@ public class LeaderBoardFragment  extends Fragment {
         imgBackArrow = v.findViewById(R.id.imgBackArrow);
         tvHeaderTitle=v.findViewById(R.id.tvHeaderTitle);
 
-        imgNotes.setVisibility(View.GONE);
+        //imgNotes.setVisibility(View.GONE);
         tvHeaderTitle.setText("Leader Board");
 
         rViewCommon = v.findViewById(R.id.rViewCommon);
@@ -62,12 +65,18 @@ public class LeaderBoardFragment  extends Fragment {
                 getActivity().getSupportFragmentManager().popBackStackImmediate();
             }
         });
+        imgNotes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                activity.displayFragment(13);
+            }
+        });
     }
     private void getLeaderBoardData(){
 
         pDialog.show();
 
-        String testId = "1";
+        String testId = Constants.testIdValue+"";
         String userId = Utility.getUserIdFromSharedPref(getContext());
         final DetailedAnalysisRequest userTestRequest = new DetailedAnalysisRequest(testId, userId);
         Call<LeaderBoardResponse> call = RetrofitClient.getInstance().getApi().leaderBoardAPI(userTestRequest);

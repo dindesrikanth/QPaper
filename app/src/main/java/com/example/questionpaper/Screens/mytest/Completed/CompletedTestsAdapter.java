@@ -10,6 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.questionpaper.Common.Constants;
 import com.example.questionpaper.R;
 import com.example.questionpaper.Response.mytests.LiveTest.TestData;
 import com.example.questionpaper.Response.mytests.LiveTest.Tests;
@@ -99,22 +100,46 @@ public class CompletedTestsAdapter extends RecyclerView.Adapter<RecyclerView.Vie
 
     public interface AdapterInterface{
         void detailedAnalysisButtonClicked(int position);
+        void leaderBoardClick(int position);
+        void reviewsClick(int position);
     }
 
     private class AdapterViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
-        TextView tvTestName,tvDate,tvTime,tvDetailedAnalysis;
+        TextView tvTestName,tvDate,tvTime,tvDetailedAnalysis,tvLeaderBoard,tvReviews;
         public AdapterViewHolder(View v) {
             super(v);
             tvTestName=v.findViewById(R.id.tvTestName);
             tvDate=v.findViewById(R.id.tvDate);
             tvTime=v.findViewById(R.id.tvTime);
             tvDetailedAnalysis=v.findViewById(R.id.tvDetailedAnalysis);
+            tvLeaderBoard= v.findViewById(R.id.tvLeaderBoard);
             tvDetailedAnalysis.setOnClickListener(this);
+            tvLeaderBoard.setOnClickListener(this);
+            tvReviews = v.findViewById(R.id.tvReviews);
+            tvReviews.setOnClickListener(this);
         }
 
         @Override
         public void onClick(View view) {
-            adapterInterface.detailedAnalysisButtonClicked(getAdapterPosition());
+            if(listData.get(getAdapterPosition()) instanceof Tests){
+                Tests testData=(Tests) listData.get(getAdapterPosition());
+                Constants.testIdValue = testData.getId();
+                Constants.prizeDistributionIdValue  = testData.getPrizeDistributionId();
+
+            }
+
+            int id= view.getId();
+            switch (id){
+                case R.id.tvDetailedAnalysis:
+                    adapterInterface.detailedAnalysisButtonClicked(getAdapterPosition());
+                    break;
+                case R.id.tvLeaderBoard:
+                    adapterInterface.leaderBoardClick(getAdapterPosition());
+                    break;
+                case R.id.tvReviews:
+                    adapterInterface.reviewsClick(getAdapterPosition());
+                    break;
+            }
         }
     }
 

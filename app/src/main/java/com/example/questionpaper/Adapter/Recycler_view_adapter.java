@@ -60,7 +60,7 @@ public class Recycler_view_adapter extends RecyclerView.Adapter<Recycler_view_ad
     public void onBindViewHolder(final ViewHolder holder, final int position) {
         final Long srno = item.get(position).getQues_local_id();
         holder.radiogrp.setOnCheckedChangeListener(null);
-        holder.txt_quetion.setText(srno + "." + item.get(position).getQues_detail());
+        holder.txt_quetion.setText(srno + "." + item.get(position).getQues_details());
         holder.radio1.setText(item.get(position).getOpta());
         holder.radio2.setText(item.get(position).getOptb());
         holder.radio3.setText(item.get(position).getOptc());

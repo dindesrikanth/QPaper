@@ -13,7 +13,7 @@ public class UserTestRanks {
     @SerializedName("marks")
     @Expose
     private String marks;
-    @SerializedName("amountWon")
+    @SerializedName("amoutWon")
     @Expose
     private String amountWon;
 

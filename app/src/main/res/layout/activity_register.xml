@@ -100,13 +100,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textColor="#663399"
-                android:maxLength="20">
+                android:maxLength="20"
+                android:inputType="textPassword">
 
             </EditText>
             <TextView
                 android:layout_marginTop="@dimen/padding_20dp"
                 style="@style/subHeaderTitle15dpNormal"
-                android:text="Re-enter Password"
+                android:text="Confirm Password"
                 android:textAllCaps="true"/>
 
             <EditText
@@ -114,7 +115,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textColor="#663399"
-                android:maxLength="20"/>
+                android:maxLength="20"
+                android:inputType="textPassword"/>
 
             <TextView android:layout_marginTop="@dimen/padding_20dp"
                 style="@style/subHeaderTitle15dpNormal"

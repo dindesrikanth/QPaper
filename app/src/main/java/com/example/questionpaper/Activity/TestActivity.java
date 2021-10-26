@@ -38,6 +38,7 @@ import com.example.questionpaper.Requests.MyTests.ExamTestQuestionRequest;
 import com.example.questionpaper.Service.StickyService;
 import com.example.questionpaper.ServiceCallbacks;
 import com.google.gson.Gson;
+import com.google.gson.internal.LinkedTreeMap;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -48,7 +49,6 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import retrofit2.Call;
@@ -90,10 +90,9 @@ public class TestActivity extends AppCompatActivity implements TestAdapter.OnIte
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test);
-
-        initViews(getIntent().getExtras());
         stickyService = new Intent(TestActivity.this, StickyService.class);
         startService(stickyService);
+        initViews(getIntent().getExtras());
     }
 
 
@@ -102,14 +101,12 @@ public class TestActivity extends AppCompatActivity implements TestAdapter.OnIte
     @Override
     protected void onStart() {
         super.onStart();
-      //  bindService(stickyService, serviceConnection, Context.BIND_AUTO_CREATE);
+       bindService(stickyService, serviceConnection, Context.BIND_AUTO_CREATE);
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        if(null != stickyService)
-        stopService(stickyService);
     }
 
 
@@ -272,7 +269,7 @@ public class TestActivity extends AppCompatActivity implements TestAdapter.OnIte
             jsonObject.put("test_id", userList.get(0).getTest_id());
             jsonObject.put("user_id", "userId");
             jsonObject.put("sub_id", userList.get(0).getSub_id());
-            jsonObject.put("course_id", userList.get(0).getCourse_id());
+            jsonObject.put("course_id", userList.get(0).getCource_id());
             jsonObject.put("time_spent", timeSpent);
             jsonObject.put("user_resp", createAnswers());
             submitAnswersToApi();
@@ -282,22 +279,21 @@ public class TestActivity extends AppCompatActivity implements TestAdapter.OnIte
         Log.e("JSON STRING --> " , jsonObject.toString());
         return jsonObject.toString();
     }
+
     private String createAnswers(){
-        String answerString = "[";
+        String answerString = "";
         for(int i = 0; i < userList.size(); i++){
             if(i != 0){
                 answerString += ",";
             }
-            answerString += " \" " + (i + 1)  + ":" + convertAnswerIdToOptions(userList.get(i).getAnswerId()) + " \" ";
-//            answerString += "," + convertAnswerIdToOptions(userList.get(i).getAnswerId());
+            answerString += i + 1;
+            answerString += "," + convertAnswerIdToOptions(userList.get(i).getAnswerId());
         }
-        answerString += "]";
         return answerString;
     }
 
-
     public  void submitAnswersToApi(){
-        final AnswerSubmitModel answerSubmitModel = new AnswerSubmitModel("1", userList.get(0).getCourse_id() + "", userList.get(0).getSub_id()+ "", userList.get(0).getTest_id()+ "", createAnswers(), timeSpent + "");
+        final AnswerSubmitModel answerSubmitModel = new AnswerSubmitModel("1", userList.get(0).getCource_id() + "", userList.get(0).getSub_id()+ "", userList.get(0).getTest_id()+ "", createAnswers(), timeSpent + "");
         Call<AnswerSubmitModel> call = RetrofitClient.getInstance().getApi().submitAnswers(answerSubmitModel);
         call.enqueue(new Callback<AnswerSubmitModel>() {
             @Override
@@ -332,35 +328,47 @@ public class TestActivity extends AppCompatActivity implements TestAdapter.OnIte
 
     private void getUserList(boolean isTestResumed) {
         if(!isTestResumed) {
+            String JSON = questionJsonString;
+            ArrayList<Questionesmodel> finalResult = new ArrayList<>();
+            userList = new ArrayList<>();
             try {
-                JSONArray m_jArry = new JSONArray(questionJsonString);//loadJSONFromAsset()//questionJsonString
-                userList = new ArrayList<>();
+
+                JSONObject main = new JSONObject(JSON);
+                JSONArray m_jArry = main.getJSONArray("examQuestions");
+
+
+               // JSONArray m_jArry = new JSONArray(questionJsonString);//loadJSONFromAsset()//questionJsonString
+               // userList = new ArrayList<>();
                 for (int i = 0; i < m_jArry.length(); i++) {
                     JSONObject jo_inside = m_jArry.getJSONObject(i);
-                    Questionesmodel questionesmodel = new Questionesmodel(jo_inside.getLong("course_id"),
+                    Questionesmodel questionesmodel = new Questionesmodel(jo_inside.getLong("cource_id"),
                             jo_inside.getLong("sub_id"),
                             jo_inside.getLong("test_id"),
                             jo_inside.getLong("ques_id"),
                             jo_inside.getLong("ques_local_id"),
-                            jo_inside.getString("ques_detail"),
+                            jo_inside.getString("ques_details"),
+                            jo_inside.getString("testName"),
                             jo_inside.getString("opta"),
                             jo_inside.getString("optb"),
                             jo_inside.getString("optc"),
                             jo_inside.getString("optd"),
-                            jo_inside.getString("opte"), "", false, false);
+                            jo_inside.getString("opte"), "", false, false, "",0L);
+
+
                     userList.add(questionesmodel);
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
             }
 
-         /*   Collections.sort(userList, new Comparator<Questionesmodel>() {
+         Collections.sort(userList, new Comparator<Questionesmodel>() {
                 @Override
                 public int compare(Questionesmodel o1, Questionesmodel o2) {
-                    return (int) (o1.getQues_local_id() - o2.getQues_local_id());
+                  return (int) (o1.getQues_local_id() - o2.getQues_local_id());
+                   // return 0;
                 }
             });
-*/
+
         }
 
 
@@ -378,21 +386,34 @@ public class TestActivity extends AppCompatActivity implements TestAdapter.OnIte
         }
     }
 
+    public String loadJSONFromAsset() {
+        String json = null;
+        try {
+            InputStream is = getAssets().open("jsonresponse.txt");
+            int size = is.available();
+            byte[] buffer = new byte[size];
+            is.read(buffer);
+            is.close();
+            json = new String(buffer, "UTF-8");
+        } catch (IOException ex) {
+            ex.printStackTrace();
+            return null;
+        }
+        return json;
+    }
+
     private void getQuestionsFromApi(){
         String userId = Utility.getUserIdFromSharedPref(getApplicationContext());
         final ExamTestQuestionRequest request=new ExamTestQuestionRequest(2+"", userId);
-
         Call<Object> call = RetrofitClient.getInstance().getApi().getExamTestQuestionResponse(request);
         call.enqueue(new Callback<Object>() {
             @Override
             public void onResponse(Call<Object> call, Response<Object> response) {
                 try {
                     if (response.isSuccessful()) {
-
-                        Toast.makeText(getApplicationContext(),response.body().toString(),Toast.LENGTH_LONG).show();
-                       // List<Questionesmodel> list = (List<Questionesmodel>)response.body();
+                        LinkedTreeMap<Questionesmodel,Questionesmodel> list = (LinkedTreeMap<Questionesmodel,Questionesmodel> )response.body();
                         Gson gson = new Gson();
-                        questionJsonString = gson.toJson(response.body().toString());
+                        questionJsonString = gson.toJson(list);
                         test_main_layout.setVisibility(View.VISIBLE);
                         test_loader.setVisibility(View.GONE);
                         getUserList(false);
@@ -580,37 +601,7 @@ public class TestActivity extends AppCompatActivity implements TestAdapter.OnIte
         if(countDownTimer != null) {
             countDownTimer.cancel();
         }
+
     }
-
-/*
-    private List<Questionesmodel> getData(){
-        List<Questionesmodel> data=new ArrayList<>();
-        data.clear();
-
-        Questionesmodel model=new Questionesmodel(1l,2l,3l,4l,5l,"Gopath brahman is associated with which of these Vedas",
-                "rig","sam","yaju", "adhv","opte","D",false,false);
-        model.setCourse_id(1L);
-        model.setSub_id(1L);
-        model.setTest_id(1L);
-        model.setQues_id(1L);
-        model.setQues_local_id(1L);
-        model.setQues_detail("Gopath brahman is associated with which of these Vedas");
-        model.setOpta("rig");
-        model.setOptb("sam");
-        model.setOptc("yaju");
-
-        model.setOptd("adhv");
-        model.setOpte("opte");
-        model.setAnswerId("D");
-
-        model.setMarked(false);
-        model.setSeen(false);
-
-        data.add(model);
-
-        return data;
-
-    }*/
-
 }
 

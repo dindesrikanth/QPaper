@@ -1,175 +1,191 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/bg_grey"
-    android:screenOrientation="portrait"
-    tools:context=".Activity.TestActivity">
-<!--    <android.support.v4.widget.SwipeRefreshLayout-->
-<!--        android:id="@+id/pullToRefresh"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="match_parent">-->
-    <RelativeLayout
-        android:id="@+id/dashboard_main_layout"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:background="@color/white">
+
+
+    <TextView android:visibility="gone"
+        android:id="@+id/tvNoData"
+        style="@style/subHeaderTitle15dpBold"
+        android:text="No Data Available"
+        android:background="@color/bg_grey"/>
+
+    <RelativeLayout android:id="@+id/relativeMain"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/bg_grey"
-        android:visibility="visible">
-        >
-
+        android:background="@color/white"
+        android:screenOrientation="portrait"
+        tools:context=".Activity.TestActivity">
         <RelativeLayout
-            android:id="@+id/home_layout"
+            android:id="@+id/dashboard_main_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_above="@+id/footer"
-            android:layout_below="@+id/header"
-            android:visibility="gone">
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_sub_header"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
-                android:background="@color/white"
-                android:visibility="visible"/>
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_items"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_below="@+id/rv_sub_header"
-                android:paddingTop="10dp"
-                android:paddingBottom="10dp"
-                android:visibility="visible"/>
-
-            <TextView
-                android:id="@+id/tv_home"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:drawableTop="@drawable/icon_home_unselected"
-                android:text="@string/dashboard_footer_home"
-                android:layout_centerInParent="true"
-                android:textColor="@color/dashboard_grey"
-                android:visibility="gone"/>
-
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:id="@+id/test_layout"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_above="@+id/footer"
-            android:layout_below="@+id/header"
-            android:visibility="gone">
-
-            <TextView
-                android:id="@+id/tv_test"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:layout_weight="1"
-                android:drawableTop="@drawable/icon_degree_unselected"
-                android:text="@string/dashboard_footer_test"
-                android:textColor="@color/dashboard_grey" />
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:id="@+id/notification_layout"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_above="@+id/footer"
-            android:layout_below="@+id/header"
-            android:visibility="gone">
-            <TextView
-                android:id="@+id/tv_notifications"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:drawableTop="@drawable/icon_notification_bell_unselected"
-                android:text="@string/dashboard_footer_notification"
-                android:layout_centerInParent="true"
-                android:textColor="@color/dashboard_grey" />
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:id="@+id/more_layout"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_above="@+id/footer"
-            android:layout_below="@+id/header"
-            android:visibility="gone">
-            <TextView
-                android:id="@+id/tv_more"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:drawableTop="@drawable/icon_more_unselected"
-                android:text="@string/dashboard_footer_more"
-                android:layout_centerInParent="true"
-                android:textColor="@color/dashboard_grey" />
-        </RelativeLayout>
-
-        <LinearLayout
-            android:id="@+id/footer"
-            android:layout_width="match_parent"
-            android:layout_height="75dp"
-            android:layout_alignParentBottom="true"
             android:background="@color/white"
-            android:orientation="horizontal"
-            android:paddingTop="15dp">
+            android:visibility="visible">
+            >
 
-            <TextView
-                android:id="@+id/btn_home"
-                android:layout_width="0dp"
+            <RelativeLayout
+                android:id="@+id/home_layout"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:drawableTop="@drawable/icon_home_unselected"
-                android:text="@string/dashboard_footer_home"
-                android:textAlignment="center"
-                android:textColor="@color/dashboard_grey"
-                android:typeface="serif"/>
+                android:layout_above="@+id/footer"
+                android:layout_below="@+id/header"
+                android:visibility="gone">
 
-            <TextView
-                android:id="@+id/btn_test"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:drawableTop="@drawable/icon_degree_unselected"
-                android:text="@string/dashboard_footer_test"
-                android:textAlignment="center"
-                android:textColor="@color/dashboard_grey"
-                android:typeface="serif"/>
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_sub_header"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:background="@color/white"
+                    android:visibility="visible"/>
 
-            <TextView
-                android:id="@+id/btn_notifications"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:drawableTop="@drawable/icon_notification_bell_unselected"
-                android:text="@string/dashboard_footer_notification"
-                android:textAlignment="center"
-                android:textColor="@color/dashboard_grey"
-                android:typeface="serif"/>
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_items"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_below="@+id/rv_sub_header"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:visibility="visible"/>
 
-            <TextView
-                android:id="@+id/btn_more"
-                android:layout_width="0dp"
+                <TextView
+                    android:id="@+id/tv_home"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:drawableTop="@drawable/icon_home_unselected"
+                    android:text="@string/dashboard_footer_home"
+                    android:layout_centerInParent="true"
+                    android:textColor="@color/dashboard_grey"
+                    android:visibility="gone"/>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/test_layout"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:drawableTop="@drawable/icon_more_unselected"
-                android:text="@string/dashboard_footer_more"
-                android:textAlignment="center"
-                android:textColor="@color/dashboard_grey"
-                android:typeface="serif"/>
-        </LinearLayout>
+                android:layout_above="@+id/footer"
+                android:layout_below="@+id/header"
+                android:visibility="gone">
+
+                <TextView
+                    android:id="@+id/tv_test"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_weight="1"
+                    android:drawableTop="@drawable/icon_degree_unselected"
+                    android:text="@string/dashboard_footer_test"
+                    android:textColor="@color/dashboard_grey" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/notification_layout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_above="@+id/footer"
+                android:layout_below="@+id/header"
+                android:visibility="gone">
+                <TextView
+                    android:id="@+id/tv_notifications"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:drawableTop="@drawable/icon_notification_bell_unselected"
+                    android:text="@string/dashboard_footer_notification"
+                    android:layout_centerInParent="true"
+                    android:textColor="@color/dashboard_grey" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/more_layout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_above="@+id/footer"
+                android:layout_below="@+id/header"
+                android:visibility="gone">
+                <TextView
+                    android:id="@+id/tv_more"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:drawableTop="@drawable/icon_more_unselected"
+                    android:text="@string/dashboard_footer_more"
+                    android:layout_centerInParent="true"
+                    android:textColor="@color/dashboard_grey" />
+            </RelativeLayout>
+
+            <LinearLayout
+                android:id="@+id/footer"
+                android:layout_width="match_parent"
+                android:layout_height="75dp"
+                android:layout_alignParentBottom="true"
+                android:background="@color/white"
+                android:orientation="horizontal"
+                android:paddingTop="15dp">
+
+                <TextView
+                    android:id="@+id/btn_home"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:drawableTop="@drawable/icon_home_unselected"
+                    android:text="@string/dashboard_footer_home"
+                    android:textAlignment="center"
+                    android:textColor="@color/dashboard_grey"
+                    android:typeface="serif"/>
+
+                <TextView
+                    android:id="@+id/btn_test"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:drawableTop="@drawable/icon_degree_unselected"
+                    android:text="@string/dashboard_footer_test"
+                    android:textAlignment="center"
+                    android:textColor="@color/dashboard_grey"
+                    android:typeface="serif"/>
+
+                <TextView
+                    android:id="@+id/btn_notifications"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:drawableTop="@drawable/icon_notification_bell_unselected"
+                    android:text="@string/dashboard_footer_notification"
+                    android:textAlignment="center"
+                    android:textColor="@color/dashboard_grey"
+                    android:typeface="serif"/>
+
+                <TextView
+                    android:id="@+id/btn_more"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:drawableTop="@drawable/icon_more_unselected"
+                    android:text="@string/dashboard_footer_more"
+                    android:textAlignment="center"
+                    android:textColor="@color/dashboard_grey"
+                    android:typeface="serif"/>
+            </LinearLayout>
+        </RelativeLayout>
+        <!--    </android.support.v4.widget.SwipeRefreshLayout>-->
+        <ProgressBar
+            android:id="@+id/dashboard_loader"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:visibility="gone" />
     </RelativeLayout>
-<!--    </android.support.v4.widget.SwipeRefreshLayout>-->
-    <ProgressBar
-        android:id="@+id/dashboard_loader"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:visibility="gone" />
-</RelativeLayout>
+
+
+
+</LinearLayout>
+

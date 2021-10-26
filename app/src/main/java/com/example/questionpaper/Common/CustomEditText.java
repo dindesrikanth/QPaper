@@ -29,6 +29,7 @@ public class CustomEditText extends LinearLayout {
 
     private String editTextHint;
     private String textViewValue;
+    private String errorTextViewValue;
     private Context context;
 
     public CustomEditText(Context context) {
@@ -88,6 +89,13 @@ public class CustomEditText extends LinearLayout {
         this.textViewValue = textViewValue;
         setDataOnUi();
     }
+    public void setValueToLayoutNew(String editTextHint, String textViewValue,String errorText){
+        this.editTextHint= editTextHint;
+        this.textViewValue = textViewValue;
+        this.errorTextViewValue= errorText;
+        setDataOnUiNew();
+    }
+
    public void makeEnableOrDisable(boolean isEnabled){
         if(isEnabled){
             customEditText.setEnabled(true);
@@ -110,6 +118,14 @@ public class CustomEditText extends LinearLayout {
         editTextLabel.setText(editTextHint);
         editTextLabel.setTextColor(Color.parseColor("#000000"));
         editTextErrorLabel.setVisibility(View.GONE);
+    }
+    private void setDataOnUiNew(){
+        customEditText.setText(textViewValue);
+        editTextLabel.setText(editTextHint);
+        editTextLabel.setTextColor(Color.parseColor("#000000"));
+        editTextErrorLabel.setVisibility(View.VISIBLE);
+        editTextErrorLabel.setText(errorTextViewValue);
+        editTextErrorLabel.setTextColor(Color.parseColor("#FF0000"));
     }
 
     public String getEditTextValue(){
@@ -181,6 +197,17 @@ public class CustomEditText extends LinearLayout {
             if(sNextGeneratedId.compareAndSet(result,newValue)){
                 return result;
             }
+        }
+    }
+
+
+    public void setEditTextEnable(boolean isEnabled){
+        if(isEnabled){
+            customEditText.setEnabled(true);
+            customEditText.setCursorVisible(true);
+        }else{
+            customEditText.setEnabled(false);
+            customEditText.setCursorVisible(false);
         }
     }
 

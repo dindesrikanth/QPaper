@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_grey">
+
+    <include layout="@layout/action_bar_header_fragment_level" />
+
+    <LinearLayout android:layout_marginTop="@dimen/padding_20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingStart="@dimen/padding_20dp"
+        android:paddingEnd="@dimen/padding_20dp"
+        android:id="@+id/lnrHeader">
+        <TextView
+            style="@style/subHeaderTitle15dpBold"
+            android:text="Rank"
+            android:layout_width="@dimen/padding_0dp"
+            android:layout_weight="0.5"
+            android:gravity="start"
+            android:background="@color/white"
+            android:paddingStart="@dimen/padding_15dp"
+            />
+        <TextView
+            style="@style/subHeaderTitle15dpBold"
+            android:text="Prize"
+            android:background="@color/white"
+            android:layout_width="@dimen/padding_0dp"
+            android:layout_weight="0.5"
+            android:gravity="end"
+            android:paddingEnd="@dimen/padding_15dp"
+            />
+
+    </LinearLayout>
+
+    <include layout="@layout/recyclerview_common_layout"
+        android:layout_marginStart="@dimen/padding_20dp"
+        android:layout_marginEnd="@dimen/padding_20dp"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"/>
+
+</LinearLayout>

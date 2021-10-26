@@ -3,6 +3,7 @@ package com.example.questionpaper.Activity;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -356,12 +357,21 @@ public class AddBalanceActivity extends AppCompatActivity implements  View.OnCli
                         if(!TextUtils.isEmpty(paymentVerificationModel.getStatus())){
                             if(paymentVerificationModel.getStatus().equalsIgnoreCase("success")){
                                 String text = String.format(getResources().getString(R.string.add_cash_success_message), paymentVerificationModel.getAmountPaid(), paymentVerificationModel.getCurrentBalance());
+
+                                DialogInterface.OnClickListener listener = new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialogInterface, int i) {
+                                        if(i == dialogInterface.BUTTON_POSITIVE){
+                                            finish();
+                                        }
+                                    }
+                                };
+
                                 new AlertDialog.Builder(AddBalanceActivity.this)
                                         .setTitle(getResources().getString(R.string.add_cash))
                                         .setMessage(text)
-
                                         // A null listener allows the button to dismiss the dialog and take no further action.
-                                        .setPositiveButton(android.R.string.ok, null)
+                                        .setPositiveButton(android.R.string.ok, listener)
                                         .setIcon(R.drawable.ic_check_circle)
                                         .show();
                             }else{

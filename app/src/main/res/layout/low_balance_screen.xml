@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:minWidth="400dp"
+    android:layout_height="wrap_content"
+    android:background="@color/bg_grey"
+    android:padding="@dimen/padding_20dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            style="@style/subHeaderTitle15dpBold"
+            android:background="@color/bg_grey"
+            android:layout_width="@dimen/padding_0dp"
+            android:layout_weight="1"
+            android:text="Insufficient Wallet Balance" />
+        <ImageView android:id="@+id/imgClose"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minWidth="@dimen/padding_25dp"
+            android:minHeight="@dimen/padding_25dp"
+            android:src="@drawable/ic_close_gray"/>
+    </LinearLayout>
+
+
+    <TextView android:layout_marginTop="@dimen/padding_10dp"
+        style="@style/subHeaderTitle15dpNormal"
+        android:text="Your Wallet Balance is Less than Test Fee. Please recharge your wallet to join the Test" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" android:layout_marginTop="@dimen/padding_30dp">
+        <TextView
+            style="@style/subHeaderTitle15dpNormal"
+            android:background="@color/bg_grey"
+            android:layout_width="@dimen/padding_0dp"
+            android:layout_weight="1"
+            android:text="Total Wallet Balance"/>
+        <TextView android:id="@+id/tvWalletBalance"
+            style="@style/subHeaderTitle15dpNormal"
+            android:background="@color/bg_grey"
+            android:text="R1"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" android:layout_marginTop="@dimen/padding_10dp">
+        <TextView
+            style="@style/subHeaderTitle15dpNormal"
+            android:background="@color/bg_grey"
+            android:layout_width="@dimen/padding_0dp"
+            android:layout_weight="1"
+            android:text="Test Fee"/>
+        <TextView android:id="@+id/tvTestFee"
+            style="@style/subHeaderTitle15dpNormal"
+            android:background="@color/bg_grey"
+            android:text="R1"/>
+    </LinearLayout>
+
+    <View android:layout_marginTop="@dimen/padding_20dp"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/padding_1dp"
+        android:background="@color/grey"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" android:layout_marginTop="@dimen/padding_20dp">
+        <TextView
+            style="@style/subHeaderTitle15dpBold"
+            android:background="@color/bg_grey"
+            android:layout_width="@dimen/padding_0dp"
+            android:layout_weight="1"
+            android:text="Balance Amount to Add"
+            android:textColor="@color/dark_green"/>
+        <TextView android:id="@+id/tvBalanceAmountToAdd"
+            style="@style/subHeaderTitle15dpBold"
+            android:background="@color/bg_grey"
+            android:textColor="@color/dark_green"
+            android:text="R1"/>
+    </LinearLayout>
+    <TextView android:layout_marginTop="@dimen/padding_20dp"
+        android:id="@+id/tvAddCash"
+        style="@style/customButtonStyle"
+        android:background="@drawable/box_border_green_bg"
+        android:text="ADD CASH"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:typeface="serif"
+        android:layout_gravity="center"/>
+
+
+</LinearLayout>

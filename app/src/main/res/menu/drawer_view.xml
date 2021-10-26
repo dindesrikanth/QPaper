@@ -16,7 +16,7 @@
             android:title="My Balance" />
         <item
             android:id="@+id/nav_cources"
-            android:title="Modify Cources" />
+            android:title="Modify Courses" />
 
         <item
             android:id="@+id/nav_exam"

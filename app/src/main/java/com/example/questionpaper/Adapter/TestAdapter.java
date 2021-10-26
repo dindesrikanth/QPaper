@@ -46,7 +46,7 @@ public class TestAdapter extends RecyclerView.Adapter<TestAdapter.ViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull final TestAdapter.ViewHolder holder, final int position) {
         Questionesmodel hero = item.get(position);
-        holder.test_question_text.setText(hero.getQues_detail());
+        holder.test_question_text.setText(hero.getQues_details());
         holder.option1.setVisibility(View.VISIBLE);
         holder.option2.setVisibility(View.VISIBLE);
         holder.option3.setVisibility(View.VISIBLE);

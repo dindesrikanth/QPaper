@@ -9,111 +9,123 @@
     android:paddingStart="@dimen/padding_20dp"
     android:paddingEnd="@dimen/padding_20dp"
     android:layout_marginTop="@dimen/padding_0dp"
-    android:layout_marginBottom="@dimen/padding_0dp">
+    android:layout_marginBottom="@dimen/padding_0dp"
+    android:gravity="center">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_height="@dimen/padding_0dp"
+        android:layout_weight="0.9"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/padding_10dp">
 
+            <TextView
+                android:id="@+id/tvQuestion"
+                style="@style/subHeaderTitle15dpNormal"
+                android:layout_width="0dp"
+                android:layout_weight="0.9"
+                android:paddingStart="@dimen/padding_10dp"
+                android:paddingEnd="@dimen/padding_10dp"
+                tools:text="Option AQuestion need to print here"/>
+            <ImageView android:id="@+id/imgObjection"
+                android:layout_height="wrap_content"
+                android:layout_width="0dp"
+                android:layout_weight="0.1"
+                android:src="@drawable/ic_report_problem"
+                android:layout_gravity="center"
+                />
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_marginTop="@dimen/padding_15dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingTop="@dimen/padding_10dp"
+            android:paddingBottom="@dimen/padding_10dp">
+
+            <TextView
+                android:id="@+id/tvOptionA"
+                style="@style/subHeaderTitle15dpNormal"
+                android:background="@color/white"
+                android:layout_width="match_parent"
+                android:paddingStart="@dimen/padding_10dp"
+                android:paddingEnd="@dimen/padding_10dp"
+                android:minHeight="@dimen/minimum_edittext_height"
+                android:layout_marginTop="@dimen/padding_10dp"
+                tools:text="Option A"
+                />
+
+            <TextView
+                android:id="@+id/tvOptionB"
+                style="@style/subHeaderTitle15dpNormal"
+                android:background="@color/white"
+                android:layout_width="match_parent"
+                android:paddingStart="@dimen/padding_10dp"
+                android:paddingEnd="@dimen/padding_10dp"
+                android:minHeight="@dimen/minimum_edittext_height"
+                android:layout_marginTop="@dimen/padding_10dp"
+                tools:text="Option B"
+                />
+            <TextView
+                android:id="@+id/tvOptionC"
+                style="@style/subHeaderTitle15dpNormal"
+                android:background="@color/white"
+                android:layout_width="match_parent"
+                android:paddingStart="@dimen/padding_10dp"
+                android:paddingEnd="@dimen/padding_10dp"
+                android:minHeight="@dimen/minimum_edittext_height"
+                android:layout_marginTop="@dimen/padding_10dp"
+                tools:text="Option C"
+                />
+
+            <TextView
+                android:id="@+id/tvOptionD"
+                style="@style/subHeaderTitle15dpNormal"
+                android:background="@color/white"
+                android:layout_width="match_parent"
+                android:paddingStart="@dimen/padding_10dp"
+                android:paddingEnd="@dimen/padding_10dp"
+                android:minHeight="@dimen/minimum_edittext_height"
+                android:layout_marginTop="@dimen/padding_10dp"
+                tools:text="Option D"
+                />
+
+            <TextView
+                android:id="@+id/tvOptionE"
+                style="@style/subHeaderTitle15dpNormal"
+                android:background="@color/white"
+                android:layout_width="match_parent"
+                android:paddingStart="@dimen/padding_10dp"
+                android:paddingEnd="@dimen/padding_10dp"
+                android:minHeight="@dimen/minimum_edittext_height"
+                android:layout_marginTop="@dimen/padding_10dp"
+                tools:text="Option E"
+                />
+
+        </LinearLayout>
         <TextView
-            android:id="@+id/tvQuestion"
+            android:id="@+id/tvExplanation"
             style="@style/subHeaderTitle15dpNormal"
-            android:layout_width="0dp"
-            android:layout_weight="0.9"
+            android:layout_width="match_parent"
             android:paddingStart="@dimen/padding_10dp"
             android:paddingEnd="@dimen/padding_10dp"
             android:layout_marginTop="@dimen/padding_10dp"
             tools:text="Option AQuestion need to print here"/>
-        <ImageView android:id="@+id/imgObjection"
-            android:layout_height="wrap_content"
-            android:layout_width="0dp"
-            android:layout_weight="0.1"
-            android:src="@drawable/ic_edit"
-            android:layout_gravity="center"
-            />
 
     </LinearLayout>
 
-
-    <LinearLayout
-        android:layout_marginTop="@dimen/padding_15dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:paddingTop="@dimen/padding_10dp"
-        android:paddingBottom="@dimen/padding_10dp">
-
-        <TextView
-            android:id="@+id/tvOptionA"
-            style="@style/subHeaderTitle15dpNormal"
-            android:background="@color/white"
-            android:layout_width="match_parent"
-            android:paddingStart="@dimen/padding_10dp"
-            android:paddingEnd="@dimen/padding_10dp"
-            android:minHeight="@dimen/minimum_edittext_height"
-            android:layout_marginTop="@dimen/padding_10dp"
-            tools:text="Option A"
-            />
-
-        <TextView
-            android:id="@+id/tvOptionB"
-            style="@style/subHeaderTitle15dpNormal"
-            android:background="@color/white"
-            android:layout_width="match_parent"
-            android:paddingStart="@dimen/padding_10dp"
-            android:paddingEnd="@dimen/padding_10dp"
-            android:minHeight="@dimen/minimum_edittext_height"
-            android:layout_marginTop="@dimen/padding_10dp"
-            tools:text="Option B"
-            />
-        <TextView
-            android:id="@+id/tvOptionC"
-            style="@style/subHeaderTitle15dpNormal"
-            android:background="@color/white"
-            android:layout_width="match_parent"
-            android:paddingStart="@dimen/padding_10dp"
-            android:paddingEnd="@dimen/padding_10dp"
-            android:minHeight="@dimen/minimum_edittext_height"
-            android:layout_marginTop="@dimen/padding_10dp"
-            tools:text="Option C"
-            />
-
-        <TextView
-            android:id="@+id/tvOptionD"
-            style="@style/subHeaderTitle15dpNormal"
-            android:background="@color/white"
-            android:layout_width="match_parent"
-            android:paddingStart="@dimen/padding_10dp"
-            android:paddingEnd="@dimen/padding_10dp"
-            android:minHeight="@dimen/minimum_edittext_height"
-            android:layout_marginTop="@dimen/padding_10dp"
-            tools:text="Option D"
-            />
-
-        <TextView
-            android:id="@+id/tvOptionE"
-            style="@style/subHeaderTitle15dpNormal"
-            android:background="@color/white"
-            android:layout_width="match_parent"
-            android:paddingStart="@dimen/padding_10dp"
-            android:paddingEnd="@dimen/padding_10dp"
-            android:minHeight="@dimen/minimum_edittext_height"
-            android:layout_marginTop="@dimen/padding_10dp"
-            tools:text="Option E"
-            />
-
-    </LinearLayout>
+    <TextView android:visibility="gone"
+        android:id="@+id/tvSubmitObjection"
+        style="@style/customButtonStyle"
+        android:background="@drawable/box_border_blue_bg"
+        android:text="Submit Objection"
+        android:layout_marginBottom="@dimen/padding_5dp"/>
 
 
-
-    <TextView
-        android:id="@+id/tvExplanation"
-        style="@style/subHeaderTitle15dpNormal"
-        android:layout_width="match_parent"
-        android:paddingStart="@dimen/padding_10dp"
-        android:paddingEnd="@dimen/padding_10dp"
-        android:layout_marginTop="@dimen/padding_10dp"
-        tools:text="Option AQuestion need to print here"/>
 
 </LinearLayout>

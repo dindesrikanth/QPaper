@@ -1,7 +1,6 @@
 package com.example.questionpaper.Activity;
 
 import android.app.ProgressDialog;
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -92,15 +91,31 @@ public class Register extends AppCompatActivity {
         if (mobileNo.isEmpty()) {
             edtMobileNo.setError("Enter Mobile No");
             valid = false;
+        }else if (!mobileNo.isEmpty() && mobileNo.length()<10) {
+            edtMobileNo.setError("Enter Valid Mobile No");
+            valid = false;
         } else {
             edtMobileNo.setError(null);
         }
 
-        if (!passwordtext.equalsIgnoreCase(reEnterPassword)) {
-            edtReEnterPassword.setError("Password not match");
+
+        if (passwordtext.isEmpty()) {
+            edtPassword.setError("Enter Password");
             valid = false;
         } else {
             edtPassword.setError(null);
+        }
+
+        if (reEnterPassword.isEmpty()) {
+            edtReEnterPassword.setError("Enter Confirm Password");
+            valid = false;
+        } else {
+            edtReEnterPassword.setError(null);
+        }
+
+        if (!passwordtext.isEmpty() && !reEnterPassword.isEmpty() && !passwordtext.equalsIgnoreCase(reEnterPassword)) {
+            edtReEnterPassword.setError("Password not match");
+            valid = false;
         }
      /*   if (checked == false) {
             whichjobtext.setError("Please Select Any One Of The Following Options");
@@ -191,11 +206,9 @@ public class Register extends AppCompatActivity {
 
     private void showData(LoginApiResponse response) {
         if (response != null && response.getStatus().equalsIgnoreCase("success")) {
-            //Toast.makeText(getApplicationContext(), "Registered Successfully ..", Toast.LENGTH_LONG).show();
             Utility.showCommonMessage(getApplicationContext(),"Registered Successfully ..");
-            startActivity(new Intent(Register.this, LoginActivity.class));
+            finish();
         } else {
-           // Toast.makeText(getApplicationContext(), "invalid details.." + response.getErrorMsg(), Toast.LENGTH_LONG).show();
             Utility.showCommonMessage(getApplicationContext(),"invalid details.." + response.getErrorMsg());
         }
     }

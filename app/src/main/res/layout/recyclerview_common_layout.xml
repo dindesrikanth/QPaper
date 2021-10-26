@@ -10,7 +10,7 @@
         android:layout_height="match_parent"
         android:scrollbars="none"
         android:id="@+id/rViewCommon"
-        tools:listitem="@layout/mytests_upcoming_adapter"
+        tools:listitem="@layout/transaction_history_adapter"
         android:background="@color/bg_grey"/>
 
     <TextView android:id="@+id/tvErrorMessage"

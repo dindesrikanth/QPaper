@@ -23,9 +23,14 @@ import com.example.questionpaper.Screens.Courses.CoursesListScreenFragment;
 import com.example.questionpaper.Screens.InfoAndSettings.ChangePasswordFragment;
 import com.example.questionpaper.Screens.InfoAndSettings.UserInfoScreenFragment;
 import com.example.questionpaper.Screens.Payments.ShowBalanceFragment;
+import com.example.questionpaper.Screens.Verification.KycLandingFragment;
+import com.example.questionpaper.Screens.Verification.VerifyBankAccountFragment;
+import com.example.questionpaper.Screens.Verification.VerifyPanCardFragment;
 import com.example.questionpaper.Screens.mytest.DetailedAnalysis.DetailedAnalysisFragment;
 import com.example.questionpaper.Screens.mytest.LeaderBoard.LeaderBoardFragment;
+import com.example.questionpaper.Screens.mytest.LeaderBoard.PriceDistributionFragment;
 import com.example.questionpaper.Screens.mytest.MyTestsLandingFragment;
+import com.example.questionpaper.Screens.mytest.NotificationsScreenFragment;
 import com.example.questionpaper.Screens.mytest.SelectNoOfMonthsFragment;
 import com.example.questionpaper.Screens.mytest.UpComing.UpComingTestFragment;
 import com.example.questionpaper.Screens.mytest.review.ExamReviewScreenFragment;
@@ -50,18 +55,20 @@ public class ContainerActivity extends AppCompatActivity {
         relativeCustomActionBar = findViewById(R.id.relativeCustomActionBar);
         // Hide ActionBar
         setNavigationDrawerLayout();
-
         fManager= getSupportFragmentManager();
+        loadLandingFragment();
+    }
 
-       // boolean isLoaded = Utility.getIsCoursesScreenLoadedFromSharedPref(getApplicationContext());
+    public void loadLandingFragment(){
         boolean isLoaded = Utility.getIsCoursesScreenLoadedFromSharedPref(getApplicationContext());
         if(isLoaded){
-            //displayFragment(0);
             displayFragment(8);
         }else{
             displayFragment(6);
         }
     }
+
+
     public void displayFragment(int position){
         switch (position){
             case 0:
@@ -119,6 +126,42 @@ public class ContainerActivity extends AppCompatActivity {
                 tr.addToBackStack(null);
                 tr.commit();
                 break;
+            case 9:
+                tr=fManager.beginTransaction();
+                tr.replace(R.id.containerLayout,new KycLandingFragment());
+                tr.addToBackStack(null);
+                tr.commit();
+                break;
+            case 10:
+                tr=fManager.beginTransaction();
+                tr.replace(R.id.containerLayout,new VerifyPanCardFragment());
+                tr.addToBackStack(null);
+                tr.commit();
+                break;
+            case 11:
+                tr=fManager.beginTransaction();
+                tr.replace(R.id.containerLayout,new VerifyBankAccountFragment());
+                tr.addToBackStack(null);
+                tr.commit();
+                break;
+            case 12:
+                tr=fManager.beginTransaction();
+                tr.replace(R.id.containerLayout,new ExamReviewScreenFragment());
+                tr.addToBackStack(null);
+                tr.commit();
+                break;
+            case 13:
+                tr=fManager.beginTransaction();
+                tr.replace(R.id.containerLayout,new PriceDistributionFragment());
+                tr.addToBackStack(null);
+                tr.commit();
+                break;
+            case 14:
+                tr=fManager.beginTransaction();
+                tr.replace(R.id.containerLayout,new NotificationsScreenFragment());
+                tr.addToBackStack(null);
+                tr.commit();
+                break;
             default:
                 break;
         }
@@ -171,19 +214,18 @@ public class ContainerActivity extends AppCompatActivity {
         // Create a new fragment and specify the fragment to show based on nav item clicked
         Fragment fragment = null;
         Class fragmentClass = null;
+        clearStackOnMenuItemClicked();
         switch(menuItem.getItemId()) {
             case R.id.nav_performance:
-                //Toast.makeText(getApplicationContext(),"first clicked...",Toast.LENGTH_SHORT).show();
                 fragmentClass = DashboardScreenFragment.class;
-
                // startActivity(new Intent(getApplicationContext(),DashboardActivity.class));
-
                 break;
             case R.id.nav_videos:
-                fragmentClass = ExamReviewScreenFragment.class;
+                fragmentClass = VerifyPanCardFragment.class;
                 break;
             case R.id.nav_materials:
                 //fragmentClass = ThirdFragment.class;
+                fragmentClass = VerifyBankAccountFragment.class;
                 break;
 
             case R.id.nav_balance:
@@ -199,10 +241,8 @@ public class ContainerActivity extends AppCompatActivity {
             case R.id.nav_purchase_material:
                 //fragmentClass = ThirdFragment.class;
                 break;
-
-
             case R.id.nav_invite:
-                //fragmentClass = SecondFragment.class;
+                fragmentClass = KycLandingFragment.class;
                 break;
             case R.id.nav_info_settings:
                 fragmentClass = UserInfoScreenFragment.class;
@@ -229,7 +269,10 @@ public class ContainerActivity extends AppCompatActivity {
             }
             // Insert the fragment by replacing any existing fragment
             FragmentManager fragmentManager = getSupportFragmentManager();
-            fragmentManager.beginTransaction().replace(R.id.containerLayout, fragment).commit();
+            FragmentTransaction transaction = fragmentManager.beginTransaction();
+            transaction.replace(R.id.containerLayout, fragment);
+            transaction.addToBackStack(null);
+            transaction.commit();
         }
         // Highlight the selected item has been done by NavigationView
         menuItem.setChecked(true);
@@ -243,9 +286,22 @@ public class ContainerActivity extends AppCompatActivity {
     public void onBackPressed() {
         if(fManager.getBackStackEntryCount()>1){
             super.onBackPressed();
-        }else{
+        }else {
             Toast.makeText(getApplicationContext(),"Exit the application",Toast.LENGTH_LONG).show();
         }
-
     }
+
+    public void clearStackOnMenuItemClicked(){
+        FragmentManager fManager = getSupportFragmentManager();
+        int count = fManager.getBackStackEntryCount();
+        FragmentTransaction tr = fManager.beginTransaction();
+
+        while (count > 0){
+            fManager.popBackStack();;
+            fManager.executePendingTransactions();
+            count--;
+        }
+        tr.commitAllowingStateLoss();
+    }
+
 }

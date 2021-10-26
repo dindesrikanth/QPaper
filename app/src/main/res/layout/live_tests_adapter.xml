@@ -14,14 +14,16 @@
             android:id="@+id/tvTestName"
             android:layout_width="0dp"
             android:layout_weight="0.4"
-            tools:text="Test" >
+            tools:text="Test"
+            android:background="@color/white">
         </TextView>
         <TextView
             style="@style/subHeaderTitle15dpNormal"
             android:id="@+id/tvCourseName"
             android:layout_width="0dp"
             android:layout_weight="0.4"
-            tools:text="Course name">
+            tools:text="Course name"
+            android:background="@color/white">
         </TextView>
         <TextView
             android:id="@+id/tvTakeTest"

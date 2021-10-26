@@ -8,10 +8,16 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
+import android.os.Handler;
+import android.os.Looper;
 import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 
+import com.example.questionpaper.Requests.MyTests.review.ObjectionsData;
+
+import java.util.ArrayList;
+import java.util.List;
 import java.util.regex.Pattern;
 
 public class Utility {
@@ -20,10 +26,8 @@ public class Utility {
     public static String[] listOfMonths={"1","3","6","9","12"};
 
     public static String[] listOfGender={"Male","Female"};
-    public static String[] listOfIsses={"Question","Answer","Explanation"};
-    public static String[] listOfObjections={"Question is incorrect","Question is incomplete",
-                                         "Question is irrelevant","Answer is incorrect",
-                                         "Answer not options","Explanation is incorrect"};
+
+    public static List<ObjectionsData> objectionsList=new ArrayList<>();
 
 
     public static String[] listOfStates={"Andhra Pradesh","Arunachal Pradesh","Assam","Bihar","Chhattisgarh",
@@ -148,5 +152,18 @@ public class Utility {
     public static void showCommonMessage(Context context,String message){
         Toast.makeText(context,message,Toast.LENGTH_LONG).show();
     }
+
+    public static void popBackStackWithDelay(final androidx.fragment.app.FragmentManager supportFragmentManager, long duration){
+        new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                supportFragmentManager.popBackStack();
+            }
+        },duration);
+    }
+
+
+
+
 
 }

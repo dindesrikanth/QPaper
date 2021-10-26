@@ -18,6 +18,7 @@ import com.example.questionpaper.Model.UserCourses;
 import com.example.questionpaper.Model.signinmodel;
 import com.example.questionpaper.Model.user_response;
 import com.example.questionpaper.Requests.Courses.CoursesListSubmitRequest;
+import com.example.questionpaper.Requests.Dashboard.EnrollExamRequest;
 import com.example.questionpaper.Requests.InfoAndSettings.UpdateProfileRequest;
 import com.example.questionpaper.Requests.Login.LoginApiRequest;
 import com.example.questionpaper.Requests.Login.RegisterApiRequest;
@@ -26,8 +27,12 @@ import com.example.questionpaper.Requests.MyTests.DetailedAnalysisRequest;
 import com.example.questionpaper.Requests.MyTests.ExamTestQuestionRequest;
 import com.example.questionpaper.Requests.MyTests.UserTestRequest;
 import com.example.questionpaper.Requests.MyTests.review.ExamReviewRequest;
+import com.example.questionpaper.Requests.MyTests.review.ObjectionsRequest;
+import com.example.questionpaper.Requests.Verification.BankAccountSubmitRequest;
+import com.example.questionpaper.Requests.Verification.PanSubmitRequest;
 import com.example.questionpaper.Response.CommonResponse;
 import com.example.questionpaper.Response.Courses.CoursesListScreenResponse;
+import com.example.questionpaper.Response.Dashboard.EnrollExamResponse;
 import com.example.questionpaper.Response.InfoAndSettings.UpdateProfileResponse;
 import com.example.questionpaper.Response.InfoAndSettings.UserInfoScreenResponse;
 import com.example.questionpaper.Response.Login.LoginApiResponse;
@@ -37,6 +42,7 @@ import com.example.questionpaper.Response.mytests.DetailedAnalysis.DetailedAnaly
 import com.example.questionpaper.Response.mytests.LeaderBoard.LeaderBoardResponse;
 import com.example.questionpaper.Response.mytests.LiveTest.LiveTestResponse;
 import com.example.questionpaper.Response.mytests.Review.ExamReviewResponse;
+import com.example.questionpaper.Response.mytests.Review.ObjectionScreenResponse;
 import com.example.questionpaper.Response.mytests.UpComing.UpcomingTestsResponse;
 
 import java.util.List;
@@ -240,4 +246,39 @@ public interface Api {
     @GET("dash-board-screen/{userId}")
     Call<DashboardModelNew> getDashboardDetailsNew(@Path("userId") String userId);
 
+    @Headers({
+            "Accept: application/json",
+            "Content-Type: application/json"
+    })
+    @POST("submit_objections")
+    Call<ObjectionScreenResponse> submitObjectionsRequest(
+            @Body ObjectionsRequest objectionsRequest);
+
+
+
+    @Headers({
+            "Accept: application/json",
+            "Content-Type: application/json"
+    })
+    @POST("trans/order/enroll-exam")
+    Call<EnrollExamResponse> enrollExamAPI(
+            @Body EnrollExamRequest enrollExamRequest);
+
+
+
+    @Headers({
+            "Accept: application/json",
+            "Content-Type: application/json"
+    })
+    @POST("pa-update")
+    Call<CommonResponse> submitPanVerificationDetails(
+            @Body PanSubmitRequest panSubmitRequest);
+
+    @Headers({
+            "Accept: application/json",
+            "Content-Type: application/json"
+    })
+    @POST("ba-update")
+    Call<CommonResponse> submitBankVerificationDetails(
+            @Body BankAccountSubmitRequest bankAccountSubmitRequest);
 }

@@ -49,6 +49,7 @@ public class DashboardModelNew {
         private int prizeDistributionId;
         private int winPercentage;
         private String courseName;
+        private boolean userEnroled;
 
 
         public String getTestId() {
@@ -177,6 +178,13 @@ public class DashboardModelNew {
 
         public void setCourseName(String courseName) {
             this.courseName = courseName;
+        }
+
+        public boolean getUserEnroled() {
+            return userEnroled;
+        }
+        public void setUserEnroled(boolean userEnroled) {
+            this.userEnroled = userEnroled;
         }
     }
 

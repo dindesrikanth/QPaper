@@ -21,4 +21,8 @@ public class ExamReviewResponse {
     public boolean isObjectionRequired() {
         return isObjectionRequired;
     }
+
+    public void setObjectionRequired(boolean objectionRequired) {
+        this.isObjectionRequired = objectionRequired;
+    }
 }

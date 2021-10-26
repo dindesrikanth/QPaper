@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.questionpaper.Activity.ContainerActivity;
+import com.example.questionpaper.Common.Constants;
 import com.example.questionpaper.Common.Utility;
 import com.example.questionpaper.Network.RetrofitClient;
 import com.example.questionpaper.R;
@@ -81,7 +82,7 @@ public class DetailedAnalysisFragment extends Fragment implements View.OnClickLi
 
         pDialog.show();
 
-        String testId = "1";
+        String testId = Constants.testIdValue+"";
         String userId = Utility.getUserIdFromSharedPref(getContext());;
         final DetailedAnalysisRequest userTestRequest = new DetailedAnalysisRequest(testId, userId);
         Call<DetailedAnalysisResponse> call = RetrofitClient.getInstance().getApi().detailedAnalysisAPI(userTestRequest);

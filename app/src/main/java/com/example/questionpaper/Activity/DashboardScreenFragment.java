@@ -1,11 +1,15 @@
 package com.example.questionpaper.Activity;
 
+import android.app.Dialog;
+import android.app.ProgressDialog;
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -21,11 +25,15 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.questionpaper.Adapter.CourseAdapter;
 import com.example.questionpaper.Adapter.CourseItemAdapter;
+import com.example.questionpaper.Common.Constants;
 import com.example.questionpaper.Common.Utility;
 import com.example.questionpaper.Model.AppCourseModel;
 import com.example.questionpaper.Model.DashboardModelNew;
 import com.example.questionpaper.Network.RetrofitClient;
 import com.example.questionpaper.R;
+import com.example.questionpaper.Requests.Dashboard.EnrollExamRequest;
+import com.example.questionpaper.Response.Dashboard.EnrollExamResponse;
+import com.example.questionpaper.Response.Payments.ShowBalanceResponse;
 import com.google.android.gms.common.util.CollectionUtils;
 
 import java.text.ParseException;
@@ -58,11 +66,15 @@ public class DashboardScreenFragment extends Fragment implements  View.OnClickLi
 
     private SimpleDateFormat dateFormatInput, dateFormatOutput, timeFormatInput, timeFormatOutput, dateTimeFormat, outputDateTimeFormat;
 
+    RelativeLayout relativeMain;
+    TextView tvNoData;
+
     private CourseAdapter courseAdapter;
     private CourseItemAdapter courseItemAdapter;
     List<AppCourseModel> courseList;
     ContainerActivity activity;
 
+    private ProgressDialog pDialog;
     View v;
 
     @Nullable
@@ -71,6 +83,7 @@ public class DashboardScreenFragment extends Fragment implements  View.OnClickLi
 
         v=inflater.inflate(R.layout.activity_dashboard,container,false);
         this.activity=(ContainerActivity) getActivity();
+        pDialog= Utility.getProgressDialog(getActivity());
         initViews();
         return v;
     }
@@ -103,6 +116,11 @@ public class DashboardScreenFragment extends Fragment implements  View.OnClickLi
         btn_home.setOnClickListener(this);
         btn_more.setOnClickListener(this);
         btn_test.setOnClickListener(this);
+
+
+        relativeMain = v.findViewById(R.id.relativeMain);
+        tvNoData = v.findViewById(R.id.tvNoData);
+
         setFooter(HOME_LAYOUT_ID);
         getDashboardData();
     }
@@ -113,10 +131,15 @@ public class DashboardScreenFragment extends Fragment implements  View.OnClickLi
             rv_sub_header = v.findViewById(R.id.rv_sub_header);
             courseList = getCourseList();
             if(!CollectionUtils.isEmpty(courseList)){
+                relativeMain.setVisibility(View.VISIBLE);
+                tvNoData.setVisibility(View.GONE);
                 courseAdapter = new CourseAdapter(courseList, getContext());
                 rv_sub_header.setLayoutManager(layoutManager);
                 courseAdapter.setOnItemClickListener(DashboardScreenFragment.this);
                 rv_sub_header.setAdapter(courseAdapter);
+            }else{
+                relativeMain.setVisibility(View.GONE);
+                tvNoData.setVisibility(View.VISIBLE);
             }
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -131,10 +154,19 @@ public class DashboardScreenFragment extends Fragment implements  View.OnClickLi
                 testDataList = getTestDataList(coursedataList.get(0).getCourseName());
             }
 
-            courseItemAdapter = new CourseItemAdapter(testDataList, getContext());
-            rv_items.setLayoutManager(layoutManager);
-            courseItemAdapter.setOnItemClickListener(DashboardScreenFragment.this);
-            rv_items.setAdapter(courseItemAdapter);
+            if(!CollectionUtils.isEmpty(testDataList)){
+                relativeMain.setVisibility(View.VISIBLE);
+                tvNoData.setVisibility(View.GONE);
+                courseItemAdapter = new CourseItemAdapter(testDataList, getContext());
+                rv_items.setLayoutManager(layoutManager);
+                courseItemAdapter.setOnItemClickListener(DashboardScreenFragment.this);
+                rv_items.setAdapter(courseItemAdapter);
+            }else{
+                relativeMain.setVisibility(View.GONE);
+                tvNoData.setVisibility(View.VISIBLE);
+            }
+
+
         } catch (Exception ex) {
             ex.printStackTrace();
         }
@@ -155,6 +187,10 @@ public class DashboardScreenFragment extends Fragment implements  View.OnClickLi
                         setItems();
                     }else{
                         showMessageAndCloseScreen();
+                        dashboard_loader.setVisibility(View.GONE);
+
+                        relativeMain.setVisibility(View.GONE);
+                        tvNoData.setVisibility(View.VISIBLE);
                     }
                 }catch (Exception ex){
                     ex.printStackTrace();
@@ -164,6 +200,7 @@ public class DashboardScreenFragment extends Fragment implements  View.OnClickLi
 
             @Override
             public void onFailure(Call<DashboardModelNew> call, Throwable t) {
+                dashboard_loader.setVisibility(View.GONE);
                 showMessageAndCloseScreen();
                 return;
             }
@@ -180,6 +217,7 @@ public class DashboardScreenFragment extends Fragment implements  View.OnClickLi
             switch (v.getId()) {
                 case R.id.btn_notifications:
                     setFooter(NOTIFICATIONS_LAYOUT_ID);
+                    activity.displayFragment(14);
                     break;
 
                 case R.id.btn_test:
@@ -360,5 +398,159 @@ public class DashboardScreenFragment extends Fragment implements  View.OnClickLi
         tr.commit();
         //startActivity(intent);
     }
+
+    @Override
+    public void onEnrollClicked(int position) {
+        if(position != -1){
+            Constants.testIdValue = Integer.parseInt(testDataList.get(position).getTestId());
+            getBalanceData(testDataList.get(position).getTestFee());
+        }
+    }
+    private void getBalanceData(final String testFee){
+        pDialog.show();
+        String userId = Utility.getUserIdFromSharedPref(getContext());
+
+        Call<ShowBalanceResponse> call = RetrofitClient.getInstance().getApi().getWalletData(userId);
+        call.enqueue(new Callback<ShowBalanceResponse>() {
+            @Override
+            public void onResponse(Call<ShowBalanceResponse> call, Response<ShowBalanceResponse> response) {
+                try {
+                    if (response.isSuccessful()) {
+                        showData(response.body(),testFee);
+                    }else{
+                        Utility.showCommonMessage(getActivity(),"Failed to load API...");
+                    }
+                }catch (Exception ex){
+                    ex.printStackTrace();
+                }
+                pDialog.dismiss();
+            }
+
+            @Override
+            public void onFailure(Call<ShowBalanceResponse> call, Throwable t) {
+                Utility.showCommonMessage(getContext(),"Response failed ...");
+                pDialog.dismiss();
+                return;
+            }
+        });
+    }
+    private void showData(ShowBalanceResponse response, String testFee) {
+        if(response !=null) {
+            int totalBalance = 0;
+            if(!TextUtils.isEmpty(response.getWalletBalance())){
+                totalBalance = totalBalance + Integer.parseInt(response.getWalletBalance());
+            }
+            if(!TextUtils.isEmpty(response.getWinsBalance())){
+                totalBalance = totalBalance + Integer.parseInt(response.getWinsBalance());
+            }
+            final int testFeeNew = Integer.parseInt(testFee);
+            if(!TextUtils.isEmpty(testFee) && totalBalance < testFeeNew){
+                //Show popup;
+                final Dialog d =new Dialog(getContext());
+                d.setContentView(R.layout.low_balance_screen);
+                d.setCancelable(false);
+                TextView tvWalletBalance= d.findViewById(R.id.tvWalletBalance);
+                TextView tvTestFee= d.findViewById(R.id.tvTestFee);
+                TextView tvBalanceAmountToAdd = d.findViewById(R.id.tvBalanceAmountToAdd);
+
+                tvWalletBalance.setText(totalBalance+"");
+                tvTestFee.setText(testFeeNew+"");
+
+                int toPay = testFeeNew - totalBalance;
+                tvBalanceAmountToAdd.setText(""+toPay);
+
+                ImageView imgClose = d.findViewById(R.id.imgClose);
+                imgClose.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        d.dismiss();
+                    }
+                });
+
+                TextView tvAddCash = d.findViewById(R.id.tvAddCash);
+                tvAddCash.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        d.dismiss();
+                        startActivity(new Intent(getContext(),AddBalanceActivity.class));
+                    }
+                });
+
+                d.show();
+            }else  if(!TextUtils.isEmpty(testFee) && totalBalance > testFeeNew) {
+                final Dialog d =new Dialog(getContext());
+                d.setContentView(R.layout.payment_confirmation_popup);
+                d.setCancelable(false);
+                TextView tvTotalBalance = d.findViewById(R.id.tvTotalBalance);
+                TextView tvEntryBalance = d.findViewById(R.id.tvEntryBalance);
+                TextView tvToPayBalance = d.findViewById(R.id.tvToPayBalance);
+                TextView tvTakeTest = d.findViewById(R.id.tvTakeTest);
+                ImageView imgClose = d.findViewById(R.id.imgClose);
+
+                tvTotalBalance.setText("Amount added (Unutilised) + Winnings = ₹"+totalBalance);
+                tvEntryBalance.setText("₹"+testFeeNew);
+                tvToPayBalance.setText("₹"+testFeeNew);
+
+                tvTakeTest.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        enrollExamApi(testFeeNew,d);
+                    }
+                });
+                imgClose.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        d.dismiss();
+                    }
+                });
+
+                d.show();
+            }
+        }
+        else{
+            Toast.makeText(getContext(), R.string.no_data_found,Toast.LENGTH_LONG).show();
+        }
+    }
+    private void enrollExamApi(int testFeeNew, final Dialog d){
+        pDialog.show();
+        String userId = Utility.getUserIdFromSharedPref(getContext());
+
+        EnrollExamRequest request = new EnrollExamRequest(testFeeNew, Constants.testIdValue,Integer.parseInt(userId),
+                "CREDIT","EXAM_ENROLL");
+
+        Call<EnrollExamResponse> call = RetrofitClient.getInstance().getApi().enrollExamAPI(request);
+        call.enqueue(new Callback<EnrollExamResponse>() {
+            @Override
+            public void onResponse(Call<EnrollExamResponse> call, Response<EnrollExamResponse> response) {
+                try {
+                    if (response.isSuccessful()) {
+                        showEnrollExamData(response.body(),d);
+                    }else{
+                        Utility.showCommonMessage(getActivity(),"Failed to load API...");
+                    }
+                }catch (Exception ex){
+                    ex.printStackTrace();
+                }
+                pDialog.dismiss();
+            }
+
+            @Override
+            public void onFailure(Call<EnrollExamResponse> call, Throwable t) {
+                Utility.showCommonMessage(getContext(),"Response failed ...");
+                pDialog.dismiss();
+                return;
+            }
+        });
+    }
+    private void showEnrollExamData(EnrollExamResponse response, Dialog d) {
+        if (response != null && !TextUtils.isEmpty(response.getStatus()) && response.getStatus().equalsIgnoreCase("success")) {
+            Utility.showCommonMessage(getContext(),"Enrolled successfully ...");
+            d.dismiss();
+            getDashboardData();
+        }else{
+            Utility.showCommonMessage(getContext(),"Enrollment failed ...");
+        }
+    }
+
 }
 

@@ -31,7 +31,7 @@ public class LeaderBoardAdapter  extends RecyclerView.Adapter<RecyclerView.ViewH
         vh.tvUserName.setText(userTestRanksList.get(position).getUserName());
         vh.tvRank.setText(userTestRanksList.get(position).getRank());
         vh.tvMarks.setText(userTestRanksList.get(position).getMarks());
-        vh.tvAmountWon.setText(userTestRanksList.get(position).getAmountWon());
+        vh.tvAmountWon.setText("Amount Won ₹"+userTestRanksList.get(position).getAmountWon());
     }
 
     @Override

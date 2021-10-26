@@ -200,7 +200,7 @@ public class TestDetailActivity extends Fragment implements  View.OnClickListene
     }
 
     private void showMessageAndCloseScreen(){
-        Toast.makeText(getContext(), getString(R.string.unknown_error), Toast.LENGTH_SHORT).show();
+       // Toast.makeText(getContext(), getString(R.string.unknown_error), Toast.LENGTH_SHORT).show();
     }
 
     @Override

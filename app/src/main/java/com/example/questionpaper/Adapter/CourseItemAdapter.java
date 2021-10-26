@@ -1,6 +1,7 @@
 package com.example.questionpaper.Adapter;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -67,6 +68,26 @@ public class CourseItemAdapter extends RecyclerView.Adapter<CourseItemAdapter.Vi
                 }
             }
         });
+        holder.test_start.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(mListener != null){
+                    mListener.onEnrollClicked(position);
+                }
+            }
+        });
+
+        if(item.get(position).getUserEnroled()){
+            holder.test_start.setVisibility(View.GONE);
+            holder.parent_view.setBackgroundColor(Color.parseColor("#F4F6F3"));
+            holder.time_left.setText("You have enrolled");
+            holder.time_left.setTextColor(Color.parseColor("#4667EC"));
+            holder.time_left.setVisibility(View.VISIBLE);
+        }else{
+            holder.test_start.setVisibility(View.VISIBLE);
+            holder.parent_view.setBackgroundColor(Color.parseColor("#FFFFFF"));
+            holder.time_left.setVisibility(View.INVISIBLE);
+        }
     }
     @Override
     public int getItemCount() {
@@ -75,6 +96,7 @@ public class CourseItemAdapter extends RecyclerView.Adapter<CourseItemAdapter.Vi
 
     public interface OnItemClickListener {
         void onCourseItemClick(int position);
+        void onEnrollClicked(int position);
     }
 
     public void setOnItemClickListener(OnItemClickListener listener) {
@@ -87,7 +109,7 @@ public class CourseItemAdapter extends RecyclerView.Adapter<CourseItemAdapter.Vi
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
-                TextView test_title, test_fees, total_prize_text_value, question_count, minutes, price_amount, time_value, date_value, slots_count, time_left;
+                TextView test_title, test_fees, total_prize_text_value, question_count, minutes, price_amount, time_value, date_value, slots_count, time_left,test_start;
                 LinearLayout parent_view;
                 public ViewHolder(View itemView) {
                     super(itemView);
@@ -102,8 +124,8 @@ public class CourseItemAdapter extends RecyclerView.Adapter<CourseItemAdapter.Vi
                     slots_count = itemView.findViewById(R.id.slots_count);
                     parent_view = itemView.findViewById(R.id.parent_view);
                     time_left = itemView.findViewById(R.id.time_left);
+                    test_start= itemView.findViewById(R.id.test_start);
                 }
-
             }
 
 

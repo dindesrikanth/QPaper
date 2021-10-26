@@ -152,4 +152,14 @@ public class CompletedTestsFragment  extends Fragment implements RootViewClickIn
     public void detailedAnalysisButtonClicked(int position) {
         activity.displayFragment(2);
     }
+
+    @Override
+    public void leaderBoardClick(int position) {
+        activity.displayFragment(3);
+    }
+
+    @Override
+    public void reviewsClick(int position) {
+        activity.displayFragment(12);
+    }
 }

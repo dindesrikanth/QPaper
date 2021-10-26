@@ -51,7 +51,7 @@ public class Question_view_adapter extends RecyclerView.Adapter<Question_view_ad
         // position = currentPosition;
         Questionesmodel hero = item.get(position);
         // holder.responcetxt.setText(item.get(position).setResponce(););
-        holder.txt_quetion.setText(srno+hero.getQues_detail());
+        holder.txt_quetion.setText(srno+hero.getQues_details());
         holder.radio1.setText(hero.getOpta());
         holder.radio2.setText(hero.getOptb());
         holder.radio3.setText(hero.getOptc());

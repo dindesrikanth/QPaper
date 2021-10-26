@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" style="@style/fragmentRootProperty">
+
+
+    <com.example.questionpaper.Common.CustomEditText
+        android:layout_marginTop="@dimen/padding_30dp"
+        android:id="@+id/edtEmailId"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#663399"/>
+
+
+    <com.example.questionpaper.Common.CustomEditText
+        android:id="@+id/edtOtp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#663399"
+        android:layout_marginTop="@dimen/padding_20dp"/>
+
+    <TextView android:layout_marginTop="@dimen/padding_10dp"
+        android:id="@+id/tvResendOtp"
+        style="@style/subHeaderTitle15dpNormal"
+        android:textColor="@color/test_button_blue"
+        android:text="Re send OTP"
+        />
+
+
+    <include layout="@layout/footer_layout"/>
+
+</LinearLayout>

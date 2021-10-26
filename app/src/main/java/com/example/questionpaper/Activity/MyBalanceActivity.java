@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.questionpaper.Adapter.ParticipantAdapter;
 import com.example.questionpaper.Adapter.PrizeAdapter;
+import com.example.questionpaper.Common.Constants;
 import com.example.questionpaper.Model.Leaderboardmodel;
 import com.example.questionpaper.Model.ParticipantModel;
 import com.example.questionpaper.Model.PrizeModel;
@@ -283,7 +284,7 @@ public class MyBalanceActivity extends AppCompatActivity implements  View.OnClic
     }
 
     private void getPrizeData(){
-        Call<PrizeResponseModel> call = RetrofitClient.getInstance().getApi().getPrizeDetails(new TestDetailRequestmodel(1, 3));
+        Call<PrizeResponseModel> call = RetrofitClient.getInstance().getApi().getPrizeDetails(new TestDetailRequestmodel(Constants.testIdValue, Constants.prizeDistributionIdValue));
         call.enqueue(new Callback<PrizeResponseModel>() {
             @Override
             public void onResponse(Call<PrizeResponseModel> call, Response<PrizeResponseModel> response) {

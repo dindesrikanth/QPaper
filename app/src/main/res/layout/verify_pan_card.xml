@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:layout_gravity="center"
+    android:background="@color/bg_grey">
+
+    <include layout="@layout/action_bar_header_fragment_level" />
+
+    <LinearLayout android:layout_marginTop="@dimen/padding_30dp"
+        android:layout_marginStart="@dimen/padding_20dp"
+        android:layout_marginEnd="@dimen/padding_20dp"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.75"
+        android:orientation="vertical">
+
+
+        <com.example.questionpaper.Common.CustomEditText
+            android:id="@+id/edtFullName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="#663399"/>
+
+        <com.example.questionpaper.Common.CustomEditText
+            android:id="@+id/edtPanNumber"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="#663399"
+            android:layout_marginTop="@dimen/padding_20dp"/>
+
+        <TextView
+            android:id="@+id/editTextLabel"
+            style="@style/subHeaderTitle15dpNormal"
+            android:text="Enter DOB"
+            android:background="@color/bg_grey"
+            android:layout_marginTop="@dimen/padding_20dp"
+            />
+        <EditText
+            android:id="@+id/edtDob"
+            style="@style/subHeaderTitle15dpNormal"
+            android:background="@drawable/edittext_border"
+            android:layout_width="match_parent"
+            android:paddingStart="@dimen/padding_10dp"
+            android:paddingEnd="@dimen/padding_10dp"
+            android:minHeight="@dimen/minimum_edittext_height"
+            android:singleLine="true"
+            tools:hint="YYYY-MM-DD"
+            android:layout_marginTop="@dimen/padding_10dp"
+            android:maxLength="10"
+            />
+        <TextView
+            android:id="@+id/dobErrorLabel"
+            style="@style/subHeaderTitle15dpNormal"
+            tools:text="Enter DOb"
+            android:textColor="@color/red"
+            android:visibility="gone"
+            android:background="@color/bg_grey"
+            />
+
+
+        <TextView android:layout_marginTop="@dimen/padding_20dp"
+            android:id="@+id/tvAttachPan"
+            style="@style/subHeaderTitle20dpNormal"
+            android:text="Attach PAN Card"
+            android:drawableStart="@drawable/ic_attachment"
+            android:drawablePadding="@dimen/padding_10dp"
+            />
+        <TextView android:layout_marginTop="@dimen/padding_5dp"
+            android:id="@+id/tvAttachedFileInfo"
+            style="@style/subHeaderTitle15dpNormal"
+            android:textColor="@color/test_button_blue"
+            tools:text="Attached PAN Card link"
+            android:visibility="gone"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="@dimen/padding_30dp">
+
+            <TextView
+                style="@style/subHeaderTitle20dpNormal"
+                android:text="IMPORTANT NOTE"
+                />
+            <TextView
+                style="@style/subHeaderTitle11dpLightGrayNormal"
+                android:text="\n⚫ Full name on PAN Card and Bank account must match\n\n⚫ It takes max 1 working day to get PAN Verified"
+                />
+
+        </LinearLayout>
+
+    </LinearLayout>
+   <include layout="@layout/footer_layout"/>
+
+</LinearLayout>

@@ -275,12 +275,14 @@ public class MainActivity extends AppCompatActivity implements Recycler_view_ada
                         jo_inside.getLong("test_id"),
                         jo_inside.getLong("ques_id"),
                         jo_inside.getLong("ques_local_id"),
-                        jo_inside.getString("ques_detail"),
+                        jo_inside.getString("ques_details"),
+                        jo_inside.getString("testName"),
                         jo_inside.getString("opta"),
                         jo_inside.getString("optb"),
                         jo_inside.getString("optc"),
                         jo_inside.getString("optd"),
-                        jo_inside.getString("opte"), null, false, false);
+                        jo_inside.getString("opte"), "", false, false, "",0L);
+
                 userList.add(questionesmodel);
             }
         } catch (JSONException e) {

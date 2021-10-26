@@ -49,9 +49,8 @@
             android:id="@+id/edtUserName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="#663399">
+            android:textColor="#663399"/>
 
-        </com.example.questionpaper.Common.CustomEditText>
 
         <com.example.questionpaper.Common.CustomEditText
             android:id="@+id/edtPassword"

@@ -12,20 +12,19 @@
         android:orientation="horizontal">
 
         <TextView
-            style="@style/subHeaderTitle15dpNormal"
-            android:textStyle="normal"
+            style="@style/subHeaderTitle15dpBold"
             android:background="@color/bg_grey"
             android:layout_width="@dimen/padding_0dp"
             android:layout_weight="1"
             android:text="CONFIRMATION"/>
-        <ImageView
+        <ImageView android:id="@+id/imgClose"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:minWidth="@dimen/padding_25dp"
             android:minHeight="@dimen/padding_25dp"
             android:src="@drawable/ic_close_gray"/>
     </LinearLayout>
-    <TextView
+    <TextView android:id="@+id/tvTotalBalance"
         style="@style/subHeaderTitle11dpLightGrayNormal"
         android:text="Amount added (Unutilised) + Winnings = R"/>
 
@@ -40,7 +39,7 @@
             android:layout_width="@dimen/padding_0dp"
             android:layout_weight="1"
             android:text="Entry"/>
-        <TextView
+        <TextView android:id="@+id/tvEntryBalance"
             style="@style/subHeaderTitle15dpBold"
             android:background="@color/bg_grey"
             android:text="R1"/>
@@ -63,13 +62,12 @@
             android:layout_weight="1"
             android:text="To Pay"
             android:textColor="@color/dark_green"/>
-        <TextView
+        <TextView android:id="@+id/tvToPayBalance"
             style="@style/subHeaderTitle15dpBold"
             android:background="@color/bg_grey"
             android:textColor="@color/dark_green"
             android:text="R1"/>
     </LinearLayout>
-
 
     <TextView android:layout_marginTop="@dimen/padding_10dp"
         style="@style/subHeaderTitle11dpLightGrayNormal"
@@ -79,7 +77,10 @@
         android:id="@+id/tvTakeTest"
         style="@style/customButtonStyle"
         android:background="@drawable/box_border_green_bg"
-        android:text="JOIN EXAM"
+        android:text="Enroll Exam"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:typeface="serif"
         android:layout_gravity="center"/>
 
 

@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -33,6 +34,7 @@ public class ShowBalanceFragment extends Fragment implements View.OnClickListene
     private TextView tvHeaderTitle;
     TextView tvTotalBalance, tvAddCash,tvAddedBalance,tvWinningsBalance, tvRewardBonus;
     ImageView imgAmountAdded,imgWinnings,imgReward;
+    LinearLayout lnrKycDetails;
 
     @Nullable
     @Override
@@ -41,10 +43,20 @@ public class ShowBalanceFragment extends Fragment implements View.OnClickListene
         this.activity=(ContainerActivity) getActivity();
         pDialog= Utility.getProgressDialog(getActivity());
         initViews(v);
-        getBalanceData();
         return v;
     }
+    @Override
+    public void onResume() {
+        super.onResume();
+        ContainerActivity.relativeCustomActionBar.setVisibility(View.GONE);
+        getBalanceData();
+    }
 
+    @Override
+    public void onStop() {
+        super.onStop();
+        ContainerActivity.relativeCustomActionBar.setVisibility(View.VISIBLE);
+    }
     private void initViews(View v){
         imgNotes=v.findViewById(R.id.imgNotes);
         imgBackArrow = v.findViewById(R.id.imgBackArrow);
@@ -55,6 +67,8 @@ public class ShowBalanceFragment extends Fragment implements View.OnClickListene
         tvHeaderTitle=v.findViewById(R.id.tvHeaderTitle);
         tvHeaderTitle.setText("My Balance");
 
+        lnrKycDetails = v.findViewById(R.id.lnrKycDetails);
+        lnrKycDetails.setOnClickListener(this);
         tvTotalBalance= v.findViewById(R.id.tvTotalBalance);
         tvAddCash= v.findViewById(R.id.tvAddCash);
         tvAddCash.setOnClickListener(this);
@@ -128,28 +142,22 @@ public class ShowBalanceFragment extends Fragment implements View.OnClickListene
             tvTotalBalance.setText("₹0");
         }
     }
-    @Override
-    public void onResume() {
-        super.onResume();
-        ContainerActivity.relativeCustomActionBar.setVisibility(View.GONE);
-    }
 
-    @Override
-    public void onStop() {
-        super.onStop();
-        ContainerActivity.relativeCustomActionBar.setVisibility(View.VISIBLE);
-    }
 
     @Override
     public void onClick(View view) {
         int id = view.getId();
         switch (id){
             case R.id.imgBackArrow:
-                getFragmentManager().popBackStackImmediate();
+                getActivity().getSupportFragmentManager().popBackStack();
+                activity.loadLandingFragment();
                 break;
             case R.id.tvAddCash:
                 Intent intent = new Intent(getContext(), AddBalanceActivity.class);
                 startActivity(intent);
+                break;
+            case R.id.lnrKycDetails:
+                activity.displayFragment(9);
                 break;
             case R.id.imgAmountAdded:
                 break;

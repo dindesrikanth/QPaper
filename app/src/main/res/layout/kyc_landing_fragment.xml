@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:background="@color/bg_grey">
+
+    <include layout="@layout/action_bar_header_fragment_level" />
+
+    <LinearLayout android:layout_marginTop="@dimen/padding_30dp"
+        android:layout_marginStart="@dimen/padding_20dp"
+        android:layout_marginEnd="@dimen/padding_20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" android:orientation="horizontal"
+        android:background="@drawable/custom_border_layout">
+        <LinearLayout
+            android:id="@+id/lnrEmail"
+            android:layout_width="0dp"
+            android:layout_weight="0.9"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
+            <TextView
+                style="@style/subHeaderTitle15dpNormal"
+                android:text="Email ID" />
+            <TextView
+                android:id="@+id/tvEmailStatus"
+                android:layout_marginTop="@dimen/padding_5dp"
+                style="@style/subHeaderTitle15dpLightGrayNormal"
+                tools:text="Pending"/>
+        </LinearLayout>
+        <ImageView android:id="@+id/imgEmail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minWidth="@dimen/padding_30dp"
+            android:minHeight="@dimen/padding_30dp"
+            android:src="@drawable/ic_pending"
+            android:layout_gravity="center"/>
+
+    </LinearLayout>
+
+    <LinearLayout android:layout_marginTop="@dimen/padding_10dp"
+        android:layout_marginStart="@dimen/padding_20dp"
+        android:layout_marginEnd="@dimen/padding_20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" android:orientation="horizontal"
+        android:background="@drawable/custom_border_layout">
+        <LinearLayout
+            android:id="@+id/lnrPanCard"
+            android:layout_width="0dp"
+            android:layout_weight="0.9"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
+            <TextView
+                style="@style/subHeaderTitle15dpNormal"
+                android:text="PAN Card" />
+            <TextView android:layout_marginTop="@dimen/padding_5dp"
+                style="@style/subHeaderTitle15dpLightGrayNormal"
+                tools:text="Pending"
+                android:id="@+id/tvPanStatus"/>
+        </LinearLayout>
+        <ImageView android:id="@+id/imgPanCard"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minWidth="@dimen/padding_30dp"
+            android:minHeight="@dimen/padding_30dp"
+            android:src="@drawable/ic_pending"
+            android:layout_gravity="center"/>
+
+    </LinearLayout>
+
+    <LinearLayout android:layout_marginTop="@dimen/padding_10dp"
+        android:layout_marginStart="@dimen/padding_20dp"
+        android:layout_marginEnd="@dimen/padding_20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" android:orientation="horizontal"
+        android:background="@drawable/custom_border_layout" android:visibility="gone">
+        <LinearLayout
+            android:id="@+id/lnrAddress"
+            android:layout_width="0dp"
+            android:layout_weight="0.9"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
+            <TextView
+                style="@style/subHeaderTitle15dpNormal"
+                android:text="Address Proof" />
+            <TextView android:layout_marginTop="@dimen/padding_5dp"
+                style="@style/subHeaderTitle15dpLightGrayNormal"
+                tools:text="Pending"
+                android:id="@+id/tvAddressStatus"/>
+        </LinearLayout>
+        <ImageView android:id="@+id/imgAddress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minWidth="@dimen/padding_30dp"
+            android:minHeight="@dimen/padding_30dp"
+            android:src="@drawable/ic_pending"
+            android:layout_gravity="center"/>
+
+    </LinearLayout>
+
+    <LinearLayout android:layout_marginTop="@dimen/padding_10dp"
+        android:layout_marginStart="@dimen/padding_20dp"
+        android:layout_marginEnd="@dimen/padding_20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" android:orientation="horizontal"
+        android:background="@drawable/custom_border_layout">
+        <LinearLayout
+            android:id="@+id/lnrBank"
+            android:layout_width="0dp"
+            android:layout_weight="0.9"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
+            <TextView
+                style="@style/subHeaderTitle15dpNormal"
+                android:text="Bank Account" />
+            <TextView android:layout_marginTop="@dimen/padding_5dp"
+                style="@style/subHeaderTitle15dpLightGrayNormal"
+                tools:text="Pending"
+                android:id="@+id/tvBankStatus"/>
+        </LinearLayout>
+        <ImageView android:id="@+id/imgBank"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minWidth="@dimen/padding_30dp"
+            android:minHeight="@dimen/padding_30dp"
+            android:src="@drawable/ic_pending"
+            android:layout_gravity="center"/>
+
+    </LinearLayout>
+
+
+</LinearLayout>

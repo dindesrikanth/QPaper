@@ -9,31 +9,31 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 
 import com.example.questionpaper.Common.CustomAdapter;
-import com.example.questionpaper.Common.CustomEditText;
 import com.example.questionpaper.Common.Utility;
-import com.example.questionpaper.Network.RetrofitClient;
 import com.example.questionpaper.R;
-import com.example.questionpaper.Requests.MyTests.review.ExamReviewRequest;
-import com.example.questionpaper.Response.mytests.Review.ExamReviewResponse;
+import com.example.questionpaper.Requests.MyTests.review.ObjectionsData;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ObjectionScreenDialogFragment extends DialogFragment {
 
-    CustomEditText edtUserName;
     EditText edtDescription;
+    Button btnSubmit;
+
     Spinner spnIssueWith,spnObjection;
-    String selectedObjection="",selectedIssue="";
+    int selectedObjectionId = -1,selectedIssueId = -1;
     private ProgressDialog pDialog;
+
+    String[] issuesList;
+    String[] objectionsList;
+    String questionLocalId;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -45,32 +45,35 @@ public class ObjectionScreenDialogFragment extends DialogFragment {
         super.onViewCreated(view, savedInstanceState);
 
         pDialog=Utility.getProgressDialog(getActivity());
-        edtUserName = view.findViewById(R.id.edtUserName);
         spnIssueWith= view.findViewById(R.id.spnIssueWith);
         spnObjection= view.findViewById(R.id.spnObjection);
         edtDescription=view.findViewById(R.id.edtDescription);
+        btnSubmit = view.findViewById(R.id.btnSubmit);
 
-        edtUserName.setValueToLayout("Enter Question No","");
+        questionLocalId= getArguments().getString("questionLocalId");
+
+        getIssuesList();
+        getObjectionsList();
 
         setIssues();
         setObjections();
-        Button btnSubmit = view.findViewById(R.id.btnSubmit);
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                getUserInfoData();
+               // Toast.makeText(getActivity(),selectedIssueId+"\n"+selectedObjectionId,Toast.LENGTH_LONG).show();
+                 getUserInfoData();
             }
         });
     }
 
     private void setIssues() {
-        CustomAdapter customAdapter=new CustomAdapter(getContext(), Utility.listOfIsses);
+        CustomAdapter customAdapter=new CustomAdapter(getContext(), issuesList);
         spnIssueWith.setAdapter(customAdapter);
 
         spnIssueWith.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
-                selectedIssue = Utility.listOfIsses[position]+"";
+                getIssuesId(issuesList[position]+"");
             }
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
@@ -80,12 +83,12 @@ public class ObjectionScreenDialogFragment extends DialogFragment {
     }
 
     private void setObjections(){
-        CustomAdapter customAdapter=new CustomAdapter(getContext(), Utility.listOfObjections);
+        CustomAdapter customAdapter=new CustomAdapter(getContext(),objectionsList);
         spnObjection.setAdapter(customAdapter);
         spnObjection.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
-                selectedObjection = Utility.listOfObjections[position]+"";
+                getObjectionsId(objectionsList[position]+"");
             }
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
@@ -94,38 +97,98 @@ public class ObjectionScreenDialogFragment extends DialogFragment {
         });
     }
 
-    private void getUserInfoData(){
-        pDialog.show();
-        String userId = Utility.getUserIdFromSharedPref(getContext());
-        ExamReviewRequest reviewRequest=new ExamReviewRequest("2",userId);
-
-        Call<ExamReviewResponse> call = RetrofitClient.getInstance().getApi().getUserExamReview(reviewRequest);
-        call.enqueue(new Callback<ExamReviewResponse>() {
-            @Override
-            public void onResponse(Call<ExamReviewResponse> call, Response<ExamReviewResponse> response) {
-                try {
-                    if (response.isSuccessful()) {
-                        Toast.makeText(getActivity(),"header"+response.headers(),Toast.LENGTH_LONG).show();
-
-                    }else{
-                        Utility.showCommonMessage(getActivity(),"Failed to load API...");
-                    }
-                }catch (Exception ex){
-                    ex.printStackTrace();
-                }
-                pDialog.dismiss();
+    private void getIssuesId(String issue){
+        for (IssueWithModel model:getIssuesList()){
+            if(model.getIssueWith().equalsIgnoreCase(issue)){
+                selectedIssueId = model.getId();
             }
-
-            @Override
-            public void onFailure(Call<ExamReviewResponse> call, Throwable t) {
-                // Toast.makeText(getActivity(),"Response failed ...",Toast.LENGTH_LONG).show();
-                Utility.showCommonMessage(getContext(),"Response failed ...");
-                pDialog.dismiss();
-                return;
-            }
-        });
+        }
     }
 
+    private void getObjectionsId(String objection){
+        for (ObjectionsModel model:getObjectionsList()){
+            if(model.getObjection().equalsIgnoreCase(objection)){
+                selectedObjectionId = model.getObjectionId();
+            }
+        }
+    }
 
+    private void getUserInfoData(){
+       // pDialog.show();
+        String userId = Utility.getUserIdFromSharedPref(getContext());
+       // long questionLocalId,long testId,String userId
+        for (ObjectionsData data : Utility.objectionsList){
+            if(data.getQuestionLocalId() == Long.parseLong(questionLocalId)){
+                Utility.objectionsList.remove(data);
+                break;
+            }
+        }
+
+        ObjectionsData reviewRequest=new ObjectionsData(selectedIssueId,edtDescription.getEditableText().toString(),selectedObjectionId, Long.parseLong(questionLocalId),2L,userId);
+        Utility.objectionsList.add(reviewRequest);
+        this.dismiss();
+    }
+
+    private List<ObjectionsModel> getObjectionsList(){
+
+        List<ObjectionsModel> objectionsModels=new ArrayList<>();
+        objectionsModels.clear();
+
+        ObjectionsModel objModel1= new ObjectionsModel();
+        objModel1.setObjectionId(11);
+        objModel1.setObjection("Question is incorrect");
+        objectionsModels.add(objModel1);
+
+        ObjectionsModel objModel2= new ObjectionsModel();
+        objModel2.setObjectionId(12);
+        objModel2.setObjection("Question is incomplete");
+        objectionsModels.add(objModel2);
+
+        ObjectionsModel objModel3= new ObjectionsModel();
+        objModel3.setObjectionId(21);
+        objModel3.setObjection("Answer is incorrect");
+        objectionsModels.add(objModel3);
+
+        ObjectionsModel objModel4= new ObjectionsModel();
+        objModel4.setObjectionId(22);
+        objModel4.setObjection("Answer not available in Options");
+        objectionsModels.add(objModel4);
+
+        ObjectionsModel objModel5= new ObjectionsModel();
+        objModel5.setObjectionId(31);
+        objModel5.setObjection("Explanation is incorrect");
+        objectionsModels.add(objModel5);
+
+        ObjectionsModel objModel6= new ObjectionsModel();
+        objModel6.setObjectionId(99);
+        objModel6.setObjection("Others");
+        objectionsModels.add(objModel6);
+
+        objectionsList = new String[]{"Question is incorrect","Question is incomplete","Answer is incorrect","Answer not available in Options","Explanation is incorrect","Others"};
+
+        return objectionsModels;
+    }
+    private List<IssueWithModel> getIssuesList(){
+
+        List<IssueWithModel> listData = new ArrayList<>();
+        listData.clear();
+        IssueWithModel model1 = new IssueWithModel();
+        model1.setId(1);
+        model1.setIssueWith("Question");
+        listData.add(model1);
+
+        IssueWithModel model2 = new IssueWithModel();
+        model2.setId(2);
+        model2.setIssueWith("Answer");
+        listData.add(model2);
+
+        IssueWithModel model3 = new IssueWithModel();
+        model3.setId(3);
+        model3.setIssueWith("Explanation");
+        listData.add(model3);
+
+        issuesList = new String[]{"Question","Answer","Explanation"};
+        return listData;
+    }
 
 }

@@ -74,7 +74,7 @@ public class StatusListViewAdapter extends RecyclerView.Adapter<StatusListViewAd
             holder.grid_item_marked.setVisibility(View.VISIBLE);
         }
         holder.grid_item_text.setText(position + 1 + "");
-        holder.question_text.setText(hero.getQues_detail());
+        holder.question_text.setText(hero.getQues_details());
 //        if (answersList.get(position).getQues_Status() == 1) {
 //            holder.tvQuestionNumber.setBackgroundColor(context.getResources().getColor(R.color.red));
 //        } else if (answersList.get(position).getQues_Status() == 2) {

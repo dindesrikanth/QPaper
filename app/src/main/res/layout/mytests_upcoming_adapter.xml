@@ -20,6 +20,7 @@
                 android:layout_width="0dp"
                 android:layout_weight="0.5"
                 tools:text="Test name"
+                android:background="@color/white"
                 />
 
             <TextView android:id="@+id/tvDate"
@@ -28,6 +29,7 @@
                 android:layout_weight="0.3"
                 android:layout_height="wrap_content"
                 tools:text="Date"
+                android:background="@color/white"
                 />
             <TextView android:id="@+id/tvTime"
                 style="@style/subHeaderTitle15dpNormal"
@@ -35,6 +37,7 @@
                 android:layout_weight="0.2"
                 android:layout_height="wrap_content"
                 tools:text="Time"
+                android:background="@color/white"
                 />
         </LinearLayout>
 
@@ -49,6 +52,7 @@
                 android:layout_height="wrap_content"
                 tools:text="Marks And Duration"
                 android:layout_marginBottom="@dimen/padding_10dp"
+                android:background="@color/white"
                 />
         </LinearLayout>
 

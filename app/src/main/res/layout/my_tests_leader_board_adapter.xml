@@ -20,6 +20,7 @@
                     style="@style/subHeaderTitle15dpNormal"
                     android:layout_width="0dp"
                     android:layout_weight="0.5"
+                    android:background="@color/white"
                     tools:text="Test Name"
                     android:paddingStart="@dimen/padding_10dp">
                 </TextView>
@@ -31,6 +32,7 @@
                     android:layout_weight="0.3"
                     tools:text="Marks"
                     android:gravity="center"
+                    android:background="@color/white"
                     />
 
                 <TextView
@@ -38,6 +40,7 @@
                     android:paddingEnd="@dimen/padding_10dp"
                     android:id="@+id/tvRank"
                     style="@style/subHeaderTitle15dpNormal"
+                    android:background="@color/white"
                     android:layout_weight="0.2"
                     android:layout_width="0dp"
                     tools:text="Rank"
@@ -59,7 +62,8 @@
                     android:layout_width="0dp"
                     tools:text="Amount Won"
                     android:gravity="start"
-                    android:textColor="@color/test_button_blue"/>
+                    android:textColor="@color/test_button_blue"
+                    android:background="@color/white"/>
             </LinearLayout>
 
 

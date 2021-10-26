@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout style="@style/fragmentRootProperty">
+
+    <include layout="@layout/recyclerview_common_layout"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
