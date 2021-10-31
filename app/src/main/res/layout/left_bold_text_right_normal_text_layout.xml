@@ -21,6 +21,7 @@
                 tools:text="100"
                 android:paddingStart="@dimen/padding_10dp"
                 android:layout_width="@dimen/padding_0dp"
-                android:layout_weight="1"/>
+                android:layout_weight="1"
+                />
     </LinearLayout>
 </androidx.cardview.widget.CardView>

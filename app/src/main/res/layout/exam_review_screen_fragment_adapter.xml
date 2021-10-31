@@ -5,7 +5,7 @@
     android:orientation="vertical"
     style="@style/adapterRootProperty"
     android:layout_height="match_parent"
-    android:background="@color/bg_grey"
+    android:background="@color/white"
     android:paddingStart="@dimen/padding_20dp"
     android:paddingEnd="@dimen/padding_20dp"
     android:layout_marginTop="@dimen/padding_0dp"

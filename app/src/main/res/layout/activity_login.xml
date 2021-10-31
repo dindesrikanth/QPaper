@@ -7,7 +7,7 @@
     tools:context=".Activity.LoginActivity"
     android:paddingStart="@dimen/padding_20dp"
     android:paddingEnd="@dimen/padding_20dp"
-    android:background="@color/bg_grey">
+    android:background="@color/white">
 
     <TextView
         android:id="@+id/welcome"
@@ -90,7 +90,6 @@
             android:layout_width="match_parent"
             android:textSize="@dimen/padding_20dp"
             android:layout_marginTop="@dimen/padding_10dp"
-            android:background="@color/bg_grey"
             android:gravity="center"
             android:imeActionLabel="@string/action_sign_in_short"
             android:imeOptions="actionDone"

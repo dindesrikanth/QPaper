@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:id="@+id/lnrAdapterContainer"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingTop="@dimen/padding_10dp"
+    android:paddingBottom="@dimen/padding_10dp"
+    android:background="@color/bg_grey">
+
+    <TextView
+        style="@style/subHeaderTitle15dpBold"
+        android:id="@+id/tvHeader"
+        android:paddingStart="@dimen/padding_10dp"
+        tools:text="2021-10-20"
+        android:background="@color/bg_grey"/>
+
+</LinearLayout>

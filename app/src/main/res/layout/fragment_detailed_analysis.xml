@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_height="match_parent"
     android:layout_width="match_parent"
-    android:background="@color/bg_grey"
+    android:background="@color/white"
     android:scrollbars="none"
     tools:context=".Screens.mytest.DetailedAnalysis.DetailedAnalysisFragment">
 
@@ -24,8 +24,7 @@
                 style="@style/subHeaderTitle15dpNormal"
                 android:layout_width="0dp"
                 android:layout_weight="0.5"
-                android:text="Test Name"
-                android:background="@color/bg_grey">
+                android:text="Test Name">
             </TextView>
 
             <TextView
@@ -34,7 +33,6 @@
                 android:layout_weight="0.5"
                 android:layout_width="0dp" 
                 tools:text="Physics Q1"
-                android:background="@color/bg_grey"
                 android:gravity="end"/>
         </LinearLayout>
         <LinearLayout android:layout_marginTop="@dimen/padding_15dp"
@@ -47,8 +45,7 @@
                  style="@style/subHeaderTitle15dpNormal"
                  android:layout_weight="0.5"
                  android:layout_width="0dp"
-                 android:text="Rank"
-                 android:background="@color/bg_grey"/> 
+                 android:text="Rank"/>
 
             <TextView
                 android:id="@+id/tvRankValue"
@@ -56,7 +53,6 @@
                 android:layout_weight="0.5"
                 android:layout_width="0dp"
                 tools:text="12451"
-                android:background="@color/bg_grey"
                 android:gravity="end"/>
  
         </LinearLayout>
@@ -70,8 +66,7 @@
                 style="@style/subHeaderTitle15dpNormal"
                 android:layout_weight="0.5"
                 android:layout_width="0dp"
-                android:text="Score"
-                android:background="@color/bg_grey"/>
+                android:text="Score"/>
             
 
             <TextView
@@ -80,7 +75,6 @@
                 android:layout_weight="0.5"
                 android:layout_width="0dp"
                 tools:text="458"
-                android:background="@color/bg_grey"
                 android:gravity="end"/>
 
         </LinearLayout>
@@ -96,8 +90,7 @@
                 style="@style/subHeaderTitle15dpNormal"
                 android:layout_weight="0.5"
                 android:layout_width="0dp"
-                android:text="Amount Won"
-                android:background="@color/bg_grey"/>
+                android:text="Amount Won"/>
 
             <TextView
                 android:id="@+id/tvAmountValue"
@@ -105,7 +98,6 @@
                 android:layout_weight="0.5"
                 android:layout_width="0dp"
                 tools:text="123456"
-                android:background="@color/bg_grey"
                 android:gravity="end"/>
         </LinearLayout>
 
@@ -119,8 +111,7 @@
                 style="@style/subHeaderTitle15dpNormal"
                 android:layout_weight="0.7"
                 android:layout_width="0dp"
-                android:text="Solution/ Explanation video"
-                android:background="@color/bg_grey"/>
+                android:text="Solution/ Explanation video"/>
 
             <TextView
                 android:id="@+id/tvPurchase"
@@ -143,8 +134,7 @@
                 style="@style/subHeaderTitle15dpNormal"
                 android:layout_weight="0.7"
                 android:layout_width="0dp"
-                android:text="Key &amp; Explanation"
-                android:background="@color/bg_grey"/>
+                android:text="Key &amp; Explanation"/>
 
             <TextView
                 android:id="@+id/tvView"
@@ -166,8 +156,7 @@
                 style="@style/subHeaderTitle15dpNormal"
                 android:layout_weight="0.7"
                 android:layout_width="0dp"
-                android:text="Leader Board"
-                android:background="@color/bg_grey"/>
+                android:text="Leader Board"/>
 
             <TextView
                 android:id="@+id/tvLeaderBoardView"
@@ -183,7 +172,6 @@
             style="@style/headerTitle20dpBold"
             android:layout_width="match_parent"
             android:text="Detailed Analysis"
-            android:background="@color/bg_grey"
             android:layout_gravity="center"
             android:gravity="center" />
 

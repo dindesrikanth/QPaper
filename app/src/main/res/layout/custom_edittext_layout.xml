@@ -4,13 +4,13 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/bg_grey">
+    android:background="@color/white">
 
     <TextView
         android:id="@+id/editTextLabel"
         style="@style/subHeaderTitle15dpNormal"
         tools:text="Enter Customer Id"
-        android:background="@color/bg_grey"
+        android:background="@color/white"
         />
     <EditText
         android:id="@+id/customEditText"

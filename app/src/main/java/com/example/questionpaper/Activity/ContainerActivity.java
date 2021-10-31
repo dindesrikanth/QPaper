@@ -23,6 +23,7 @@ import com.example.questionpaper.Screens.Courses.CoursesListScreenFragment;
 import com.example.questionpaper.Screens.InfoAndSettings.ChangePasswordFragment;
 import com.example.questionpaper.Screens.InfoAndSettings.UserInfoScreenFragment;
 import com.example.questionpaper.Screens.Payments.ShowBalanceFragment;
+import com.example.questionpaper.Screens.Payments.TransactionHistoryFragment;
 import com.example.questionpaper.Screens.Verification.KycLandingFragment;
 import com.example.questionpaper.Screens.Verification.VerifyBankAccountFragment;
 import com.example.questionpaper.Screens.Verification.VerifyPanCardFragment;
@@ -221,7 +222,7 @@ public class ContainerActivity extends AppCompatActivity {
                // startActivity(new Intent(getApplicationContext(),DashboardActivity.class));
                 break;
             case R.id.nav_videos:
-                fragmentClass = VerifyPanCardFragment.class;
+                fragmentClass = TransactionHistoryFragment.class;
                 break;
             case R.id.nav_materials:
                 //fragmentClass = ThirdFragment.class;

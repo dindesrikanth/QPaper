@@ -4,20 +4,18 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/bg_grey">
+    android:background="@color/white">
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scrollbars="none"
         android:id="@+id/rViewCommon"
-        tools:listitem="@layout/transaction_history_adapter"
-        android:background="@color/bg_grey"/>
+        tools:listitem="@layout/transaction_history_adapter"/>
 
     <TextView android:id="@+id/tvErrorMessage"
         style="@style/subHeaderTitle15dpBold"
         android:text="@string/no_record_message"
         android:visibility="gone"
-        android:background="@color/bg_grey"
         android:layout_marginTop="@dimen/padding_30dp"
         android:paddingStart="@dimen/padding_15dp"/>
 </LinearLayout>

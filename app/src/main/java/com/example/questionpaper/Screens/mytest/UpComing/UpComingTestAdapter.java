@@ -101,12 +101,12 @@ public class UpComingTestAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 
         @Override
         public void onClick(View view) {
-            rootViewClickInterface.onRootViewClicked(getAdapterPosition(),responseActualData);
+            rootViewClickInterface.onRootViewClicked(getAdapterPosition(),responseActualData,listData);
         }
     }
 
     public interface RootViewClickInterface{
-        void onRootViewClicked(int position, List<Data> responseActualData);
+        void onRootViewClicked(int position, List<Data> responseActualData,List<Object> objectData);
     }
 
 

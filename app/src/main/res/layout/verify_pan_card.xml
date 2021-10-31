@@ -4,8 +4,7 @@
     android:orientation="vertical"
     android:layout_height="match_parent"
     android:layout_width="match_parent"
-    android:layout_gravity="center"
-    android:background="@color/bg_grey">
+    android:layout_gravity="center">
 
     <include layout="@layout/action_bar_header_fragment_level" />
 
@@ -35,7 +34,6 @@
             android:id="@+id/editTextLabel"
             style="@style/subHeaderTitle15dpNormal"
             android:text="Enter DOB"
-            android:background="@color/bg_grey"
             android:layout_marginTop="@dimen/padding_20dp"
             />
         <EditText

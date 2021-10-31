@@ -37,6 +37,7 @@ import com.example.questionpaper.Response.InfoAndSettings.UpdateProfileResponse;
 import com.example.questionpaper.Response.InfoAndSettings.UserInfoScreenResponse;
 import com.example.questionpaper.Response.Login.LoginApiResponse;
 import com.example.questionpaper.Response.Payments.ShowBalanceResponse;
+import com.example.questionpaper.Response.Payments.TransactionHistoryResponse;
 import com.example.questionpaper.Response.mytests.Completed.CompletedTestsResponse;
 import com.example.questionpaper.Response.mytests.DetailedAnalysis.DetailedAnalysisResponse;
 import com.example.questionpaper.Response.mytests.LeaderBoard.LeaderBoardResponse;
@@ -281,4 +282,8 @@ public interface Api {
     @POST("ba-update")
     Call<CommonResponse> submitBankVerificationDetails(
             @Body BankAccountSubmitRequest bankAccountSubmitRequest);
+
+
+    @GET("trans/order/get-trans-hist/{userId}")
+    Call<TransactionHistoryResponse> getTransactionHistory(@Path("userId") String userId);
 }

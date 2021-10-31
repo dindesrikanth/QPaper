@@ -114,28 +114,34 @@ public class UpComingTestFragment extends Fragment implements UpComingTestAdapte
         RecyclerView.LayoutManager layoutManager=new LinearLayoutManager(getActivity(),RecyclerView.VERTICAL,false);
         rViewCommon.setLayoutManager(layoutManager);
     }
-    private void getRecyclerViewData(List<Data> fullData){
-        recyclerViewData.clear();
-        for (Data testData:fullData){
-            recyclerViewData.add(testData);
-            if(testData.getDownArrow()){
-                testData.setDownArrow(false);
-            }else{
-                testData.setDownArrow(true);
-                if(testData.getTests().size()>0){
-                    recyclerViewData.addAll(testData.getTests());
-                }
-            }
 
-        }
-        adapter.notifyDataSetChanged();
-    }
 
     @Override
-    public void onRootViewClicked(int position, List<Data> responseActualData) {
+    public void onRootViewClicked(int position, List<Data> responseActualData,List<Object> objectData) {
         if(responseActualData != null && responseActualData.size()>0){
-            getRecyclerViewData(responseActualData);
+            getRecyclerViewData(responseActualData,position,objectData);
         }
 
+    }
+    private void getRecyclerViewData(List<Data> fullData,int position,List<Object> objectData){
+        for (Data testData:fullData){
+           testData.setDownArrow(false);
+        }
+        if(objectData.get(position) instanceof Data){
+            Data d = (Data)objectData.get(position);
+            if(d.getDownArrow()){
+                d.setDownArrow(false);
+            }else{
+                d.setDownArrow(true);
+            }
+        }
+        recyclerViewData.clear();
+        for (Data d:fullData){
+          recyclerViewData.add(d);
+          if(d.getDownArrow()) {
+              recyclerViewData.addAll(d.getTests());
+          }
+        }
+        adapter.notifyDataSetChanged();
     }
 }
