@@ -30,11 +30,13 @@ import com.example.questionpaper.Activity.TestSubmissionDialog.MyDialogListener;
 import com.example.questionpaper.Adapter.TestAdapter;
 import com.example.questionpaper.Common.Utility;
 import com.example.questionpaper.Fragments.StatusView;
-import com.example.questionpaper.Model.AnswerSubmitModel;
+import com.example.questionpaper.Model.QuestionResponse;
 import com.example.questionpaper.Model.Questionesmodel;
+import com.example.questionpaper.Model.SubmitExamRequest;
 import com.example.questionpaper.Network.RetrofitClient;
 import com.example.questionpaper.R;
 import com.example.questionpaper.Requests.MyTests.ExamTestQuestionRequest;
+import com.example.questionpaper.Response.CommonResponse;
 import com.example.questionpaper.Service.StickyService;
 import com.example.questionpaper.ServiceCallbacks;
 import com.google.gson.Gson;
@@ -49,6 +51,7 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import retrofit2.Call;
@@ -86,10 +89,13 @@ public class TestActivity extends AppCompatActivity implements TestAdapter.OnIte
     private boolean bound = false;
     Intent stickyService;
 
+    List<QuestionResponse> questionResponse;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test);
+        questionResponse = new ArrayList<>();
+        questionResponse.clear();
         stickyService = new Intent(TestActivity.this, StickyService.class);
         startService(stickyService);
         initViews(getIntent().getExtras());
@@ -293,16 +299,19 @@ public class TestActivity extends AppCompatActivity implements TestAdapter.OnIte
     }
 
     public  void submitAnswersToApi(){
-        final AnswerSubmitModel answerSubmitModel = new AnswerSubmitModel("1", userList.get(0).getCource_id() + "", userList.get(0).getSub_id()+ "", userList.get(0).getTest_id()+ "", createAnswers(), timeSpent + "");
-        Call<AnswerSubmitModel> call = RetrofitClient.getInstance().getApi().submitAnswers(answerSubmitModel);
-        call.enqueue(new Callback<AnswerSubmitModel>() {
+        String userId = Utility.getUserIdFromSharedPref(getApplicationContext());
+        final SubmitExamRequest submitExamRequest = new SubmitExamRequest(userList.get(0).getCource_id() + "",timeSpent + "",userId, questionResponse);
+        Call<CommonResponse> call = RetrofitClient.getInstance().getApi().submitExam(submitExamRequest);
+        call.enqueue(new Callback<CommonResponse>() {
             @Override
-            public void onResponse(Call<AnswerSubmitModel> call, Response<AnswerSubmitModel> response) {
-
+            public void onResponse(Call<CommonResponse> call, Response<CommonResponse> response) {
+                if(response.isSuccessful()){
+                    Toast.makeText(getApplicationContext(),"Test submitted successfully...",Toast.LENGTH_LONG).show();
+                }
             }
 
             @Override
-            public void onFailure(Call<AnswerSubmitModel> call, Throwable t) {
+            public void onFailure(Call<CommonResponse> call, Throwable t) {
 
             }
         });
@@ -451,6 +460,9 @@ public class TestActivity extends AppCompatActivity implements TestAdapter.OnIte
       if(userList != null){
           userList.get(position).setAnswerId(checkid + "");
           testAdapter.notifyDataSetChanged();
+
+          QuestionResponse response = new QuestionResponse(userList.get(position).getAnswerId(),userList.get(position).getQues_local_id()+"");
+          questionResponse.add(response);
       }
     }
 

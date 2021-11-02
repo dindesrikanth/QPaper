@@ -13,6 +13,7 @@ import com.example.questionpaper.Model.OrderIdModel;
 import com.example.questionpaper.Model.PaymentVerificationModel;
 import com.example.questionpaper.Model.PrizeResponseModel;
 import com.example.questionpaper.Model.ScoreModel;
+import com.example.questionpaper.Model.SubmitExamRequest;
 import com.example.questionpaper.Model.TestDetailRequestmodel;
 import com.example.questionpaper.Model.UserCourses;
 import com.example.questionpaper.Model.signinmodel;
@@ -123,6 +124,12 @@ public interface Api {
     @POST("saveUserExamResp")
     Call<AnswerSubmitModel> submitAnswers(
             @Body AnswerSubmitModel Signin);
+
+
+    @POST("exam/submit-exam-response")
+    Call<CommonResponse> submitExam(
+            @Body SubmitExamRequest answerSubmitModel);
+
 
     @POST("trans/order/get-order-id")
     Call<OrderIdModel> getOrderId(

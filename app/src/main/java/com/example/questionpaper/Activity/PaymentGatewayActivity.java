@@ -11,14 +11,12 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.questionpaper.Model.AnswerSubmitModel;
 import com.example.questionpaper.Model.BeanOrderIdInput;
 import com.example.questionpaper.Model.OrderIdModel;
 import com.example.questionpaper.Network.RetrofitClient;
 import com.example.questionpaper.R;
 import com.razorpay.Checkout;
 import com.razorpay.PaymentData;
-import com.razorpay.PaymentResultListener;
 import com.razorpay.PaymentResultWithDataListener;
 
 import org.json.JSONObject;
