@@ -24,6 +24,7 @@ import com.example.questionpaper.Screens.InfoAndSettings.ChangePasswordFragment;
 import com.example.questionpaper.Screens.InfoAndSettings.UserInfoScreenFragment;
 import com.example.questionpaper.Screens.Payments.ShowBalanceFragment;
 import com.example.questionpaper.Screens.Payments.TransactionHistoryFragment;
+import com.example.questionpaper.Screens.Payments.ViewToppersFragment;
 import com.example.questionpaper.Screens.Verification.KycLandingFragment;
 import com.example.questionpaper.Screens.Verification.VerifyBankAccountFragment;
 import com.example.questionpaper.Screens.Verification.VerifyPanCardFragment;
@@ -252,7 +253,7 @@ public class ContainerActivity extends AppCompatActivity {
                 //fragmentClass = ThirdFragment.class;
                 break;
             case R.id.nav_miscellaneous:
-                //fragmentClass = ThirdFragment.class;
+                fragmentClass = ViewToppersFragment.class;
                 break;
             case R.id.nav_exam:
                 //fragmentClass = ThirdFragment.class;

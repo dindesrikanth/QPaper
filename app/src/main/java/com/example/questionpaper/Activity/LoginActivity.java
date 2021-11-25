@@ -40,8 +40,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         pDialog =Utility.getProgressDialog(this);
         init();
         sp = getSharedPreferences("login",MODE_PRIVATE);
-        edtUserName.setValueToLayout("Email Id", "hari123@gmail.com");
-        edtPassword.setValueToLayout("Password","hari123");
+        edtUserName.setValueToLayout("Email Id", "srikanthpatel132@gmail.com");
+        edtPassword.setValueToLayout("Password","Test@123");
+        /*edtUserName.setValueToLayout("Email Id", "hari123@gmail.com");
+        edtPassword.setValueToLayout("Password","hari123");*/
 
         //edtPassword.setInpu
         /// From registration flow
@@ -129,7 +131,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
            logInClicked();
         }
         else if(id == R.id.tvForgotPassword){
-
+            startActivity(new Intent(getApplicationContext(),ForgotPasswordLandingActivity.class));
         }
         else if(id == R.id.tvSignIn){
             Intent Register = new Intent(LoginActivity.this,Register.class);

@@ -21,6 +21,7 @@ import com.example.questionpaper.Model.user_response;
 import com.example.questionpaper.Requests.Courses.CoursesListSubmitRequest;
 import com.example.questionpaper.Requests.Dashboard.EnrollExamRequest;
 import com.example.questionpaper.Requests.InfoAndSettings.UpdateProfileRequest;
+import com.example.questionpaper.Requests.Login.ForgotPasswordRequest;
 import com.example.questionpaper.Requests.Login.LoginApiRequest;
 import com.example.questionpaper.Requests.Login.RegisterApiRequest;
 import com.example.questionpaper.Requests.MyTests.CompletedTestsRequest;
@@ -39,6 +40,7 @@ import com.example.questionpaper.Response.InfoAndSettings.UserInfoScreenResponse
 import com.example.questionpaper.Response.Login.LoginApiResponse;
 import com.example.questionpaper.Response.Payments.ShowBalanceResponse;
 import com.example.questionpaper.Response.Payments.TransactionHistoryResponse;
+import com.example.questionpaper.Response.Payments.ViewToppersListResponse;
 import com.example.questionpaper.Response.mytests.Completed.CompletedTestsResponse;
 import com.example.questionpaper.Response.mytests.DetailedAnalysis.DetailedAnalysisResponse;
 import com.example.questionpaper.Response.mytests.LeaderBoard.LeaderBoardResponse;
@@ -293,4 +295,27 @@ public interface Api {
 
     @GET("trans/order/get-trans-hist/{userId}")
     Call<TransactionHistoryResponse> getTransactionHistory(@Path("userId") String userId);
+
+
+    @Headers({
+            "Accept: application/json",
+            "Content-Type: application/json"
+    })
+    @POST("uta/user/forgot-passowrd")
+    Call<CommonResponse> sendOtpApi(
+            @Body ForgotPasswordRequest forgotPasswordRequest);
+
+
+
+    @Headers({
+            "Accept: application/json",
+            "Content-Type: application/json"
+    })
+    @POST("uta/user/reset-password")
+    Call<CommonResponse> resetPasswordApi(
+            @Body RegisterApiRequest registerApiRequest);
+
+
+    @GET("get-weekly-ranks/{userId}")
+    Call<ViewToppersListResponse> getToppersList(@Path("userId") String userId);
 }

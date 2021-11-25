@@ -91,6 +91,8 @@
         </activity>
 
         <service android:name=".Service.StickyService" />
+
+        <activity android:name=".Activity.ForgotPasswordLandingActivity"/>
     </application>
 
 </manifest>

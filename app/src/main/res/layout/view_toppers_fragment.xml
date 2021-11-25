@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:layout_gravity="center"
+    android:orientation="vertical">
+
+    <include layout="@layout/action_bar_header_fragment_level" />
+    <include layout="@layout/recyclerview_common_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/padding_20dp"/>
+
+</LinearLayout>

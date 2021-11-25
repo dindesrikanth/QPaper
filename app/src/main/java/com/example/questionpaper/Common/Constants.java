@@ -8,4 +8,6 @@ public class Constants {
     public static String userId_value = "userId";
     public static final String isCoursesLoaded_key="coursesLoaded";
     public static final long popBackStackDelayValue = 3000;
+    public static String forgotPasswordEmailId = "";
+
 }

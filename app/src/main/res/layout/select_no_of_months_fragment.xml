@@ -11,15 +11,13 @@
         android:layout_width="match_parent"
         android:layout_height="370dp"
         android:orientation="vertical"
-        android:background="@color/bg_grey"
         android:layout_margin="@dimen/padding_20dp"
         android:paddingStart="@dimen/padding_15dp"
         android:paddingEnd="@dimen/padding_15dp">
 
         <TextView android:paddingTop="@dimen/padding_20dp"
             style="@style/subHeaderTitle15dpBold"
-            android:text="Choose number of months"
-            android:background="@color/bg_grey"/>
+            android:text="Choose number of months"/>
 
         <include layout="@layout/recyclerview_common_layout"
             android:layout_height="270dp"
